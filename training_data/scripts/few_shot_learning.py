@@ -241,9 +241,16 @@ class GranulateCharacterFewShotDataset(Dataset):
 class FewShotTrainer:
     """Few-shot学習トレーナー"""
     
-    def __init__(self, model, device='cuda'):
-        self.model = model.to(device)
+    def __init__(self, model, device=None):
+        if device is None:
+            if torch.backends.mps.is_available():
+                device = 'mps'
+            elif torch.cuda.is_available():
+                device = 'cuda'
+            else:
+                device = 'cpu'
         self.device = device
+        self.model = model.to(device)
         self.optimizer = optim.Adam(self.model.parameters(), lr=1e-3)
         
     def train_prototypical(self, dataloader, num_epochs=100):
@@ -255,10 +262,11 @@ class FewShotTrainer:
             total_acc = 0
             
             for batch in dataloader:
-                support_images = batch['support_images'].to(self.device)
-                support_labels = batch['support_labels'].to(self.device)
-                query_images = batch['query_images'].to(self.device)
-                query_labels = batch['query_labels'].to(self.device)
+                # バッチサイズが1の場合、最初の次元を除去
+                support_images = batch['support_images'].squeeze(0).to(self.device)
+                support_labels = batch['support_labels'].squeeze(0).to(self.device)
+                query_images = batch['query_images'].squeeze(0).to(self.device)
+                query_labels = batch['query_labels'].squeeze(0).to(self.device)
                 
                 # 埋め込みを計算
                 support_embeddings = self.model(support_images)
@@ -406,8 +414,9 @@ if __name__ == "__main__":
     # Prototypical Networksの学習
     print("Training Prototypical Networks...")
     proto_model = PrototypicalNetwork()
-    proto_trainer = FewShotTrainer(proto_model)
-    proto_trainer.train_prototypical(dataloader, num_epochs=50)
+    # CPUで実行（MPSのバグを回避）
+    proto_trainer = FewShotTrainer(proto_model, device='cpu')
+    proto_trainer.train_prototypical(dataloader, num_epochs=2)  # デモ用に少ないエポック数
     
     # モデルを保存
     torch.save(proto_model.state_dict(), "models/prototypical_network.pth")

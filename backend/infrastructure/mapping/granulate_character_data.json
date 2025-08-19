@@ -1,0 +1,132 @@
+{
+  "A": {
+    "hash": "0000000000000000010110100001100000111100001001000000000000000000",
+    "image_path": "training_data/extracted/A/A_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAExklEQVRYCaXBe5CNZRzA8e/veaWmmhpNJk2j3NJFi8qlZYVssRX+..."
+  },
+  "B": {
+    "hash": "0000000000000000001001000010110000100100001001000000000000000000",
+    "image_path": "training_data/extracted/B/B_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADUElEQVRYCaXBS4iWVRjA8f/zPmMwlTRgFxQXLaLAatFeB8M2gnh0..."
+  },
+  "C": {
+    "hash": "0000000000011000001001000011000000000100001001000001000000000000",
+    "image_path": "training_data/extracted/C/C_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADeklEQVRYCaXBfWhVdRzH8ffndzSbys0lGSUiCRqB4Kx/+uO2LYnQ..."
+  },
+  "D": {
+    "hash": "0000000000111000001001000010010000111000001000000010000000000000",
+    "image_path": "training_data/extracted/D/D_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAClElEQVRYCaXBO4idRRjH4d//vGsiiAQvhdlCBLvFxk60SMDGwOIQ..."
+  },
+  "E": {
+    "hash": "0000000000111100001000000010000000100000001000000011110000000000",
+    "image_path": "training_data/extracted/E/E_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAACPklEQVRYCaXBMYtUVxjH4d//rsm4laJVBGsbP8Q2gsVGAqdILNLa..."
+  },
+  "F": {
+    "hash": "0000000001111110011111100111111001111110011111100011111000000000",
+    "image_path": "training_data/extracted/F/F_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADQElEQVRYCaXBPagcVRzG4d97o2FHNILIGiUpTPxAIeEsksZKiIWF..."
+  },
+  "G": {
+    "hash": "0111111000000000011111100111111001101010001010100000000000000000",
+    "image_path": "training_data/extracted/G/G_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADBklEQVRYCaXBMYgcZRTA8f/bTbC4+55oICQ2ltFVrrC6xiCCijcj..."
+  },
+  "H": {
+    "hash": "0000000000011110001111100011110001111100001101100011110000000000",
+    "image_path": "training_data/extracted/H/H_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAACxElEQVRYCaXBQWgcVQDH4d9/lrihIIo8QXopjiLiSehBoTejhXqI..."
+  },
+  "I": {
+    "hash": "0111101001111010011111100111111001111110011111100000000000000000",
+    "image_path": "training_data/extracted/I/I_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAACvUlEQVRYCaXBMYsdVRyH4fc3F9MsamEQEVKYQggKNoIaYYyJmbNL..."
+  },
+  "J": {
+    "hash": "0000000001111110011111100001111001111110011111100001100000000000",
+    "image_path": "training_data/extracted/J/J_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAACYUlEQVRYCaXBsYodVRzH8e9vbrMEN9coKsZmUAmTIARsRJkDFrYp..."
+  },
+  "K": {
+    "hash": "0000000001101110001111100111011001011100011111000100010000000000",
+    "image_path": "training_data/extracted/K/K_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADT0lEQVRYCaXBTWgcZRzA4d9/ZiOVaqsBtV7sRm3dHBKtoSgywYMM..."
+  },
+  "L": {
+    "hash": "0000000001111110011001100111111001111110011111100111111000000000",
+    "image_path": "training_data/extracted/L/L_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADLUlEQVRYCaXBzWtcVRjA4d+bpm20VLSF7gS1dShUZlorWRg6V0TO..."
+  },
+  "M": {
+    "hash": "0000000000111110011111100111010001011100011101100111001000000000",
+    "image_path": "training_data/extracted/M/M_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADf0lEQVRYCaXBX4gVVRzA8e/vXDN2686KEUpiJUTlTOGDUNEfUAqR..."
+  },
+  "N": {
+    "hash": "0000000001111010001100100011111000110110011111100000011000000000",
+    "image_path": "training_data/extracted/N/N_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADS0lEQVRYCaXBX2hWZQDH8e/vnHCDbY4aC4ouogstKUJRV6MYGARB..."
+  },
+  "O": {
+    "hash": "0000000000100000001000000010000000100000001000000011110000000000",
+    "image_path": "training_data/extracted/O/O_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABrUlEQVRYCaXBMWoVUBCG0e8PiogbsAxkO9ooCrfRBYTAENzHQMgO..."
+  },
+  "P": {
+    "hash": "0000000000011000001001000100001000100100001111000000000011000000",
+    "image_path": "training_data/extracted/P/P_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAD10lEQVRYCaXBa2iVdQDH8e/v/8zmpZIchQskc5v3TNLCo1PKZZJh..."
+  },
+  "Q": {
+    "hash": "0000000100011100011111100000100001111110011101100101000000000000",
+    "image_path": "training_data/extracted/Q/Q_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADIElEQVRYCaXBT2gcVRzA8e9vNhYsfSMGoyLagsXLPgoKSvGkojcr..."
+  },
+  "R": {
+    "hash": "0000000001100110011111100001111001111110011111100111111000000000",
+    "image_path": "training_data/extracted/R/R_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADVklEQVRYCaXBT4hVVRzA8e/v6VAG2UBBUEIQEbltAqFFxVC7KLHT..."
+  },
+  "S": {
+    "hash": "0000000000110110011111000101100001111110011111100111000000000000",
+    "image_path": "training_data/extracted/S/S_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADI0lEQVRYCaXB3WscVQDG4d97Du2FgrAtTaCF3ojf+HnRTVIhfpRM..."
+  },
+  "T": {
+    "hash": "0000000001111100011111100100001001111110011111000001000000000000",
+    "image_path": "training_data/extracted/T/T_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAABy0lEQVRYCaXBoXLUUBTH4d//TU5ExIqKFYgKBCIza8oMFh4gApU3..."
+  },
+  "U": {
+    "hash": "0000000000000100001111000011110001111110011111100000011001111110",
+    "image_path": "training_data/extracted/U/U_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAACRklEQVRYCaXBMYtVRxzG4d97btToZQkoVjYzZg3YKSZwyHosQ4Lf..."
+  },
+  "V": {
+    "hash": "0000000001000110011101100111111001111110000111000000111000000000",
+    "image_path": "training_data/extracted/V/V_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADvElEQVRYCaXBX2hWZQDH8e/vvEgluYvRhfkPR6AFDiJQpPJPgdrI..."
+  },
+  "W": {
+    "hash": "0000000001111100011110000011010001111110001111000101100000000000",
+    "image_path": "training_data/extracted/W/W_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAEOElEQVRYCaXBWWxUZRiA4ff7/6ohSgQCTAEJsligGjbZrBGKbKaE..."
+  },
+  "X": {
+    "hash": "0000000001011100010111000111010001110100011101100111011000000000",
+    "image_path": "training_data/extracted/X/X_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADOElEQVRYCaXBMYgcZRjH4d9/DzIBEywSEBPFIliJBLJ1mgGDiJ2X..."
+  },
+  "Y": {
+    "hash": "0000000000000000001001000001100000011000001001000010000000000000",
+    "image_path": "training_data/extracted/Y/Y_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAADgklEQVRYCaXBQWxUVRSA4f/cMzQaSzQKhIWWFdt24Uo3Lq0mmmAi..."
+  },
+  "Z": {
+    "hash": "0000000000000110011111100111011001111100011000000111110000000000",
+    "image_path": "training_data/extracted/Z/Z_reference.png",
+    "base64_sample": "iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAAAAACPAi4CAAAC40lEQVRYCaXBTYhWVQDH4d//3imPUNDXZmiyRRRZRLkYZlFvFLgI..."
+  }
+}
