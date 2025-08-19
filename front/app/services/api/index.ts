@@ -1,0 +1,1 @@
+export { ocrApi } from './ocr'

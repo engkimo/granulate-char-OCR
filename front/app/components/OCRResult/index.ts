@@ -1,0 +1,1 @@
+export { OCRResult } from './OCRResult'
