@@ -28,7 +28,8 @@ Thumbs.db
 
 # Project specific
 *.traineddata
-training_data/
+training_data/*
+!training_data/scripts/
 logs/
 uploads/
 temp/
