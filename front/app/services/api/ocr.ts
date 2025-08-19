@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { type OCRResponse } from '~/types/ocr'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
@@ -8,17 +7,16 @@ export const ocrApi = {
     const formData = new FormData()
     formData.append('file', imageBlob, 'capture.png')
     
-    const response = await axios.post<OCRResponse>(
-      `${API_URL}/api/v1/ocr/process`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-    )
+    const response = await fetch(`${API_URL}/api/v1/ocr/process`, {
+      method: 'POST',
+      body: formData
+    })
     
-    return response.data
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
+    return response.json()
   },
 
   async processImageBase64(base64Image: string): Promise<OCRResponse> {
@@ -27,21 +25,28 @@ export const ocrApi = {
       ? base64Image.split(',')[1] 
       : base64Image
     
-    const response = await axios.post<OCRResponse>(
-      `${API_URL}/api/v1/ocr/process-base64`,
-      { image: base64Data },
-      {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    )
+    const response = await fetch(`${API_URL}/api/v1/ocr/process-base64`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ image: base64Data })
+    })
     
-    return response.data
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
+    return response.json()
   },
 
   async getHealth() {
-    const response = await axios.get(`${API_URL}/api/v1/health`)
-    return response.data
+    const response = await fetch(`${API_URL}/api/v1/health`)
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    
+    return response.json()
   }
 }

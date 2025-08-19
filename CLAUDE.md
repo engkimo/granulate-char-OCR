@@ -34,9 +34,11 @@ uv run mypy backend/                   # Type check
 ```bash
 cd front
 
-# Development
+# Setup
 pnpm install
-pnpm dev                               # Start dev server
+
+# Development
+pnpm dev                               # Start dev server (port 5173)
 
 # Testing
 pnpm test                              # Run tests
@@ -78,12 +80,13 @@ Key architectural decisions:
 ### Frontend Architecture
 - **React Router v7** with file-based routing
 - **State Management**: Zustand for local state, React Query for server state
-- **API Communication**: Axios with typed services
+- **API Communication**: Native fetch API (not axios - important for Cloudflare Workers compatibility)
 - **Components**: Camera (WebRTC), OCRResult display
 - **Deployment**: Cloudflare Pages with Workers
 
 ### API Endpoints
 - `GET /api/v1/health` - Health check
+- `GET /docs` - Interactive API documentation
 - `POST /api/v1/ocr/process` - Process image file (multipart/form-data)
 - `POST /api/v1/ocr/process-base64` - Process base64 image (JSON)
 
@@ -120,7 +123,7 @@ The `GranulateAlphabet` class (singleton) manages bidirectional mappings between
 ### Frontend  
 - Components tested with React Testing Library
 - Browser APIs mocked in `app/test/setup.ts`
-- API services tested with mocked axios
+- API services tested with mocked fetch
 - Vitest for fast test execution
 
 ## Current Implementation Status
@@ -141,7 +144,7 @@ The `GranulateAlphabet` class (singleton) manages bidirectional mappings between
 
 ## Environment Variables
 
-Frontend requires:
+Frontend requires `.env` file:
 ```
 VITE_API_URL=http://localhost:8000
 ```
@@ -152,3 +155,66 @@ VITE_API_URL=http://localhost:8000
 - Frontend uses pnpm (not npm)
 - CORS configured for development (update for production)
 - All code formatted with Black (Python) and Prettier (JS/TS)
+- Frontend must use fetch API instead of axios for Cloudflare Workers compatibility
+
+## Development History
+
+### Phase 1: Backend Development (Completed)
+1. **Architecture Design**
+   - Implemented Clean Architecture with TDD approach
+   - Created domain entities (Character, OCRResult)
+   - Built infrastructure layer with GranulateAlphabet mapping
+   - Developed application services (CharacterValidator)
+
+2. **API Implementation**
+   - Set up FastAPI with CORS middleware
+   - Created REST endpoints for OCR processing
+   - Implemented health check endpoint
+   - Added interactive API docs at /docs
+
+3. **Testing**
+   - Achieved 96% test coverage
+   - 32 backend tests passing
+   - Used pytest with coverage reporting
+
+### Phase 2: Frontend Development (Completed)
+1. **Initial Setup**
+   - Created React Router app with Cloudflare Pages template
+   - Configured Vitest for testing
+   - Set up Tailwind CSS
+
+2. **Core Components**
+   - Camera component with WebRTC integration
+   - OCR result display with confidence indicators
+   - Navigation between main, history, and settings pages
+
+3. **State Management**
+   - Zustand for local state (OCR results, history)
+   - React Query for server state management
+
+4. **API Integration**
+   - Initially used axios but encountered Cloudflare Workers compatibility issues
+   - Migrated to native fetch API to resolve SSR errors
+   - All API calls now use fetch with proper error handling
+
+5. **Testing**
+   - 21 frontend tests passing
+   - Mocked browser APIs (MediaDevices, Canvas)
+   - Component tests with React Testing Library
+
+### Key Technical Decisions
+1. **Python Environment**: Used `uv` for faster dependency management
+2. **Frontend Framework**: React Router v7 for Cloudflare Pages compatibility
+3. **API Client**: Switched from axios to fetch API due to Node.js import errors in Cloudflare Workers
+4. **Character Mapping**: Used Canadian Aboriginal Syllabics as placeholder Granulate characters
+
+### Current Issues Resolved
+- ✅ Fixed missing route files (history.tsx, settings.tsx)
+- ✅ Resolved Cloudflare Workers Node.js compatibility errors by removing axios
+- ✅ Fixed test mocking for Canvas and MediaDevices APIs
+
+### Known Limitations
+- OCR processing returns empty results (placeholder implementation)
+- No actual Tesseract integration yet
+- Character training data not generated
+- WebSocket support not implemented
