@@ -52,6 +52,22 @@ pnpm deploy                            # Deploy to Cloudflare Pages
 pnpm typecheck                         # Type checking
 ```
 
+### OCR Training Data
+```bash
+# Extract characters from reference chart
+python training_data/scripts/extract_from_reference.py
+
+# Generate augmented data
+python training_data/scripts/augment_with_gan.py
+
+# Train few-shot learning model
+python training_data/scripts/few_shot_learning.py
+
+# Generate Tesseract training data
+python training_data/scripts/create_tesseract_files.py
+bash training_data/scripts/train_tesseract.sh
+```
+
 ## Architecture Overview
 
 ### Backend Structure (Clean Architecture)
@@ -135,12 +151,19 @@ The `GranulateAlphabet` class (singleton) manages bidirectional mappings between
 - ✅ OCR result display UI
 - ✅ API client services
 - ✅ Test infrastructure (96% backend, full frontend coverage)
+- ✅ Character extraction from reference chart
+- ✅ Data augmentation scripts (GAN/traditional methods)
+- ✅ Few-shot learning implementation
+- ✅ Apple Silicon compatibility guide
 
-**Placeholder/TODO:**
-- ⏳ Actual Tesseract OCR processing (returns empty results)
-- ⏳ Image preprocessing pipeline
-- ⏳ Granulate character training data
+**In Progress:**
+- 🔄 Tesseract OCR integration with custom model
+- 🔄 Training data generation from single reference image
+
+**TODO:**
 - ⏳ WebSocket for real-time updates
+- ⏳ Production deployment of trained model
+- ⏳ Mobile app optimization
 
 ## Environment Variables
 
@@ -157,64 +180,31 @@ VITE_API_URL=http://localhost:8000
 - All code formatted with Black (Python) and Prettier (JS/TS)
 - Frontend must use fetch API instead of axios for Cloudflare Workers compatibility
 
-## Development History
+### Apple Silicon Support
+- PyTorch uses MPS (Metal Performance Shaders) instead of CUDA
+- Set `PYTORCH_ENABLE_MPS_FALLBACK=1` for compatibility
+- Optimal batch sizes: M1 (8-16), M1 Pro/Max (16-32), M2/M3 (32-64)
 
-### Phase 1: Backend Development (Completed)
-1. **Architecture Design**
-   - Implemented Clean Architecture with TDD approach
-   - Created domain entities (Character, OCRResult)
-   - Built infrastructure layer with GranulateAlphabet mapping
-   - Developed application services (CharacterValidator)
+### Training Data Location
+- Reference chart: `static/granulte_chars.jpg` (note the typo in filename)
+- Extracted characters: `training_data/extracted/`
+- Augmented data: `training_data/augmented/`
+- Trained models: `models/`
 
-2. **API Implementation**
-   - Set up FastAPI with CORS middleware
-   - Created REST endpoints for OCR processing
-   - Implemented health check endpoint
-   - Added interactive API docs at /docs
+## Machine Learning Approach
 
-3. **Testing**
-   - Achieved 96% test coverage
-   - 32 backend tests passing
-   - Used pytest with coverage reporting
+Due to limited training data (single reference chart), the project uses:
+1. **Automated character extraction** from the purple bubble reference chart
+2. **Advanced data augmentation**:
+   - Traditional methods (rotation, scaling, noise)
+   - GAN-based generation (StyleGAN2 architecture)
+   - Diffusion model simulation
+3. **Few-shot learning techniques**:
+   - Prototypical Networks for N-way K-shot learning
+   - Siamese Networks for similarity learning
+   - MAML for rapid task adaptation
 
-### Phase 2: Frontend Development (Completed)
-1. **Initial Setup**
-   - Created React Router app with Cloudflare Pages template
-   - Configured Vitest for testing
-   - Set up Tailwind CSS
-
-2. **Core Components**
-   - Camera component with WebRTC integration
-   - OCR result display with confidence indicators
-   - Navigation between main, history, and settings pages
-
-3. **State Management**
-   - Zustand for local state (OCR results, history)
-   - React Query for server state management
-
-4. **API Integration**
-   - Initially used axios but encountered Cloudflare Workers compatibility issues
-   - Migrated to native fetch API to resolve SSR errors
-   - All API calls now use fetch with proper error handling
-
-5. **Testing**
-   - 21 frontend tests passing
-   - Mocked browser APIs (MediaDevices, Canvas)
-   - Component tests with React Testing Library
-
-### Key Technical Decisions
-1. **Python Environment**: Used `uv` for faster dependency management
-2. **Frontend Framework**: React Router v7 for Cloudflare Pages compatibility
-3. **API Client**: Switched from axios to fetch API due to Node.js import errors in Cloudflare Workers
-4. **Character Mapping**: Used Canadian Aboriginal Syllabics as placeholder Granulate characters
-
-### Current Issues Resolved
-- ✅ Fixed missing route files (history.tsx, settings.tsx)
-- ✅ Resolved Cloudflare Workers Node.js compatibility errors by removing axios
-- ✅ Fixed test mocking for Canvas and MediaDevices APIs
-
-### Known Limitations
-- OCR processing returns empty results (placeholder implementation)
-- No actual Tesseract integration yet
-- Character training data not generated
-- WebSocket support not implemented
+Expected performance:
+- Initial model: 70-80% accuracy
+- With few-shot learning: 85-90% accuracy
+- Full pipeline: 90-95% accuracy
