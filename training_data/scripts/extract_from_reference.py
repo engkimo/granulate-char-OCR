@@ -36,11 +36,11 @@ class GranulateCharacterExtractor:
             blurred,
             cv2.HOUGH_GRADIENT,
             dp=1,
-            minDist=40,  # 円の中心間の最小距離（重複を減らすため少し小さく）
-            param1=40,   # Cannyエッジ検出の上限閾値（より感度を上げる）
-            param2=25,   # 円の中心を検出するための閾値（より多くの円を検出）
-            minRadius=35,  # 最小半径（少し小さく）
-            maxRadius=75   # 最大半径（少し大きく）
+            minDist=60,  # 円の中心間の最小距離（重複を防ぐため大きく）
+            param1=50,   # Cannyエッジ検出の上限閾値
+            param2=30,   # 円の中心を検出するための閾値
+            minRadius=40,  # 最小半径
+            maxRadius=60   # 最大半径（より厳密に）
         )
         
         all_bubbles = []
@@ -50,13 +50,17 @@ class GranulateCharacterExtractor:
             circles = np.uint16(np.around(circles))
             print(f"検出された円の数: {len(circles[0])}")
             
-            # 重複除去: 近い円を除外
+            # 重複除去: 近い円を除外（より積極的に）
             filtered_circles = []
-            for i, (x, y, r) in enumerate(circles[0]):
+            circles_list = [(x, y, r) for x, y, r in circles[0]]
+            # 半径の大きい順にソート（大きい円を優先）
+            circles_list.sort(key=lambda c: c[2], reverse=True)
+            
+            for x, y, r in circles_list:
                 is_duplicate = False
                 for fx, fy, fr in filtered_circles:
-                    distance = np.sqrt((x - fx)**2 + (y - fy)**2)
-                    if distance < min(r, fr) * 0.8:  # 半径の80%未満の距離なら重複とみなす
+                    distance = np.sqrt(float(x - fx)**2 + float(y - fy)**2)
+                    if distance < max(r, fr) * 1.2:  # より広い範囲で重複をチェック
                         is_duplicate = True
                         break
                 
@@ -64,6 +68,9 @@ class GranulateCharacterExtractor:
                     filtered_circles.append((x, y, r))
             
             print(f"重複除去後の円の数: {len(filtered_circles)}")
+            
+            # y座標でソートして重複が本当に除去されているか確認
+            filtered_circles.sort(key=lambda c: (c[1], c[0]))  # y座標、次にx座標でソート
             
             for i, (x, y, r) in enumerate(filtered_circles):
                 # バブル領域を切り出し
@@ -94,30 +101,53 @@ class GranulateCharacterExtractor:
         sorted_info = [all_bubble_info[i] for i in sorted_indices]
         
         # グリッドベースの整理（3行×9列を想定）
-        if len(sorted_bubbles) > 27:
-            # y座標で3つのグループに分割
+        if len(sorted_bubbles) >= 27:
+            # y座標でクラスタリングして行を検出
             y_coords = [info[1] for info in sorted_info]
-            y_sorted = sorted(enumerate(y_coords), key=lambda x: x[1])
             
-            # 3つの行に分割
-            rows_per_group = len(y_sorted) // 3
-            row1_indices = [idx for idx, _ in y_sorted[:rows_per_group]]
-            row2_indices = [idx for idx, _ in y_sorted[rows_per_group:2*rows_per_group]]
-            row3_indices = [idx for idx, _ in y_sorted[2*rows_per_group:]]
+            # K-meansの代わりに、y座標の分布からギャップを見つけて行を分割
+            y_sorted_unique = sorted(set(y_coords))
+            gaps = []
+            for i in range(1, len(y_sorted_unique)):
+                gap = y_sorted_unique[i] - y_sorted_unique[i-1]
+                if gap > 50:  # 大きなギャップを行の境界とする
+                    gaps.append((y_sorted_unique[i-1] + y_sorted_unique[i]) / 2)
             
-            # 各行でx座標でソートし、最初の9個を取る
-            final_indices = []
-            for row_indices in [row1_indices, row2_indices, row3_indices]:
+            # 3行に分割
+            rows = [[], [], []]
+            for idx, info in enumerate(sorted_info):
+                y = info[1]
+                if len(gaps) >= 2:
+                    if y <= gaps[0]:
+                        rows[0].append(idx)
+                    elif y <= gaps[1]:
+                        rows[1].append(idx)
+                    else:
+                        rows[2].append(idx)
+                else:
+                    # ギャップが見つからない場合は均等に分割
+                    row_idx = int(3 * idx / len(sorted_info))
+                    if row_idx >= 3:
+                        row_idx = 2
+                    rows[row_idx].append(idx)
+            
+            # 各行でx座標でソートし、正確に9個を選択
+            final_bubbles = []
+            final_info = []
+            
+            for row_indices in rows:
+                # この行のバブルをx座標でソート
                 row_sorted = sorted(row_indices, key=lambda i: sorted_info[i][0])
-                final_indices.extend(row_sorted[:9])
-            
-            # 最終的な27個のバブルを選択
-            if len(final_indices) >= 27:
-                final_bubbles = [sorted_bubbles[i] for i in final_indices[:27]]
-                final_info = [sorted_info[i] for i in final_indices[:27]]
                 
-                print(f"グリッドベースで選択されたバブル数: {len(final_bubbles)}")
-                return final_bubbles, final_info
+                # 最初の9個を選択（または利用可能な数だけ）
+                selected = row_sorted[:min(9, len(row_sorted))]
+                
+                for idx in selected:
+                    final_bubbles.append(sorted_bubbles[idx])
+                    final_info.append(sorted_info[idx])
+            
+            print(f"グリッドベースで選択されたバブル数: {len(final_bubbles)}")
+            return final_bubbles, final_info
         
         return sorted_bubbles, sorted_info
     
@@ -332,33 +362,66 @@ class GranulateCharacterExtractor:
         # グレースケール変換
         gray = cv2.cvtColor(bubble_image, cv2.COLOR_BGR2GRAY)
         
-        # 白い文字を検出（グラニュート文字は白色）
-        _, binary = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
-        
-        # 中央付近の領域に限定
+        # 中央の円形領域に限定（紫色のバブルを避ける）
         h, w = bubble_image.shape[:2]
-        center_region = binary[h//4:3*h//4, w//4:3*w//4]
+        center_x, center_y = w // 2, h // 2
+        radius = int(min(w, h) * 0.35)  # バブルの中央35%
         
-        # 文字領域を検出
-        contours, _ = cv2.findContours(center_region, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        # 円形マスクを作成
+        mask = np.zeros(gray.shape, dtype=np.uint8)
+        cv2.circle(mask, (center_x, center_y), radius, 255, -1)
+        
+        # 単純な閾値処理で白い文字を検出
+        # グラニュート文字は白色（高輝度）
+        _, binary = cv2.threshold(gray, 180, 255, cv2.THRESH_BINARY)
+        
+        # マスクを適用
+        binary = cv2.bitwise_and(binary, binary, mask=mask)
+        
+        # ノイズ除去
+        kernel = np.ones((2, 2), np.uint8)
+        binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
+        
+        # 輪郭検出
+        contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         
         if not contours:
             return None
         
-        # 最大の輪郭を文字として扱う
-        largest_contour = max(contours, key=cv2.contourArea)
-        x, y, w, h = cv2.boundingRect(largest_contour)
+        # 中央に最も近い大きな輪郭を選択
+        best_contour = None
+        min_distance = float('inf')
         
-        # 元の座標に変換
-        x += bubble_image.shape[1] // 4
-        y += bubble_image.shape[0] // 4
+        for contour in contours:
+            area = cv2.contourArea(contour)
+            if area < 50:  # 小さすぎる輪郭は無視
+                continue
+            
+            M = cv2.moments(contour)
+            if M["m00"] != 0:
+                cx = int(M["m10"] / M["m00"])
+                cy = int(M["m01"] / M["m00"])
+                distance = np.sqrt((cx - center_x)**2 + (cy - center_y)**2)
+                
+                if distance < min_distance and distance < radius:
+                    min_distance = distance
+                    best_contour = contour
         
-        # 余白を追加してクロップ
-        padding = 10
-        x_start = max(0, x - padding)
-        y_start = max(0, y - padding)
-        x_end = min(bubble_image.shape[1], x + w + padding)
-        y_end = min(bubble_image.shape[0], y + h + padding)
+        if best_contour is None:
+            return None
+        
+        # バウンディングボックスを取得
+        x, y, w, h = cv2.boundingRect(best_contour)
+        
+        # 正方形にパディング
+        size = max(w, h)
+        x_center = x + w // 2
+        y_center = y + h // 2
+        
+        x_start = max(0, x_center - size // 2 - 10)
+        y_start = max(0, y_center - size // 2 - 10)
+        x_end = min(binary.shape[1], x_center + size // 2 + 10)
+        y_end = min(binary.shape[0], y_center + size // 2 + 10)
         
         character = binary[y_start:y_end, x_start:x_end]
         
@@ -379,17 +442,19 @@ class GranulateCharacterExtractor:
         
         print(f"検出されたバブル数: {len(bubbles)}")
         
+        # グリッド位置に基づいてA-Zを割り当て（3行×9列）
+        # 最初の26個がA-Z、27個目は数字（無視）
+        alphabet_order = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+        
         # 文字マッピング
         char_mapping = {}
         extracted_count = 0
-        failed_ocr = []
         
-        # 各バブルを処理
-        for idx, bubble in enumerate(bubbles):
-            # 黄色のアルファベットをOCRで認識
-            alphabet = self.extract_alphabet_label(bubble)
-            
-            if alphabet:
+        # 各バブルを処理（最初の26個のみ）
+        for idx, bubble in enumerate(bubbles[:26]):
+            if idx < len(alphabet_order):
+                alphabet = alphabet_order[idx]
+                
                 # グラニュート文字を抽出
                 granulate_char = self.extract_granulate_character(bubble)
                 
@@ -419,22 +484,11 @@ class GranulateCharacterExtractor:
                     
                     print(f"抽出完了: {alphabet}")
                 else:
-                    print(f"警告: バブル{idx}からグラニュート文字を抽出できませんでした（アルファベット: {alphabet}）")
-            else:
-                failed_ocr.append(idx)
-                # OCRが失敗した場合、バブル画像を保存してデバッグ
-                debug_dir = output_path / "debug"
-                debug_dir.mkdir(exist_ok=True)
-                cv2.imwrite(str(debug_dir / f"failed_ocr_bubble_{idx}.png"), bubble)
-        
-        if failed_ocr:
-            print(f"\nOCRに失敗したバブル: {failed_ocr}")
-            print("デバッグ画像が training_data/extracted/debug/ に保存されました")
-            
-            # 手動マッピングを試行
-            manual_mappings = self._try_manual_mapping(failed_ocr, bubbles, output_path, char_mapping)
-            extracted_count += len(manual_mappings)
-            char_mapping.update(manual_mappings)
+                    print(f"警告: バブル{idx}からグラニュート文字を抽出できませんでした（文字: {alphabet}）")
+                    # デバッグ用にバブル画像を保存
+                    debug_dir = output_path / "debug"
+                    debug_dir.mkdir(exist_ok=True)
+                    cv2.imwrite(str(debug_dir / f"failed_{alphabet}_bubble.png"), bubble)
         
         # マッピング情報を保存
         mapping_file = output_path / "character_mapping.json"
@@ -549,21 +603,9 @@ class GranulateCharacterExtractor:
                 cv2.circle(result_image, (x, y), r, (0, 255, 0), 2)
                 cv2.circle(result_image, (x, y), 2, (0, 0, 255), 3)
                 
-                # バブル領域を切り出してアルファベットを認識
-                x1 = max(0, x - r - 10)
-                y1 = max(0, y - r - 10)
-                x2 = min(self.image.shape[1], x + r + 10)
-                y2 = min(self.image.shape[0], y + r + 10)
-                
-                bubble = self.image[y1:y2, x1:x2]
-                alphabet = self.extract_alphabet_label(bubble)
-                
-                if alphabet:
-                    cv2.putText(result_image, alphabet, (x-10, y-r-10), 
-                               cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2)
-                else:
-                    cv2.putText(result_image, f"?{i}", (x-10, y-r-10), 
-                               cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 0, 255), 2)
+                # インデックスのみを表示（アルファベット認識はしない）
+                cv2.putText(result_image, f"{i}", (x-10, y-r-10), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2)
         
         # 結果を保存
         output_path = Path("training_data/extraction_debug.png")
