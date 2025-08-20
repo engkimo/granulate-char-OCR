@@ -59,15 +59,22 @@ npm run build-cf-types                          # Generate Cloudflare types
 
 ```bash
 # Character extraction and data preparation
-python training_data/scripts/extract_from_reference.py    # Extract characters from reference image
-python training_data/scripts/augment_with_gan.py         # Generate augmented training data
+python training_data/scripts/extract_from_reference.py    # Extract characters from reference image (完了)
+python training_data/scripts/augment_simple.py           # Generate augmented training data (完了)
+python training_data/scripts/create_mapping.py           # Create character mappings (完了)
+
+# Machine Learning Models (PyTorch required)
+uv pip install torch torchvision scikit-learn matplotlib
 python training_data/scripts/few_shot_learning.py        # Train few-shot learning models
-python training_data/scripts/create_mapping.py           # Create character mappings
+python training_data/scripts/train_cnn_model.py          # Train CNN model for higher accuracy
 
 # Tesseract training (requires Tesseract installed)
-cd training_data
-tesseract [input.tif] [output] -l eng --psm 10 makebox  # Generate box files
-# ... (see docs/training-guide.md for full process)
+python training_data/scripts/create_tesseract_data.py    # Generate training data for Tesseract
+cd training_data/tesseract
+tesseract gran.font.exp0.tif gran.font.exp0 --psm 6 lstm.train  # Generate LSTM training files
+combine_tessdata -e tessdata/eng.traineddata          # Extract components
+lstmtraining --model_output output/gran                # Train LSTM model
+# ... (詳細は docs/tesseract-training-guide.md 参照)
 ```
 
 ## Architecture

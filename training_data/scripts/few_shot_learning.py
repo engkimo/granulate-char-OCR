@@ -12,6 +12,8 @@ from typing import Dict, List, Tuple
 import random
 from collections import defaultdict
 import json
+import matplotlib.pyplot as plt
+from tqdm import tqdm
 
 
 class PrototypicalNetwork(nn.Module):
@@ -257,11 +259,17 @@ class FewShotTrainer:
         """Prototypical Networksの学習"""
         self.model.train()
         
+        training_losses = []
+        training_accuracies = []
+        
         for epoch in range(num_epochs):
             total_loss = 0
             total_acc = 0
             
-            for batch in dataloader:
+            # エポックごとのプログレスバー
+            pbar = tqdm(dataloader, desc=f"Epoch {epoch+1}/{num_epochs}")
+            
+            for batch in pbar:
                 # バッチサイズが1の場合、最初の次元を除去
                 support_images = batch['support_images'].squeeze(0).to(self.device)
                 support_labels = batch['support_labels'].squeeze(0).to(self.device)
@@ -297,13 +305,40 @@ class FewShotTrainer:
                 
                 total_loss += loss.item()
                 total_acc += accuracy.item()
+                
+                # プログレスバーを更新
+                pbar.set_postfix({'loss': loss.item(), 'acc': accuracy.item()})
             
             avg_loss = total_loss / len(dataloader)
             avg_acc = total_acc / len(dataloader)
             
+            training_losses.append(avg_loss)
+            training_accuracies.append(avg_acc)
+            
             if (epoch + 1) % 10 == 0:
-                print(f"Epoch {epoch+1}/{num_epochs}, "
+                print(f"\nEpoch {epoch+1}/{num_epochs}, "
                       f"Loss: {avg_loss:.4f}, Accuracy: {avg_acc:.4f}")
+        
+        # 訓練曲線をプロット
+        plt.figure(figsize=(12, 4))
+        
+        plt.subplot(1, 2, 1)
+        plt.plot(training_losses)
+        plt.title('Training Loss')
+        plt.xlabel('Epoch')
+        plt.ylabel('Loss')
+        
+        plt.subplot(1, 2, 2)
+        plt.plot(training_accuracies)
+        plt.title('Training Accuracy')
+        plt.xlabel('Epoch')
+        plt.ylabel('Accuracy')
+        
+        plt.tight_layout()
+        plt.savefig('models/training_curves.png')
+        plt.close()
+        
+        return training_losses, training_accuracies
     
     def train_siamese(self, dataloader, num_epochs=100):
         """Siamese Networkの学習"""
@@ -401,6 +436,10 @@ def create_combined_model():
 
 
 if __name__ == "__main__":
+    # モデル保存ディレクトリを作成
+    models_dir = Path("models")
+    models_dir.mkdir(exist_ok=True)
+    
     # データセットを作成
     dataset = GranulateCharacterFewShotDataset(
         data_dir="training_data/augmented",
@@ -416,9 +455,22 @@ if __name__ == "__main__":
     proto_model = PrototypicalNetwork()
     # CPUで実行（MPSのバグを回避）
     proto_trainer = FewShotTrainer(proto_model, device='cpu')
-    proto_trainer.train_prototypical(dataloader, num_epochs=2)  # デモ用に少ないエポック数
+    proto_trainer.train_prototypical(dataloader, num_epochs=100)  # 100エポック
     
     # モデルを保存
-    torch.save(proto_model.state_dict(), "models/prototypical_network.pth")
+    torch.save(proto_model.state_dict(), models_dir / "prototypical_network.pth")
     
-    print("\nFew-shot学習が完了しました。")
+    # 訓練統計を保存
+    stats = {
+        "model_type": "prototypical_network",
+        "n_way": 5,
+        "k_shot": 5,
+        "n_query": 10,
+        "num_epochs": 100,
+        "device": "cpu"
+    }
+    
+    with open(models_dir / "training_stats.json", "w") as f:
+        json.dump(stats, f, indent=2)
+    
+    print(f"\nFew-shot学習が完了しました。モデルは {models_dir} に保存されました。")
