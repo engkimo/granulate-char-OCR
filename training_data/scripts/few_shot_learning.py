@@ -194,7 +194,7 @@ class GranulateCharacterFewShotDataset(Dataset):
         ])
     
     def __len__(self):
-        return 1000  # エポックあたりのタスク数
+        return 100  # エポックあたりのタスク数（高速化のため削減）
     
     def __getitem__(self, idx):
         # N-way K-shotタスクを生成
@@ -455,7 +455,7 @@ if __name__ == "__main__":
     proto_model = PrototypicalNetwork()
     # CPUで実行（MPSのバグを回避）
     proto_trainer = FewShotTrainer(proto_model, device='cpu')
-    proto_trainer.train_prototypical(dataloader, num_epochs=100)  # 100エポック
+    proto_trainer.train_prototypical(dataloader, num_epochs=20)  # 20エポック（高速化のため）
     
     # モデルを保存
     torch.save(proto_model.state_dict(), models_dir / "prototypical_network.pth")
@@ -466,7 +466,7 @@ if __name__ == "__main__":
         "n_way": 5,
         "k_shot": 5,
         "n_query": 10,
-        "num_epochs": 100,
+        "num_epochs": 20,
         "device": "cpu"
     }
     

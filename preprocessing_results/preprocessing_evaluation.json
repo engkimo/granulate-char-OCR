@@ -1,0 +1,13 @@
+{
+  "best_method": "contrast_enhance",
+  "method_scores": {
+    "baseline": 0.05830078125,
+    "adaptive_threshold": 0.11953125,
+    "morphological": 0.1047607421875,
+    "edge_preserving": 0.0514892578125,
+    "combined": 0.1677978515625,
+    "denoise_sharp": 0.058251953125,
+    "contrast_enhance": 0.204052734375
+  },
+  "recommendation": "combined"
+}
