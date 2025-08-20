@@ -4,227 +4,227 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Granulate character OCR system for recognizing fictional characters from Kamen Rider Gavv. Converts Granulate characters to Latin alphabet (A-Z) and numbers (0-9).
+Granulate character OCR system for recognizing fictional characters from Kamen Rider Gavv. The system converts Granulate characters to their corresponding Latin alphabet (A-Z) and numbers (0-9) equivalents.
 
 ## Development Commands
 
-### Backend (Python with uv)
-```bash
-# Initial setup
-curl -LsSf https://astral.sh/uv/install.sh | sh  # Install uv if needed
-uv venv
-uv pip install -e ".[dev]"
+### Backend (Python/FastAPI)
 
-# Run server
-uv run uvicorn backend.main:app --reload         # Default port 8000
+```bash
+# Initial setup (using uv package manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh  # Install uv if needed
+uv venv                                           # Create virtual environment
+uv pip install -e ".[dev]"                        # Install with dev dependencies
+uv run uvicorn backend.main:app --reload          # Start development server on :8000
 
 # Testing
-uv run pytest                                    # Run all tests
-uv run pytest backend/tests/unit/                # Unit tests only
-uv run pytest -k "test_character_validation"     # Run specific test by name
-uv run pytest --cov=backend                      # With coverage
-uv run pytest --cov=backend --cov-report=html    # HTML coverage report
-uv run pytest -m unit                            # Run tests by marker
+uv run pytest                                     # Run all tests
+uv run pytest backend/tests/unit/                 # Run unit tests only
+uv run pytest backend/tests/integration/          # Run integration tests only
+uv run pytest -v -k "test_ocr"                   # Run specific test by name pattern
+uv run pytest --cov=backend                       # Run with coverage
 
 # Code quality
-uv run black backend/                            # Format code
-uv run flake8 backend/                           # Lint
-uv run mypy backend/                             # Type check
+uv run black backend/                             # Format code
+uv run flake8 backend/                           # Lint code
+uv run mypy backend/                             # Type checking
 ```
 
-### Frontend (React Router + Cloudflare)
-```bash
-cd front
+### Frontend (React/TypeScript)
 
+```bash
 # Initial setup
-pnpm install                                     # Install dependencies
+npm install                                       # Install dependencies
 
 # Development
-pnpm dev                                         # Start dev server (port 5173)
+npm run dev                                      # Start dev server with hot reload
+npm run build                                    # Build for production
+npm run preview                                  # Preview production build locally
 
 # Testing
-pnpm test                                        # Run all tests
-pnpm test:ui                                     # Run with UI
-pnpm test:coverage                               # Coverage report
-pnpm test app/components/Camera/Camera.test.tsx  # Test specific file
+npm test                                         # Run all tests
+npm test:watch                                   # Run tests in watch mode
+npm test -- Camera                               # Run specific test file
 
-# Build & Deploy
-pnpm build                                       # Build for production
-pnpm preview                                     # Preview production build
-pnpm deploy                                      # Deploy to Cloudflare Pages
-pnpm typecheck                                   # Type checking
-pnpm cf-typegen                                  # Generate Cloudflare types
+# Code quality
+npm run lint                                     # Run ESLint
+npm run typecheck                               # Run TypeScript type checking
+
+# Deployment (Cloudflare Workers)
+npm run deploy                                   # Deploy to Cloudflare Workers
+npm run build-cf-types                          # Generate Cloudflare types
 ```
 
 ### OCR Model Training
+
 ```bash
-# Prerequisites
-brew install tesseract                          # macOS
-sudo apt-get install tesseract-ocr pytesseract  # Ubuntu
+# Character extraction and data preparation
+python training_data/scripts/extract_from_reference.py    # Extract characters from reference image
+python training_data/scripts/augment_with_gan.py         # Generate augmented training data
+python training_data/scripts/few_shot_learning.py        # Train few-shot learning models
+python training_data/scripts/create_mapping.py           # Create character mappings
 
-# Character extraction from reference chart
-uv run python training_data/scripts/extract_from_reference.py
-
-# Data augmentation (creates ~150 images per character)
-uv run python training_data/scripts/augment_with_gan.py
-
-# Few-shot learning model training
-uv run python training_data/scripts/few_shot_learning.py
-
-# Tesseract training (if implementing)
-python training_data/scripts/create_tesseract_files.py
-bash training_data/scripts/train_tesseract.sh
+# Tesseract training (requires Tesseract installed)
+cd training_data
+tesseract [input.tif] [output] -l eng --psm 10 makebox  # Generate box files
+# ... (see docs/training-guide.md for full process)
 ```
 
-## Architecture Overview
+## Architecture
 
 ### Backend Structure (Clean Architecture)
+
 ```
 backend/
-├── api/                    # FastAPI endpoints & HTTP layer
-│   └── endpoints/          # Health check, OCR endpoints
-├── domain/                 # Core business logic (no external dependencies)
-│   ├── entities/          # Character, OCRResult - pure data classes
-│   ├── repositories/      # Abstract interfaces for data access
-│   └── use_cases/         # ProcessOCRUseCase - business rules
-├── application/           # Application services layer
-│   ├── services/          # OCRService, CharacterValidator
-│   └── dto/              # ProcessImageRequest/Response DTOs
-└── infrastructure/        # External dependencies
-    ├── ocr/              # TesseractOCREngine (placeholder)
-    ├── image_processing/ # ImageProcessor with OpenCV
-    └── mapping/          # GranulateAlphabet singleton
+├── domain/              # Business logic, no external dependencies
+│   ├── entities/        # Core business objects (Image, OCRResult)
+│   └── repositories/    # Interface definitions
+├── application/         # Use cases and business rules
+│   ├── services/        # OCRService with business logic
+│   └── use_cases/       # ProcessImageUseCase
+├── infrastructure/      # External dependencies implementation
+│   ├── ocr/            # Tesseract/ML model integration
+│   ├── mapping/        # Granulate character mappings
+│   └── repositories/   # Concrete implementations
+└── api/                # FastAPI routes and DTOs
+    ├── routers/        # OCR endpoints
+    └── models/         # Request/Response models
 ```
 
-Key architectural patterns:
-- **Clean Architecture**: Dependencies point inward (infrastructure → application → domain)
-- **Repository Pattern**: Abstract interfaces in domain, concrete implementations in infrastructure
-- **Use Case Pattern**: Each business operation is a separate use case class
-- **DTO Pattern**: Separate data structures for API communication
+**Key Patterns:**
+- Dependency Injection: Services depend on abstract repositories
+- Use Case pattern: Each operation is a distinct use case
+- Repository pattern: Abstract data access behind interfaces
+- DTO pattern: Separate API models from domain entities
 
-### Frontend Architecture
-- **Framework**: React Router v7 with file-based routing
-- **State Management**: 
-  - Zustand for local UI state (camera settings, history)
-  - React Query for server state (OCR results caching)
-- **API Client**: Native fetch API (required for Cloudflare Workers compatibility)
-- **Component Structure**:
-  - `Camera`: WebRTC integration with real-time capture
-  - `OCRResult`: Display component with confidence visualization
-  - `ImageUpload`: File-based alternative to camera
-- **Deployment**: Cloudflare Pages with Workers for edge computing
+### Frontend Structure (React Router v7)
 
-### Training Pipeline Architecture
-1. **Character Extraction** (`extract_from_reference.py`):
-   - Detects purple bubbles in reference chart
-   - Uses OCR to read yellow alphabet labels
-   - Extracts white Granulate characters
-   - Outputs 64x64 normalized images
-
-2. **Data Augmentation** (`augment_with_gan.py`):
-   - Traditional augmentation: rotation, scaling, noise, morphology
-   - GAN-based generation (StyleGAN2 architecture)
-   - Diffusion-style augmentation
-   - Generates ~150 variations per character
-
-3. **Few-shot Learning** (`few_shot_learning.py`):
-   - Prototypical Networks for N-way K-shot learning
-   - Siamese Networks for similarity learning
-   - MAML for rapid adaptation
-   - Combined model architecture
-
-## API Contract
-
-### OCR Processing Endpoint
 ```
-POST /api/v1/ocr/process
+front/
+├── app/
+│   ├── routes/         # Route components
+│   ├── components/     # Reusable UI components
+│   ├── features/       # Feature-specific components
+│   ├── services/       # API client and external services
+│   └── stores/         # Zustand state management
+└── public/            # Static assets
+```
+
+**Key Technologies:**
+- React Router v7 with Cloudflare Workers deployment
+- Zustand for state management
+- TanStack Query for server state
+- WebRTC/MediaStream API for camera access
+- Canvas API for image processing
+
+### Training Data Pipeline
+
+```
+training_data/
+├── extracted/          # Characters extracted from reference image
+├── augmented/         # Data augmentation output (~150 variations/char)
+└── scripts/
+    ├── extract_from_reference.py  # HoughCircles + OCR extraction
+    ├── augment_with_gan.py       # Traditional + GAN augmentation
+    └── few_shot_learning.py      # Prototypical/Siamese networks
+```
+
+## API Contracts
+
+### OCR Endpoint
+```
+POST /api/ocr/process
 Content-Type: multipart/form-data
-Body: image (file)
+
+Request:
+  - file: Image file (JPEG/PNG)
+  - options: { enhance: boolean, language: "granulate" }
 
 Response:
-{
-  "image_id": "uuid-v4",
-  "text": "HELLO",
-  "average_confidence": 0.92,
-  "processing_time": 0.256,
-  "timestamp": "2024-01-01T12:00:00Z",
-  "characters": [
-    {
-      "granulate_symbol": "ᐈ",
-      "latin_equivalent": "H",
-      "confidence": 0.95
-    }
-  ]
-}
+  {
+    "text": "HELLO",
+    "confidence": 0.95,
+    "processing_time": 0.234,
+    "character_details": [
+      { "char": "H", "confidence": 0.98, "position": {...} }
+    ]
+  }
 ```
 
-## Character Mapping System
-
-The `GranulateAlphabet` singleton manages bidirectional mappings:
-- Uses Canadian Aboriginal Syllabics as placeholder symbols
-- A-Z mapped to ᐁ through ᐿ
-- 0-9 mapped to ᐀, ᑐ, ᑑ, ᑒ, ᑓ, ᑔ, ᑕ, ᑖ, ᑗ, ᐉ
-- Thread-safe singleton pattern implementation
+### WebSocket Real-time OCR
+```
+WS /api/ocr/stream
+Message: { "type": "frame", "data": "base64_image" }
+Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
+```
 
 ## Critical Implementation Details
 
-### Backend
-- OCR processing currently returns placeholder results (not yet integrated with Tesseract)
-- Image preprocessing uses OpenCV for grayscale conversion and enhancement
-- All domain entities use Pydantic for validation
-- FastAPI auto-generates OpenAPI docs at `/docs`
+### Character Recognition Flow
+1. **Image Preprocessing**: Gaussian blur → Adaptive threshold → Morphological operations
+2. **Text Detection**: EAST model or contour detection for character regions
+3. **Character Recognition**: 
+   - Primary: Custom Tesseract model trained on Granulate characters
+   - Fallback: Hash-based matching using `granulate_alphabet_generated.py`
+   - Enhancement: Few-shot learning models for difficult cases
 
-### Frontend
-- Must use fetch API, not axios (Cloudflare Workers requirement)
-- Camera access requires HTTPS in production
-- WebRTC MediaStream API used for real-time capture
-- React Router's new v7 data loading patterns
+### Granulate Alphabet Mapping
+- 36 characters total: A-Z (26) + 0-9 (10)
+- Hash-based mapping in `backend/infrastructure/mapping/granulate_alphabet_generated.py`
+- Each character has a 64-bit perceptual hash for robust matching
+- No lowercase distinction in Granulate script
 
-### Training Scripts
-- Requires Tesseract installed system-wide for OCR
-- Character extraction depends on detecting yellow text in purple bubbles
-- Apple Silicon users need `PYTORCH_ENABLE_MPS_FALLBACK=1` for PyTorch
-- Training data excluded from git (see .gitignore)
-
-## Testing Approach
-
-### Backend Testing
-- Unit tests: Domain logic with no dependencies
-- Integration tests: API endpoints with mocked services  
-- Use pytest markers: `@pytest.mark.unit`, `@pytest.mark.integration`
-- Current coverage: 96%
-
-### Frontend Testing
-- Component tests with React Testing Library
-- API service tests with mocked fetch
-- Browser APIs (MediaDevices, Canvas) mocked in test setup
-- Vitest for fast execution
-
-## Environment Configuration
-
-### Backend
-No `.env` file needed for development (uses defaults)
-
-### Frontend (.env)
-```
-VITE_API_URL=http://localhost:8000
-```
+### Performance Targets
+- Recognition latency: <1 second per image
+- Accuracy target: 85%+ on clear images
+- Real-time video: 15+ FPS processing
 
 ## Known Issues & Limitations
 
-1. OCR processing returns empty results (Tesseract integration pending)
-2. Reference chart image has typo: `granulte_chars.jpg` (missing 'a')
-3. Numbers (0-9) not included in reference chart
-4. WebSocket support not implemented
-5. No authentication/authorization system
+1. **Apple Silicon PyTorch**: MPS backend may have issues with certain operations. Use CPU fallback:
+   ```python
+   device = 'cpu'  # Instead of 'mps' if errors occur
+   ```
 
-## Apple Silicon Compatibility
+2. **iOS Safari Camera**: Requires specific WebRTC constraints:
+   ```javascript
+   { video: { facingMode: 'environment', width: { ideal: 1920 } } }
+   ```
 
-For M1/M2/M3 Macs:
-- PyTorch uses MPS instead of CUDA
-- Set `export PYTORCH_ENABLE_MPS_FALLBACK=1`
-- Optimal batch sizes:
-  - M1: 8-16
-  - M1 Pro/Max: 16-32  
-  - M2/M3: 32-64
-- Use `torch.device("mps")` instead of `torch.device("cuda")`
+3. **Tesseract Language Data**: Custom `.traineddata` file must be in tessdata directory
+
+4. **Training Data**: Early見表 image has filename typo: `granulte_chars.jpg` (missing 'a')
+
+## Environment Variables
+
+### Frontend (.env)
+```
+VITE_API_URL=http://localhost:8000  # Backend API URL
+```
+
+### Backend
+- No required environment variables (uses defaults)
+- Optional: `TESSDATA_PREFIX` for custom Tesseract data location
+
+## Deployment
+
+### Frontend (Cloudflare Workers)
+```bash
+npm run build
+npx wrangler deploy  # Uses wrangler.jsonc configuration
+```
+
+### Backend (Production)
+```bash
+uv pip install -e .  # Production dependencies only
+uvicorn backend.main:app --host 0.0.0.0 --port 8000
+```
+
+## Testing Philosophy
+
+- **Backend**: Domain logic heavily unit tested, integration tests for API endpoints
+- **Frontend**: Component behavior tests over implementation details
+- **OCR Models**: Accuracy benchmarks on test dataset
+- **E2E**: Camera → OCR → Display flow testing
+
+When implementing new features, maintain the Clean Architecture boundaries and ensure proper separation of concerns.
