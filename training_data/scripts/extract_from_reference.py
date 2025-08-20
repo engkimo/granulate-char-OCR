@@ -36,11 +36,11 @@ class GranulateCharacterExtractor:
             blurred,
             cv2.HOUGH_GRADIENT,
             dp=1,
-            minDist=50,  # 円の中心間の最小距離
-            param1=50,   # Cannyエッジ検出の上限閾値
-            param2=30,   # 円の中心を検出するための閾値
-            minRadius=40,  # 最小半径
-            maxRadius=70   # 最大半径
+            minDist=40,  # 円の中心間の最小距離（重複を減らすため少し小さく）
+            param1=40,   # Cannyエッジ検出の上限閾値（より感度を上げる）
+            param2=25,   # 円の中心を検出するための閾値（より多くの円を検出）
+            minRadius=35,  # 最小半径（少し小さく）
+            maxRadius=75   # 最大半径（少し大きく）
         )
         
         all_bubbles = []
@@ -50,7 +50,22 @@ class GranulateCharacterExtractor:
             circles = np.uint16(np.around(circles))
             print(f"検出された円の数: {len(circles[0])}")
             
+            # 重複除去: 近い円を除外
+            filtered_circles = []
             for i, (x, y, r) in enumerate(circles[0]):
+                is_duplicate = False
+                for fx, fy, fr in filtered_circles:
+                    distance = np.sqrt((x - fx)**2 + (y - fy)**2)
+                    if distance < min(r, fr) * 0.8:  # 半径の80%未満の距離なら重複とみなす
+                        is_duplicate = True
+                        break
+                
+                if not is_duplicate:
+                    filtered_circles.append((x, y, r))
+            
+            print(f"重複除去後の円の数: {len(filtered_circles)}")
+            
+            for i, (x, y, r) in enumerate(filtered_circles):
                 # バブル領域を切り出し
                 x1 = max(0, x - r - 10)
                 y1 = max(0, y - r - 10)
@@ -77,6 +92,32 @@ class GranulateCharacterExtractor:
         
         sorted_bubbles = [all_bubbles[i] for i in sorted_indices]
         sorted_info = [all_bubble_info[i] for i in sorted_indices]
+        
+        # グリッドベースの整理（3行×9列を想定）
+        if len(sorted_bubbles) > 27:
+            # y座標で3つのグループに分割
+            y_coords = [info[1] for info in sorted_info]
+            y_sorted = sorted(enumerate(y_coords), key=lambda x: x[1])
+            
+            # 3つの行に分割
+            rows_per_group = len(y_sorted) // 3
+            row1_indices = [idx for idx, _ in y_sorted[:rows_per_group]]
+            row2_indices = [idx for idx, _ in y_sorted[rows_per_group:2*rows_per_group]]
+            row3_indices = [idx for idx, _ in y_sorted[2*rows_per_group:]]
+            
+            # 各行でx座標でソートし、最初の9個を取る
+            final_indices = []
+            for row_indices in [row1_indices, row2_indices, row3_indices]:
+                row_sorted = sorted(row_indices, key=lambda i: sorted_info[i][0])
+                final_indices.extend(row_sorted[:9])
+            
+            # 最終的な27個のバブルを選択
+            if len(final_indices) >= 27:
+                final_bubbles = [sorted_bubbles[i] for i in final_indices[:27]]
+                final_info = [sorted_info[i] for i in final_indices[:27]]
+                
+                print(f"グリッドベースで選択されたバブル数: {len(final_bubbles)}")
+                return final_bubbles, final_info
         
         return sorted_bubbles, sorted_info
     
@@ -417,20 +458,21 @@ class GranulateCharacterExtractor:
         
         print(f"\n不足している文字: {missing_chars}")
         
-        # 位置ベースでマッピングを推測
-        position_based_mapping = {
-            1: 'B',   # 2番目のバブル
-            6: 'H',   # 7番目のバブル  
-            11: 'I',  # 12番目のバブル
-            13: 'J',  # 14番目のバブル
-            16: 'O',  # 17番目のバブル
-            17: 'P',  # 18番目のバブル
-            27: 'X',  # 28番目のバブル
-        }
+        # グリッドベースで27個選択後の、全26文字のマッピング
+        # 3行×9列のレイアウト
+        complete_char_mapping = [
+            # 1行目: A B C D E F G H I
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
+            # 2行目: J K L M N O P Q R  
+            'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+            # 3行目: S T U V W X Y Z (最後の1つは数字なので除外)
+            'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+        ]
         
+        # 失敗したインデックスとそれに対応する文字をマッピング
         for idx in failed_indices:
-            if idx in position_based_mapping and idx < len(bubbles):
-                char = position_based_mapping[idx]
+            if idx < len(complete_char_mapping) and idx < len(bubbles):
+                char = complete_char_mapping[idx]
                 if char in missing_chars:
                     bubble = bubbles[idx]
                     granulate_char = self.extract_granulate_character(bubble)
@@ -450,6 +492,33 @@ class GranulateCharacterExtractor:
                         manual_mapping[char] = str(char_dir / filename)
                         print(f"手動マッピング: インデックス {idx} → {char}")
         
+        # まだ不足している文字がある場合、追加でマッピング
+        remaining_missing = sorted(set(missing_chars) - set(manual_mapping.keys()))
+        if remaining_missing:
+            print(f"\nまだ不足している文字: {remaining_missing}")
+            # 各文字のインデックスを見つけて追加
+            for char in remaining_missing:
+                if char in complete_char_mapping:
+                    idx = complete_char_mapping.index(char)
+                    if idx < len(bubbles):
+                        bubble = bubbles[idx]
+                        granulate_char = self.extract_granulate_character(bubble)
+                        
+                        if granulate_char is not None:
+                            # 保存ディレクトリを作成
+                            char_dir = output_path / char
+                            char_dir.mkdir(exist_ok=True)
+                            
+                            # 画像を保存  
+                            filename = f"{char}_reference.png"
+                            cv2.imwrite(str(char_dir / filename), granulate_char)
+                            
+                            # バブル画像も保存
+                            cv2.imwrite(str(char_dir / f"{char}_bubble.png"), bubble)
+                            
+                            manual_mapping[char] = str(char_dir / filename)
+                            print(f"追加マッピング: インデックス {idx} → {char}")
+        
         return manual_mapping
     
     def visualize_extraction(self):
@@ -462,11 +531,11 @@ class GranulateCharacterExtractor:
             blurred,
             cv2.HOUGH_GRADIENT,
             dp=1,
-            minDist=50,
-            param1=50,
-            param2=30,
-            minRadius=40,
-            maxRadius=70
+            minDist=40,
+            param1=40,
+            param2=25,
+            minRadius=35,
+            maxRadius=75
         )
         
         # 検出結果を描画
