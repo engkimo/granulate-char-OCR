@@ -30,7 +30,7 @@ Thumbs.db
 *.traineddata
 training_data/*
 !training_data/scripts/
-!training_data/extracted/
+# 
 logs/
 uploads/
 temp/
