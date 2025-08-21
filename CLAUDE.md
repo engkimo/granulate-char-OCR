@@ -132,9 +132,11 @@ front/
 
 **Camera Component Features:**
 - Auto-flip for front-facing camera
-- 4 processing modes: none, basic, enhanced, aggressive
+- 4 processing modes: none, basic, enhanced, aggressive (default)
 - Advanced camera constraints (ISO, focus, white balance)
-- Real-time noise reduction and contrast enhancement
+- Real-time preview with processing applied
+- Captured image history (last 5 images)
+- Aggressive mode: Binary threshold at 128 (same as zutomayo_OCR)
 
 ### Training Data Pipeline
 
@@ -199,10 +201,12 @@ Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
    - Morphological operations for cleanup
 2. **Text Detection**: Contour detection for character regions
 3. **Character Recognition** (in order of accuracy):
-   - Primary: CNN model (`models/cnn_model_best.pth`)
-   - Secondary: Few-shot learning model (`models/prototypical_network.pth`)
-   - Fallback: Hash-based matching using `granulate_alphabet_generated.py`
+   - Primary: CNN model (`models/cnn_model_best.pth`) - NOT YET INTEGRATED
+   - Secondary: Few-shot learning model (`models/prototypical_network.pth`) - NOT YET INTEGRATED
+   - Fallback: Hash-based matching using `granulate_alphabet_generated.py` - NOT YET INTEGRATED
    - Future: Custom Tesseract model (requires training completion)
+
+**Current Status**: OCRService returns empty results - implementation required
 
 ### Granulate Alphabet Mapping
 - 36 characters total: A-Z (26) + 0-9 (10)
@@ -217,25 +221,30 @@ Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
 
 ## Known Issues & Limitations
 
-1. **Apple Silicon PyTorch**: MPS backend may have issues with certain operations. Use CPU fallback:
+1. **OCR Service Not Implemented**: The backend OCRService (`backend/application/services/ocr_service.py`) currently returns empty results. This causes "No characters detected" error. Implementation needed:
+   - Integrate trained CNN model (`models/cnn_model_best.pth`)
+   - Implement Tesseract OCR with custom language
+   - Use hash-based mapping as fallback
+
+2. **Apple Silicon PyTorch**: MPS backend may have issues with certain operations. Use CPU fallback:
    ```python
    device = 'cpu'  # Instead of 'mps' if errors occur
    ```
 
-2. **iOS Safari Camera**: Requires specific WebRTC constraints:
+3. **iOS Safari Camera**: Requires specific WebRTC constraints:
    ```javascript
    { video: { facingMode: 'environment', width: { ideal: 1920 } } }
    ```
 
-3. **Tesseract Language Data**: Custom `.traineddata` file must be in tessdata directory
+4. **Tesseract Language Data**: Custom `.traineddata` file must be in tessdata directory
 
-4. **Training Data**: Reference image filename typo: `granulte_chars.jpg` (missing 'a')
+5. **Training Data**: Reference image filename typo: `granulte_chars.jpg` (missing 'a')
 
-5. **Model Integration**: CNN and few-shot models not yet integrated into OCR API
+6. **Model Integration**: CNN and few-shot models not yet integrated into OCR API
 
-6. **Character Extraction**: Manual sorting was required due to grid detection issues
+7. **Character Extraction**: Manual sorting was required due to grid detection issues
 
-7. **Chrome DevTools Error**: Harmless error about `/.well-known/appspecific/com.chrome.devtools.json` can be ignored
+8. **Chrome DevTools Error**: Harmless error about `/.well-known/appspecific/com.chrome.devtools.json` can be ignored
 
 ## Environment Variables
 
@@ -289,3 +298,27 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 - **TanStack Query** for server state
 
 When implementing new features, maintain the Clean Architecture boundaries and ensure proper separation of concerns.
+
+## Fixing "No characters detected" Issue
+
+The OCR service is not yet implemented. To fix this, implement `backend/application/services/ocr_service.py`:
+
+1. **Quick Fix - Hash-based recognition**:
+   ```python
+   from backend.infrastructure.mapping.granulate_alphabet_generated import GranulateAlphabet
+   # Use compare_image_to_mapping() method
+   ```
+
+2. **Better Fix - Integrate CNN model**:
+   ```python
+   import torch
+   model = torch.load('models/cnn_model_best.pth')
+   # Process image through CNN for recognition
+   ```
+
+3. **Best Fix - Complete OCR pipeline**:
+   - Load and preprocess image using OpenCV
+   - Detect character regions using contours
+   - Extract individual characters
+   - Run through CNN model or hash matching
+   - Return structured OCRResult with confidence scores
