@@ -15,6 +15,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Index() {
   const [showCamera, setShowCamera] = useState(true)
+  const [capturedImageUrl, setCapturedImageUrl] = useState<string | null>(null)
   const { currentResult, isProcessing, error, setProcessing, setResult, setError } = useOCRStore()
 
   const processImageMutation = useMutation({
@@ -24,7 +25,7 @@ export default function Index() {
       setShowCamera(false)
     },
     onSuccess: (data) => {
-      setResult(data)
+      setResult({ ...data, imageUrl: capturedImageUrl || undefined })
     },
     onError: (err) => {
       setError(err instanceof Error ? err.message : 'Failed to process image')
@@ -33,6 +34,7 @@ export default function Index() {
   })
 
   const handleCapture = (imageBlob: Blob, previewUrl: string) => {
+    setCapturedImageUrl(previewUrl)
     processImageMutation.mutate(imageBlob)
   }
 

@@ -23,6 +23,18 @@ export function OCRResult({ result }: OCRResultProps) {
 
   return (
     <div className="bg-white rounded-lg shadow-lg p-6">
+      {/* Captured image */}
+      {result.imageUrl && (
+        <div className="mb-6">
+          <h2 className="text-sm font-medium text-gray-600 mb-2">Captured Image</h2>
+          <img 
+            src={result.imageUrl} 
+            alt="Captured for OCR" 
+            className="w-full max-w-md mx-auto rounded-lg border border-gray-200"
+          />
+        </div>
+      )}
+
       {/* Main result text */}
       <div className="mb-6">
         <h2 className="text-sm font-medium text-gray-600 mb-2">Recognized Text</h2>

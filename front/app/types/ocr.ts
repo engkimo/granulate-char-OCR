@@ -11,4 +11,5 @@ export interface OCRResponse {
   processing_time: number
   timestamp: string
   characters: Character[]
+  imageUrl?: string
 }
