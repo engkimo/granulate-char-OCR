@@ -32,7 +32,7 @@ export default function Index() {
     }
   })
 
-  const handleCapture = (imageBlob: Blob) => {
+  const handleCapture = (imageBlob: Blob, previewUrl: string) => {
     processImageMutation.mutate(imageBlob)
   }
 

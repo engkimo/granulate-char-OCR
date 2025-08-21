@@ -116,6 +116,7 @@ front/
 ├── app/
 │   ├── routes/         # Route components
 │   ├── components/     # Reusable UI components
+│   │   └── Camera/     # Enhanced camera with image processing
 │   ├── features/       # Feature-specific components
 │   ├── services/       # API client and external services
 │   └── stores/         # Zustand state management
@@ -128,6 +129,12 @@ front/
 - TanStack Query for server state
 - WebRTC/MediaStream API for camera access
 - Canvas API for image processing
+
+**Camera Component Features:**
+- Auto-flip for front-facing camera
+- 4 processing modes: none, basic, enhanced, aggressive
+- Advanced camera constraints (ISO, focus, white balance)
+- Real-time noise reduction and contrast enhancement
 
 ### Training Data Pipeline
 
@@ -228,6 +235,8 @@ Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
 
 6. **Character Extraction**: Manual sorting was required due to grid detection issues
 
+7. **Chrome DevTools Error**: Harmless error about `/.well-known/appspecific/com.chrome.devtools.json` can be ignored
+
 ## Environment Variables
 
 ### Frontend (.env)
@@ -243,8 +252,9 @@ VITE_API_URL=http://localhost:8000  # Backend API URL
 
 ### Frontend (Cloudflare Workers)
 ```bash
-npm run build
-npx wrangler deploy  # Uses wrangler.jsonc configuration
+cd front
+pnpm run build
+pnpm run deploy  # Uses wrangler.jsonc configuration
 ```
 
 ### Backend (Production)
