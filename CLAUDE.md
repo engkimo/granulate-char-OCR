@@ -79,7 +79,9 @@ python test_ocr_api.py                          # Test OCR API with current mode
 # Tesseract training (requires Tesseract installed)
 python training_data/scripts/create_tesseract_data.py    # Generate training data for Tesseract
 cd training_data/tesseract
-./train_tesseract.sh                            # Run automated training script
+python convert_to_white_bg.py                    # Convert images to white background (required)
+./robust_train.sh                                # Run robust training for all 26 characters
+python test_all_chars.py                         # Test recognition accuracy (61.5% achieved)
 ```
 
 ## Architecture
@@ -159,7 +161,10 @@ training_data/
 
 - **Hash-based recognition**: 19.2% accuracy (8x8 perceptual hash)
 - **Similarity-based recognition**: 28.5% accuracy (Hamming distance threshold)
-- **CNN model**: 100% validation accuracy, ~95% test accuracy
+- **Tesseract model**: 61.5% accuracy (16/26 characters recognized)
+  - Successfully recognized: A, B, C, E, G, I, L, N, O, P, Q, U, V, X, Y, Z
+  - Failed recognition: D, F, H, J, K, M, R, S, T, W
+- **CNN model**: 100% validation accuracy, ~95% test accuracy (NOT YET INTEGRATED)
 - **Preprocessing**: Best method is "contrast_enhance" (score: 0.204)
 
 ## API Contracts
@@ -200,13 +205,13 @@ Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
    - Adaptive thresholding
    - Morphological operations for cleanup
 2. **Text Detection**: Contour detection for character regions
-3. **Character Recognition** (in order of accuracy):
-   - Primary: CNN model (`models/cnn_model_best.pth`) - NOT YET INTEGRATED
-   - Secondary: Few-shot learning model (`models/prototypical_network.pth`) - NOT YET INTEGRATED
-   - Fallback: Hash-based matching using `granulate_alphabet_generated.py` - NOT YET INTEGRATED
-   - Future: Custom Tesseract model (requires training completion)
+3. **Character Recognition** (in order of priority):
+   - Primary: Tesseract with custom `gran` language model (61.5% accuracy) - INTEGRATED
+   - Fallback: Hash-based matching using `granulate_alphabet_generated.py` (28.5% accuracy) - INTEGRATED
+   - Future Primary: CNN model (`models/cnn_model_best.pth`, 95% accuracy) - NOT YET INTEGRATED
+   - Future Secondary: Few-shot learning model (`models/prototypical_network.pth`) - NOT YET INTEGRATED
 
-**Current Status**: OCRService returns empty results - implementation required
+**Current Status**: OCRService implements Tesseract + Hash-based fallback. CNN integration recommended for better accuracy.
 
 ### Granulate Alphabet Mapping
 - 36 characters total: A-Z (26) + 0-9 (10)
@@ -221,10 +226,10 @@ Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
 
 ## Known Issues & Limitations
 
-1. **OCR Service Not Implemented**: The backend OCRService (`backend/application/services/ocr_service.py`) currently returns empty results. This causes "No characters detected" error. Implementation needed:
-   - Integrate trained CNN model (`models/cnn_model_best.pth`)
-   - Implement Tesseract OCR with custom language
-   - Use hash-based mapping as fallback
+1. **OCR Service Partially Implemented**: The backend OCRService (`backend/application/services/ocr_service.py`) now uses:
+   - Tesseract with custom `gran` language (61.5% accuracy)
+   - Hash-based mapping as fallback (28.5% accuracy)
+   - CNN model integration still needed for better accuracy (95%)
 
 2. **Apple Silicon PyTorch**: MPS backend may have issues with certain operations. Use CPU fallback:
    ```python
@@ -236,7 +241,7 @@ Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
    { video: { facingMode: 'environment', width: { ideal: 1920 } } }
    ```
 
-4. **Tesseract Language Data**: Custom `.traineddata` file must be in tessdata directory
+4. **Tesseract Language Data**: Custom `gran.traineddata` installed at `/opt/homebrew/share/tessdata/`
 
 5. **Training Data**: Reference image filename typo: `granulte_chars.jpg` (missing 'a')
 
@@ -299,26 +304,28 @@ uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 When implementing new features, maintain the Clean Architecture boundaries and ensure proper separation of concerns.
 
-## Fixing "No characters detected" Issue
+## Improving OCR Accuracy
 
-The OCR service is not yet implemented. To fix this, implement `backend/application/services/ocr_service.py`:
+The OCR service is implemented with Tesseract (61.5% accuracy) and Hash-based fallback (28.5% accuracy).
 
-1. **Quick Fix - Hash-based recognition**:
-   ```python
-   from backend.infrastructure.mapping.granulate_alphabet_generated import GranulateAlphabet
-   # Use compare_image_to_mapping() method
-   ```
+### Current Implementation in `backend/application/services/ocr_service.py`:
+```python
+# Primary: Tesseract with custom model
+recognized_char = self.process_with_tesseract(char_image)
 
-2. **Better Fix - Integrate CNN model**:
-   ```python
-   import torch
-   model = torch.load('models/cnn_model_best.pth')
-   # Process image through CNN for recognition
-   ```
+# Fallback: Hash-based recognition
+if not recognized_char:
+    recognized_char = self.alphabet.compare_image_to_mapping(char_image)
+```
 
-3. **Best Fix - Complete OCR pipeline**:
-   - Load and preprocess image using OpenCV
-   - Detect character regions using contours
-   - Extract individual characters
-   - Run through CNN model or hash matching
-   - Return structured OCRResult with confidence scores
+### To Achieve 95% Accuracy - Integrate CNN Model:
+```python
+import torch
+model = torch.load('models/cnn_model_best.pth')
+# Add CNN recognition as primary method before Tesseract
+```
+
+### Tesseract Training Notes:
+- Images must have white background (use `convert_to_white_bg.py`)
+- Training data location: `training_data/tesseract/`
+- Model location: `/opt/homebrew/share/tessdata/gran.traineddata`
