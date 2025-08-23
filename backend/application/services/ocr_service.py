@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 from io import BytesIO
 from PIL import Image
+import pytesseract
 from backend.domain.entities.ocr_result import OCRResult
 from backend.domain.entities.character import Character
 from backend.infrastructure.mapping.granulate_alphabet_generated import GranulateAlphabet
@@ -34,8 +35,12 @@ class OCRService:
             for i, (x, y, w, h) in enumerate(char_regions):
                 char_image = preprocessed[y:y+h, x:x+w]
                 
-                # Use hash-based recognition
-                recognized_char = self.alphabet.compare_image_to_mapping(char_image)
+                # まずTesseractで試す
+                recognized_char = self.process_with_tesseract(char_image)
+                
+                # Tesseractで認識できない場合はHash-basedにフォールバック
+                if not recognized_char:
+                    recognized_char = self.alphabet.compare_image_to_mapping(char_image)
                 
                 if recognized_char:
                     # Simple confidence based on image quality
@@ -88,6 +93,21 @@ class OCRService:
         cleaned = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel)
         
         return cleaned
+    
+    def process_with_tesseract(self, char_image: np.ndarray) -> Optional[str]:
+        """Tesseractカスタムモデルでの文字認識"""
+        try:
+            import pytesseract
+            # カスタム言語（gran）を使用
+            text = pytesseract.image_to_string(
+                char_image,
+                lang='gran',
+                config='--oem 0 --psm 10'  # レガシーエンジン、単一文字モード
+            )
+            return text.strip() if text.strip() else None
+        except Exception as e:
+            print(f"Tesseract error: {e}")
+            return None
     
     def _extract_character_regions(self, image: np.ndarray) -> List[Tuple[int, int, int, int]]:
         """Extract character regions from preprocessed image"""
