@@ -137,8 +137,11 @@ def main():
     # APIのURL（ローカル開発環境）
     API_URL = "http://localhost:8000"
     
+    # プロジェクトルートを取得
+    project_root = Path(__file__).parent.parent.parent
+    
     # テストデータのディレクトリ
-    TEST_DIR = Path("training_data/augmented")
+    TEST_DIR = project_root / "training_data" / "augmented"
     
     print("=== OCR API テスト ===")
     print(f"API URL: {API_URL}")
@@ -160,7 +163,7 @@ def main():
         return
     
     # テストグリッド画像を作成
-    grid_path = Path("test_grid.png")
+    grid_path = project_root / "tests" / "integration" / "test_grid.png"
     create_test_image_grid(TEST_DIR, grid_path)
     
     # 全文字をテスト

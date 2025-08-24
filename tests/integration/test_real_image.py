@@ -8,12 +8,13 @@ from PIL import Image
 from io import BytesIO
 
 # プロジェクトルートをパスに追加
-sys.path.append(str(Path(__file__).parent))
+project_root = Path(__file__).parent.parent.parent
+sys.path.append(str(project_root))
 
 from backend.application.services.ocr_service import OCRService
 
 # テスト画像のパス
-test_image_path = Path("test_data/test.png")
+test_image_path = project_root / "test_data" / "test.png"
 
 if test_image_path.exists():
     print("=== グラニュート文字OCR認識テスト ===\n")

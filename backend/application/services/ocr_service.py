@@ -287,7 +287,11 @@ class OCRService:
     def _load_cnn_model(self):
         """CNNモデルをロード"""
         try:
-            model_path = Path('models/cnn_model_best.pth')
+            # プロジェクトルートからの相対パスでモデルを探す
+            current_file = Path(__file__)
+            project_root = current_file.parent.parent.parent.parent
+            model_path = project_root / 'models' / 'cnn_model_best.pth'
+            
             if model_path.exists():
                 self.cnn_model = GranulateOCRModel(num_classes=26)
                 checkpoint = torch.load(model_path, map_location=self.device)

@@ -35,6 +35,24 @@ logs/
 uploads/
 temp/
 
+# Test outputs
+tests/debug/output/*.png
+tests/integration/test_grid.png
+test_grid.png
+debug_*.png
+debug_*.py
+
+# Model files
+*.pth
+*.pt
+*.h5
+*.pkl
+
+# Temporary debug files
+analyze_*.png
+parameter_*.png
+purple_mask*.png
+
 # Node (for frontend)
 node_modules/
 dist/
