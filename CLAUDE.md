@@ -55,212 +55,162 @@ pnpm run deploy                                  # Deploy to Cloudflare Workers
 pnpm run cf-typegen                              # Generate Cloudflare types
 ```
 
-### OCR Model Training & Testing
+### OCR Testing Scripts
 
 ```bash
-# Character extraction and data preparation (完了済み)
-python training_data/scripts/extract_from_reference.py    # Extract characters from reference image
-python training_data/scripts/augment_simple.py           # Generate augmented training data (150 variations/char)
-python training_data/scripts/create_mapping.py           # Create character mappings
+# Test real image recognition (from project root)
+python tests/integration/test_real_image.py      # Test with PLEASURE image
 
-# Machine Learning Models (PyTorch required)
-uv pip install torch torchvision scikit-learn matplotlib tqdm seaborn
-python training_data/scripts/few_shot_learning.py        # Train few-shot learning models
-python training_data/scripts/train_cnn_model.py          # Train CNN model for higher accuracy
+# Test API integration (requires server running)
+python tests/integration/test_ocr_api.py         # Test all characters A-Z
 
-# Image preprocessing optimization
-python training_data/scripts/optimize_preprocessing.py   # Evaluate and optimize preprocessing methods
-
-# Testing recognition accuracy
-python test_hash_mapping.py                      # Test hash-based recognition (19.2% accuracy)
-python test_similarity_mapping.py                # Test similarity-based recognition (28.5% accuracy)
-python test_ocr_api.py                          # Test OCR API with current models
-
-# Tesseract training (requires Tesseract installed)
-python training_data/scripts/create_tesseract_data.py    # Generate training data for Tesseract
-cd training_data/tesseract
-python convert_to_white_bg.py                    # Convert images to white background (required)
-./robust_train.sh                                # Run robust training for all 26 characters
-python test_all_chars.py                         # Test recognition accuracy (61.5% achieved)
+# Debug and analysis scripts
+python tests/debug/test_hash_mapping.py          # Test hash-based recognition (28.5% accuracy)
+python tests/debug/test_similarity_mapping.py    # Test similarity-based recognition
+python tests/debug/analyze_pleasure_image.py     # Analyze PLEASURE test image
 ```
 
 ## Architecture
 
 ### Backend Structure (Clean Architecture)
 
-```
-backend/
-├── domain/              # Business logic, no external dependencies
-│   ├── entities/        # Core business objects (Image, OCRResult)
-│   └── repositories/    # Interface definitions
-├── application/         # Use cases and business rules
-│   ├── services/        # OCRService with business logic
-│   └── use_cases/       # ProcessImageUseCase
-├── infrastructure/      # External dependencies implementation
-│   ├── ocr/            # Tesseract/ML model integration
-│   ├── mapping/        # Granulate character mappings
-│   └── repositories/   # Concrete implementations
-└── api/                # FastAPI routes and DTOs
-    ├── routers/        # OCR endpoints
-    └── models/         # Request/Response models
-```
+The backend follows Clean Architecture principles with clear separation of concerns:
 
-**Key Patterns:**
-- Dependency Injection: Services depend on abstract repositories
-- Use Case pattern: Each operation is a distinct use case
-- Repository pattern: Abstract data access behind interfaces
-- DTO pattern: Separate API models from domain entities
+- **domain/**: Core business logic with no external dependencies
+  - `entities/`: Core business objects (OCRResult, Character)
+  - `repositories/`: Abstract interfaces for data access
+  
+- **application/**: Use cases and business rules
+  - `services/OCRService`: Main service implementing recognition logic
+  - `use_cases/`: Specific business operations
+  
+- **infrastructure/**: External dependencies and implementations
+  - `ocr/`: Tesseract and ML model integrations
+  - `mapping/`: Granulate character hash mappings
+  
+- **api/**: FastAPI routes and DTOs
+  - `routers/`: HTTP endpoints
+  - `models/`: Request/Response schemas
 
 ### Frontend Structure (React Router v7)
 
-```
-front/
-├── app/
-│   ├── routes/         # Route components
-│   ├── components/     # Reusable UI components
-│   │   └── Camera/     # Enhanced camera with image processing
-│   ├── features/       # Feature-specific components
-│   ├── services/       # API client and external services
-│   └── stores/         # Zustand state management
-└── public/            # Static assets
-```
+Modern React application with Cloudflare Workers deployment:
 
-**Key Technologies:**
-- React Router v7 with Cloudflare Workers deployment
-- Zustand for state management
-- TanStack Query for server state
-- WebRTC/MediaStream API for camera access
-- Canvas API for image processing
+- **app/routes/**: Route components following React Router v7 conventions
+- **app/components/Camera/**: Enhanced camera component with real-time processing
+- **app/services/**: API client and external service integrations
+- **app/stores/**: Zustand state management
 
-**Camera Component Features:**
-- Auto-flip for front-facing camera
-- 4 processing modes: none, basic, enhanced, aggressive (default)
-- Advanced camera constraints (ISO, focus, white balance)
-- Real-time preview with processing applied
-- Captured image history (last 5 images)
-- Aggressive mode: Binary threshold at 128 (same as zutomayo_OCR)
+### Recognition Pipeline
 
-### Training Data Pipeline
+1. **Image Preprocessing** (`_preprocess_image`)
+   - Grayscale conversion
+   - Background detection and inversion if needed
+   - Bilateral filter for noise reduction
+   - CLAHE for contrast enhancement
+   - Binary thresholding
+   - Morphological operations
 
-```
-training_data/
-├── extracted/          # Characters extracted from reference image (26 chars, A-Z)
-├── augmented/         # Data augmentation output (~150 variations/char, 3,926 total)
-├── tesseract/         # Tesseract training data (TIFF, BOX, unicharset)
-└── scripts/
-    ├── extract_from_reference.py    # Grid-based extraction from purple bubbles
-    ├── augment_simple.py           # PyTorch-free augmentation (rotation, scale, noise)
-    ├── create_mapping.py           # Generate perceptual hash mappings
-    ├── few_shot_learning.py        # Prototypical Networks (5-way 5-shot)
-    ├── train_cnn_model.py          # Custom CNN architecture (100% val accuracy)
-    ├── optimize_preprocessing.py    # Evaluate 7 preprocessing methods
-    └── create_tesseract_data.py   # Generate Tesseract training files
-```
+2. **Character Segmentation** (`_extract_character_regions_improved`)
+   - Horizontal projection analysis
+   - Character boundary detection
+   - Bounding box extraction
 
-### Model Performance
-
-- **Hash-based recognition**: 19.2% accuracy (8x8 perceptual hash)
-- **Similarity-based recognition**: 28.5% accuracy (Hamming distance threshold)
-- **Tesseract model**: 61.5% accuracy (16/26 characters recognized)
-  - Successfully recognized: A, B, C, E, G, I, L, N, O, P, Q, U, V, X, Y, Z
-  - Failed recognition: D, F, H, J, K, M, R, S, T, W
-- **CNN model**: 100% validation accuracy, ~95% test accuracy (NOT YET INTEGRATED)
-- **Preprocessing**: Best method is "contrast_enhance" (score: 0.204)
-
-## API Contracts
-
-### OCR Endpoint
-```
-POST /api/ocr/process
-Content-Type: multipart/form-data
-
-Request:
-  - file: Image file (JPEG/PNG)
-  - options: { enhance: boolean, language: "granulate" }
-
-Response:
-  {
-    "text": "HELLO",
-    "confidence": 0.95,
-    "processing_time": 0.234,
-    "character_details": [
-      { "char": "H", "confidence": 0.98, "position": {...} }
-    ]
-  }
-```
-
-### WebSocket Real-time OCR
-```
-WS /api/ocr/stream
-Message: { "type": "frame", "data": "base64_image" }
-Response: { "type": "result", "text": "ABC", "confidence": 0.89 }
-```
+3. **Character Recognition** (multi-method approach)
+   - **CNN Model** (primary): 95% accuracy on training data
+   - **Tesseract** (secondary): 61.5% accuracy with custom `gran` model
+   - **Hash-based** (fallback): 28.5% accuracy using perceptual hashes
 
 ## Critical Implementation Details
 
-### Character Recognition Flow
-1. **Image Preprocessing**: Optimized pipeline using contrast enhancement
-   - Bilateral filter for noise reduction
-   - CLAHE for contrast enhancement  
-   - Adaptive thresholding
-   - Morphological operations for cleanup
-2. **Text Detection**: Contour detection for character regions
-3. **Character Recognition** (in order of priority):
-   - Primary: Tesseract with custom `gran` language model (61.5% accuracy) - INTEGRATED
-   - Fallback: Hash-based matching using `granulate_alphabet_generated.py` (28.5% accuracy) - INTEGRATED
-   - Future Primary: CNN model (`models/cnn_model_best.pth`, 95% accuracy) - NOT YET INTEGRATED
-   - Future Secondary: Few-shot learning model (`models/prototypical_network.pth`) - NOT YET INTEGRATED
+### OCR Service Recognition Logic
 
-**Current Status**: OCRService implements Tesseract + Hash-based fallback. CNN integration recommended for better accuracy.
+The OCR service (`backend/application/services/ocr_service.py`) implements a sophisticated multi-method approach:
 
-### Granulate Alphabet Mapping
-- 36 characters total: A-Z (26) + 0-9 (10)
-- Hash-based mapping in `backend/infrastructure/mapping/granulate_alphabet_generated.py`
-- Each character has a 64-bit perceptual hash for robust matching
-- No lowercase distinction in Granulate script
+```python
+# 1. CNN Model (highest accuracy)
+recognized_char, cnn_confidence = self.process_with_cnn(char_image)
 
-### Performance Targets
-- Recognition latency: <1 second per image
-- Accuracy target: 85%+ on clear images
-- Real-time video: 15+ FPS processing
+# 2. Tesseract (good for specific characters)
+tesseract_char = self.process_with_tesseract(char_image)
 
-## Known Issues & Limitations
-
-1. **OCR Service Partially Implemented**: The backend OCRService (`backend/application/services/ocr_service.py`) now uses:
-   - Tesseract with custom `gran` language (61.5% accuracy)
-   - Hash-based mapping as fallback (28.5% accuracy)
-   - CNN model integration still needed for better accuracy (95%)
-
-2. **Apple Silicon PyTorch**: MPS backend may have issues with certain operations. Use CPU fallback:
-   ```python
-   device = 'cpu'  # Instead of 'mps' if errors occur
-   ```
-
-3. **iOS Safari Camera**: Requires specific WebRTC constraints:
-   ```javascript
-   { video: { facingMode: 'environment', width: { ideal: 1920 } } }
-   ```
-
-4. **Tesseract Language Data**: Custom `gran.traineddata` installed at `/opt/homebrew/share/tessdata/`
-
-5. **Training Data**: Reference image filename typo: `granulte_chars.jpg` (missing 'a')
-
-6. **Model Integration**: CNN and few-shot models not yet integrated into OCR API
-
-7. **Character Extraction**: Manual sorting was required due to grid detection issues
-
-8. **Chrome DevTools Error**: Harmless error about `/.well-known/appspecific/com.chrome.devtools.json` can be ignored
-
-## Environment Variables
-
-### Frontend (.env)
-```
-VITE_API_URL=http://localhost:8000  # Backend API URL
+# 3. Selection logic based on confidence and character type
+if cnn_confidence >= 0.8:
+    use CNN result
+elif cnn_confidence >= 0.5:
+    if tesseract_char in ['L', 'P', 'R'] and cnn_confidence < 0.7:
+        use Tesseract
+else:
+    use Tesseract or Hash-based fallback
 ```
 
-### Backend
-- No required environment variables (uses defaults)
-- Optional: `TESSDATA_PREFIX` for custom Tesseract data location
+### Model Paths and Loading
+
+The CNN model path is resolved relative to the project root:
+```python
+current_file = Path(__file__)
+project_root = current_file.parent.parent.parent.parent
+model_path = project_root / 'models' / 'cnn_model_best.pth'
+```
+
+### Preprocessing Considerations
+
+- Training data used purple bubble backgrounds with white characters
+- Test images have black backgrounds with white characters
+- The preprocessing pipeline handles both cases by detecting background color
+- Character thickness normalization is applied to match training data style
+
+## Current Performance
+
+### Recognition Accuracy (test_data/test.png - "PLEASURE")
+- **Initial**: 12.5% (1/8 characters correct)
+- **Current**: 62.5% (5/8 characters correct)
+- **Processing time**: ~200ms
+
+### Method-specific Accuracy
+- **CNN**: 95% on training data, variable on real images
+- **Tesseract**: 61.5% (16/26 characters recognized correctly)
+- **Hash-based**: 28.5%
+
+### Known Misrecognitions
+- A → P (shape similarity)
+- R → P (Tesseract training limitation)
+- E → Z (medium CNN confidence)
+
+## Environment Setup
+
+### Backend Requirements
+- Python 3.11+
+- Tesseract OCR installed (`brew install tesseract` on macOS)
+- Custom language data at `/opt/homebrew/share/tessdata/gran.traineddata`
+
+### Frontend Requirements
+- Node.js 18+
+- pnpm package manager
+
+### Optional ML Dependencies
+```bash
+uv pip install torch torchvision scikit-learn matplotlib tqdm seaborn
+```
+
+## Testing and Debugging
+
+### Test Data Locations
+- Real test image: `test_data/test.png` (PLEASURE text)
+- Training data: `training_data/augmented/` (A-Z characters)
+- Debug outputs: `tests/debug/output/`
+
+### Common Debugging Commands
+```bash
+# Check model structure
+python tests/debug/check_model_structure.py
+
+# Test individual recognition methods
+python tests/debug/debug_all_methods.py
+
+# Analyze character extraction
+python tests/debug/debug_char_order.py
+```
 
 ## Deployment
 
@@ -268,64 +218,18 @@ VITE_API_URL=http://localhost:8000  # Backend API URL
 ```bash
 cd front
 pnpm run build
-pnpm run deploy  # Uses wrangler.jsonc configuration
+pnpm run deploy
 ```
 
 ### Backend (Production)
 ```bash
-uv pip install -e .  # Production dependencies only
+uv pip install -e .
 uvicorn backend.main:app --host 0.0.0.0 --port 8000
 ```
 
-## Testing Philosophy
+## Future Improvements
 
-- **Backend**: Domain logic heavily unit tested, integration tests for API endpoints
-- **Frontend**: Component behavior tests using Vitest and React Testing Library
-- **OCR Models**: Accuracy benchmarks on test dataset
-- **E2E**: Camera → OCR → Display flow testing
-
-## Project Dependencies
-
-### Python (Backend)
-- **Python 3.11+** required
-- **uv** package manager for fast dependency management
-- **FastAPI** for REST API
-- **OpenCV** and **Pillow** for image processing
-- **PyTorch** for machine learning models
-- **pytesseract** for OCR integration
-
-### Node.js (Frontend)
-- **pnpm** package manager
-- **React 19** with React Router v7
-- **Vite** for build tooling
-- **Cloudflare Workers** for deployment
-- **Zustand** for state management
-- **TanStack Query** for server state
-
-When implementing new features, maintain the Clean Architecture boundaries and ensure proper separation of concerns.
-
-## Improving OCR Accuracy
-
-The OCR service is implemented with Tesseract (61.5% accuracy) and Hash-based fallback (28.5% accuracy).
-
-### Current Implementation in `backend/application/services/ocr_service.py`:
-```python
-# Primary: Tesseract with custom model
-recognized_char = self.process_with_tesseract(char_image)
-
-# Fallback: Hash-based recognition
-if not recognized_char:
-    recognized_char = self.alphabet.compare_image_to_mapping(char_image)
-```
-
-### To Achieve 95% Accuracy - Integrate CNN Model:
-```python
-import torch
-model = torch.load('models/cnn_model_best.pth')
-# Add CNN recognition as primary method before Tesseract
-```
-
-### Tesseract Training Notes:
-- Images must have white background (use `convert_to_white_bg.py`)
-- Training data location: `training_data/tesseract/`
-- Model location: `/opt/homebrew/share/tessdata/gran.traineddata`
+1. **Retrain CNN with real Granulate text images** (not just isolated characters)
+2. **Implement ensemble voting** between recognition methods
+3. **Add context-aware post-processing** for common words
+4. **Optimize for real-time video processing** (current: single image focus)
