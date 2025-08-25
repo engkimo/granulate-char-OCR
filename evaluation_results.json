@@ -1,0 +1,788 @@
+{
+  "results": [
+    {
+      "file": "AND_1.png",
+      "expected": "AND",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.06925582885742188
+    },
+    {
+      "file": "A_1.png",
+      "expected": "A",
+      "recognized": "A",
+      "char_accuracy": 1.0,
+      "word_accuracy": 1.0,
+      "char_count": 1,
+      "processing_time": 0.021457910537719727
+    },
+    {
+      "file": "A_2.png",
+      "expected": "A",
+      "recognized": "YC",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.0432131290435791
+    },
+    {
+      "file": "BE_1.png",
+      "expected": "BE",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.023661136627197266
+    },
+    {
+      "file": "BE_2.png",
+      "expected": "BE",
+      "recognized": "Q",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.02200174331665039
+    },
+    {
+      "file": "BY_1.png",
+      "expected": "BY",
+      "recognized": "Q",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.022336959838867188
+    },
+    {
+      "file": "B_1.png",
+      "expected": "B",
+      "recognized": "P",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.022684812545776367
+    },
+    {
+      "file": "CAN_1.png",
+      "expected": "CAN",
+      "recognized": "C",
+      "char_accuracy": 0.3333333333333333,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.02239990234375
+    },
+    {
+      "file": "CAN_2.png",
+      "expected": "CAN",
+      "recognized": "C",
+      "char_accuracy": 0.3333333333333333,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.026467084884643555
+    },
+    {
+      "file": "CHANGE_1.png",
+      "expected": "CHANGE",
+      "recognized": "C",
+      "char_accuracy": 0.16666666666666666,
+      "word_accuracy": 0.0,
+      "char_count": 6,
+      "processing_time": 0.02944159507751465
+    },
+    {
+      "file": "COME_1.png",
+      "expected": "COME",
+      "recognized": "C",
+      "char_accuracy": 0.25,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.028959274291992188
+    },
+    {
+      "file": "CONFERENCE_1.png",
+      "expected": "CONFERENCE",
+      "recognized": "CLPCCECC",
+      "char_accuracy": 0.1,
+      "word_accuracy": 0.0,
+      "char_count": 10,
+      "processing_time": 0.19282793998718262
+    },
+    {
+      "file": "COSTS_1.png",
+      "expected": "COSTS",
+      "recognized": "C",
+      "char_accuracy": 0.2,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.02799081802368164
+    },
+    {
+      "file": "COVERED_1.png",
+      "expected": "COVERED",
+      "recognized": "C",
+      "char_accuracy": 0.14285714285714285,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.029017925262451172
+    },
+    {
+      "file": "C_1.png",
+      "expected": "C",
+      "recognized": "O",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.0237119197845459
+    },
+    {
+      "file": "EASY_1.png",
+      "expected": "EASY",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.025101184844970703
+    },
+    {
+      "file": "ENJOYABLE_1.png",
+      "expected": "ENJOYABLE",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 9,
+      "processing_time": 0.02744579315185547
+    },
+    {
+      "file": "EQPHGTGPE_1.png",
+      "expected": "EQPHGTGPE",
+      "recognized": "CEPGGCCCC",
+      "char_accuracy": 0.2222222222222222,
+      "word_accuracy": 0.0,
+      "char_count": 9,
+      "processing_time": 0.1960430145263672
+    },
+    {
+      "file": "E_1.png",
+      "expected": "E",
+      "recognized": "E",
+      "char_accuracy": 1.0,
+      "word_accuracy": 1.0,
+      "char_count": 1,
+      "processing_time": 0.02340984344482422
+    },
+    {
+      "file": "FACTORY_1.png",
+      "expected": "FACTORY",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.02732706069946289
+    },
+    {
+      "file": "FOR_1.png",
+      "expected": "FOR",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.02376389503479004
+    },
+    {
+      "file": "F_1.png",
+      "expected": "F",
+      "recognized": "P",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.022555112838745117
+    },
+    {
+      "file": "G_1.png",
+      "expected": "G",
+      "recognized": "Q",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.022313356399536133
+    },
+    {
+      "file": "HEAD_1.png",
+      "expected": "HEAD",
+      "recognized": "W",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.022922039031982422
+    },
+    {
+      "file": "HIRING!_1.png",
+      "expected": "HIRING",
+      "recognized": "S",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 6,
+      "processing_time": 0.02538299560546875
+    },
+    {
+      "file": "HUMAN_1.png",
+      "expected": "HUMAN",
+      "recognized": "HEECP",
+      "char_accuracy": 0.2,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.10452103614807129
+    },
+    {
+      "file": "H_1.png",
+      "expected": "H",
+      "recognized": "P",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.023700952529907227
+    },
+    {
+      "file": "INC_1.png",
+      "expected": "INC",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.023215293884277344
+    },
+    {
+      "file": "INC_2.png",
+      "expected": "INC",
+      "recognized": "G",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.02252483367919922
+    },
+    {
+      "file": "INC_3.png",
+      "expected": "INC",
+      "recognized": "PECY",
+      "char_accuracy": 0.25,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.08309388160705566
+    },
+    {
+      "file": "INC_4.png",
+      "expected": "INC",
+      "recognized": "PP",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.0421907901763916
+    },
+    {
+      "file": "INDIVIDUALS_1.png",
+      "expected": "INDIVIDUALS",
+      "recognized": "L",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 11,
+      "processing_time": 0.027035951614379883
+    },
+    {
+      "file": "IS_1.png",
+      "expected": "IS",
+      "recognized": "L",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.0221860408782959
+    },
+    {
+      "file": "I_1.png",
+      "expected": "I",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.023332834243774414
+    },
+    {
+      "file": "JOB_1.png",
+      "expected": "JOB",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.02334904670715332
+    },
+    {
+      "file": "JOIN_1.png",
+      "expected": "JOIN",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.02377176284790039
+    },
+    {
+      "file": "KPE_1.png",
+      "expected": "KPE",
+      "recognized": "PCC",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.07105827331542969
+    },
+    {
+      "file": "LAB_1.png",
+      "expected": "LAB",
+      "recognized": "PLP",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.07572293281555176
+    },
+    {
+      "file": "LANGO_2.png",
+      "expected": "LANGO",
+      "recognized": "LNYL",
+      "char_accuracy": 0.2,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.09715509414672852
+    },
+    {
+      "file": "LOOKING_1.png",
+      "expected": "LOOKING",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.025268077850341797
+    },
+    {
+      "file": "L_1.png",
+      "expected": "L",
+      "recognized": "L",
+      "char_accuracy": 1.0,
+      "word_accuracy": 1.0,
+      "char_count": 1,
+      "processing_time": 0.02325892448425293
+    },
+    {
+      "file": "M_1.png",
+      "expected": "M",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.02110886573791504
+    },
+    {
+      "file": "N_1.png",
+      "expected": "N",
+      "recognized": "P",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.02202606201171875
+    },
+    {
+      "file": "OF_1.png",
+      "expected": "OF",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.02255392074584961
+    },
+    {
+      "file": "OF_2.png",
+      "expected": "OF",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.022246122360229492
+    },
+    {
+      "file": "OF_3.png",
+      "expected": "OF",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.02479386329650879
+    },
+    {
+      "file": "OF_4.png",
+      "expected": "OF",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.030888080596923828
+    },
+    {
+      "file": "OPERATE_1.png",
+      "expected": "OPERATE",
+      "recognized": "LPEC",
+      "char_accuracy": 0.2857142857142857,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.08793997764587402
+    },
+    {
+      "file": "OPERATE_2.png",
+      "expected": "OPERATE",
+      "recognized": "LYCQPALL",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.1654367446899414
+    },
+    {
+      "file": "OUR_1.png",
+      "expected": "OUR",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.022694110870361328
+    },
+    {
+      "file": "O_1.png",
+      "expected": "O",
+      "recognized": "L",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.022449970245361328
+    },
+    {
+      "file": "PART_1.png",
+      "expected": "PART",
+      "recognized": "Y",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.023932218551635742
+    },
+    {
+      "file": "PASSIONATE_1.png",
+      "expected": "PASSIONATE",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 10,
+      "processing_time": 0.025443077087402344
+    },
+    {
+      "file": "PLEASURE_1.png",
+      "expected": "PLEASURE",
+      "recognized": "CEPE",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 8,
+      "processing_time": 0.09091401100158691
+    },
+    {
+      "file": "PLEASURE_2.png",
+      "expected": "PLEASURE",
+      "recognized": "QCP",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 8,
+      "processing_time": 0.06980681419372559
+    },
+    {
+      "file": "PROUD_1.png",
+      "expected": "PROUD",
+      "recognized": "G",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.024984121322631836
+    },
+    {
+      "file": "PROVIDED_1.png",
+      "expected": "PROVIDED",
+      "recognized": "G",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 8,
+      "processing_time": 0.025814056396484375
+    },
+    {
+      "file": "RE_1.png",
+      "expected": "RE",
+      "recognized": "P",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.022803068161010742
+    },
+    {
+      "file": "ROOM_1.png",
+      "expected": "ROOM",
+      "recognized": "PLC",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.0650639533996582
+    },
+    {
+      "file": "R_1.png",
+      "expected": "R",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.023401975631713867
+    },
+    {
+      "file": "STOMACH_1.png",
+      "expected": "STOMACH",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.025118112564086914
+    },
+    {
+      "file": "STOMACH_2.png",
+      "expected": "STOMACH",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.02429819107055664
+    },
+    {
+      "file": "STOMACH_3.png",
+      "expected": "STOMACH",
+      "recognized": "YPNCB",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.10825395584106445
+    },
+    {
+      "file": "STOMACH_4.png",
+      "expected": "STOMACH",
+      "recognized": "CPLCECC",
+      "char_accuracy": 0.14285714285714285,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.15442109107971191
+    },
+    {
+      "file": "STOMACH_5.png",
+      "expected": "STOMACH",
+      "recognized": "PEACC",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.11256217956542969
+    },
+    {
+      "file": "SWEETS_1.png",
+      "expected": "SWEETS",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 6,
+      "processing_time": 0.02535223960876465
+    },
+    {
+      "file": "S_1.png",
+      "expected": "S",
+      "recognized": "P",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.021757841110229492
+    },
+    {
+      "file": "S_2.png",
+      "expected": "S",
+      "recognized": "Q",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.0227510929107666
+    },
+    {
+      "file": "TEAM!_1.png",
+      "expected": "TEAM",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.023900985717773438
+    },
+    {
+      "file": "THE_1.png",
+      "expected": "THE",
+      "recognized": "G",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.02246999740600586
+    },
+    {
+      "file": "TO_1.png",
+      "expected": "TO",
+      "recognized": "L",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.021721839904785156
+    },
+    {
+      "file": "TRANSPORTATION_1.png",
+      "expected": "TRANSPORTATION",
+      "recognized": "O",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 14,
+      "processing_time": 0.030004024505615234
+    },
+    {
+      "file": "T_1.png",
+      "expected": "T",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.02415299415588379
+    },
+    {
+      "file": "UNIFORM_1.png",
+      "expected": "UNIFORM",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.027142763137817383
+    },
+    {
+      "file": "US_1.png",
+      "expected": "US",
+      "recognized": "Y",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.022497177124023438
+    },
+    {
+      "file": "UVQOCEJ_1.png",
+      "expected": "UVQOCEJ",
+      "recognized": "ECVQLPCP",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 7,
+      "processing_time": 0.20334506034851074
+    },
+    {
+      "file": "V_1.png",
+      "expected": "V",
+      "recognized": "V",
+      "char_accuracy": 1.0,
+      "word_accuracy": 1.0,
+      "char_count": 1,
+      "processing_time": 0.023797035217285156
+    },
+    {
+      "file": "WE_1.png",
+      "expected": "WE",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 2,
+      "processing_time": 0.0226290225982666
+    },
+    {
+      "file": "WORK_1.png",
+      "expected": "WORK",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 4,
+      "processing_time": 0.02322101593017578
+    },
+    {
+      "file": "WORLD!_1.png",
+      "expected": "WORLD",
+      "recognized": "S",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.02552199363708496
+    },
+    {
+      "file": "WORLD_1.png",
+      "expected": "WORLD",
+      "recognized": "G",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.024655818939208984
+    },
+    {
+      "file": "W_1.png",
+      "expected": "W",
+      "recognized": "W",
+      "char_accuracy": 1.0,
+      "word_accuracy": 1.0,
+      "char_count": 1,
+      "processing_time": 0.023985862731933594
+    },
+    {
+      "file": "YAMIGASHI_1.png",
+      "expected": "YAMIGASHI",
+      "recognized": "C",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 9,
+      "processing_time": 0.02845001220703125
+    },
+    {
+      "file": "YOU_1.png",
+      "expected": "YOU",
+      "recognized": "G",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 3,
+      "processing_time": 0.02314281463623047
+    },
+    {
+      "file": "YUMMY_1.png",
+      "expected": "YUMMY",
+      "recognized": "S",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 5,
+      "processing_time": 0.02524423599243164
+    },
+    {
+      "file": "Y_1.png",
+      "expected": "Y",
+      "recognized": "E",
+      "char_accuracy": 0.0,
+      "word_accuracy": 0.0,
+      "char_count": 1,
+      "processing_time": 0.022227048873901367
+    }
+  ],
+  "stats": {
+    "total_images": 86,
+    "successful": 86,
+    "failed": 0,
+    "char_accuracy_mean": 0.09101144333702472,
+    "char_accuracy_std": 0.24026358038883175,
+    "word_accuracy_mean": 0.05813953488372093,
+    "perfect_words": 5.0,
+    "avg_processing_time": 0.042558179345241816
+  }
+}

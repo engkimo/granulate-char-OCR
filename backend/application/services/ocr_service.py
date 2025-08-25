@@ -290,9 +290,21 @@ class OCRService:
             # プロジェクトルートからの相対パスでモデルを探す
             current_file = Path(__file__)
             project_root = current_file.parent.parent.parent.parent
-            model_path = project_root / 'models' / 'cnn_model_best.pth'
             
-            if model_path.exists():
+            # 再訓練モデルがあればそれを使用、なければオリジナルモデル
+            retrained_path = project_root / 'models' / 'cnn_model_retrained.pth'
+            original_path = project_root / 'models' / 'cnn_model_best.pth'
+            
+            if retrained_path.exists():
+                model_path = retrained_path
+                print("再訓練モデルを使用します")
+            elif original_path.exists():
+                model_path = original_path
+                print("オリジナルモデルを使用します")
+            else:
+                model_path = None
+            
+            if model_path and model_path.exists():
                 self.cnn_model = GranulateOCRModel(num_classes=26)
                 checkpoint = torch.load(model_path, map_location=self.device)
                 self.cnn_model.load_state_dict(checkpoint['model_state_dict'])
