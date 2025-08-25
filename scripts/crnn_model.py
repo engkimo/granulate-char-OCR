@@ -14,15 +14,17 @@ class BidirectionalLSTM(nn.Module):
     
     def __init__(self, input_size: int, hidden_size: int, output_size: int):
         super().__init__()
-        self.rnn = nn.LSTM(input_size, hidden_size, bidirectional=True, batch_first=True)
+        self.rnn = nn.LSTM(input_size, hidden_size, bidirectional=True, batch_first=False)
         self.embedding = nn.Linear(hidden_size * 2, output_size)
     
     def forward(self, input: torch.Tensor) -> torch.Tensor:
+        # input shape: (seq_len, batch, features)
         recurrent, _ = self.rnn(input)
-        T, b, h = recurrent.size()
-        t_rec = recurrent.view(T * b, h)
+        # recurrent shape: (seq_len, batch, hidden_size*2)
+        seq_len, batch, hidden = recurrent.size()
+        t_rec = recurrent.reshape(seq_len * batch, hidden)
         output = self.embedding(t_rec)
-        output = output.view(T, b, -1)
+        output = output.reshape(seq_len, batch, -1)
         return output
 
 
@@ -44,16 +46,17 @@ class CRNN(nn.Module):
         
         # CNN特徴抽出器
         # VGGライクなアーキテクチャ
+        # 入力: 1x64x256 (channel, height, width)
         self.cnn = nn.Sequential(
             # Conv Block 1
             nn.Conv2d(1, 64, 3, 1, 1),
             nn.ReLU(True),
-            nn.MaxPool2d(2, 2),  # 64x? -> 32x?
+            nn.MaxPool2d(2, 2),  # 64x256 -> 32x128
             
             # Conv Block 2
             nn.Conv2d(64, 128, 3, 1, 1),
             nn.ReLU(True),
-            nn.MaxPool2d(2, 2),  # 32x? -> 16x?
+            nn.MaxPool2d(2, 2),  # 32x128 -> 16x64
             
             # Conv Block 3
             nn.Conv2d(128, 256, 3, 1, 1),
@@ -61,7 +64,7 @@ class CRNN(nn.Module):
             nn.ReLU(True),
             nn.Conv2d(256, 256, 3, 1, 1),
             nn.ReLU(True),
-            nn.MaxPool2d((2, 2), (2, 1), (0, 1)),  # 16x? -> 8x?
+            nn.MaxPool2d((2, 2), (2, 1), (0, 1)),  # 16x64 -> 8x32
             
             # Conv Block 4
             nn.Conv2d(256, 512, 3, 1, 1),
@@ -69,10 +72,10 @@ class CRNN(nn.Module):
             nn.ReLU(True),
             nn.Conv2d(512, 512, 3, 1, 1),
             nn.ReLU(True),
-            nn.MaxPool2d((2, 2), (2, 1), (0, 1)),  # 8x? -> 4x?
+            nn.MaxPool2d((2, 2), (2, 1), (0, 1)),  # 8x32 -> 4x32
             
-            # Conv Block 5
-            nn.Conv2d(512, 512, 2, 1, 0),
+            # Conv Block 5 - 高さを1にする
+            nn.Conv2d(512, 512, (4, 1), 1, 0),  # 4x32 -> 1x32
             nn.BatchNorm2d(512),
             nn.ReLU(True)
         )
