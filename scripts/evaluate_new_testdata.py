@@ -12,7 +12,7 @@ from tqdm import tqdm
 from datetime import datetime
 
 # プロジェクトルートをパスに追加
-project_root = Path(__file__).parent
+project_root = Path(__file__).parent.parent
 sys.path.append(str(project_root))
 
 from backend.application.services.ocr_service import OCRService
