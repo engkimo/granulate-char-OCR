@@ -10,7 +10,7 @@ from typing import Tuple, List
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 
-sys.path.append(str(Path(__file__).parent))
+sys.path.append(str(Path(__file__).parent.parent))
 
 from backend.application.services.ocr_service import OCRService
 from training_data.scripts.preprocess_color_images import ColorAwarePreprocessor
