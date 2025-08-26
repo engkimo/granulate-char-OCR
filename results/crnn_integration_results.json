@@ -7,8 +7,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02388477325439453,
-      "request_time": 0.08542609214782715,
+      "processing_time": 0.03180193901062012,
+      "request_time": 0.1246180534362793,
       "success": true
     },
     {
@@ -18,8 +18,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02236008644104004,
-      "request_time": 0.08339405059814453,
+      "processing_time": 0.021188974380493164,
+      "request_time": 0.0859980583190918,
       "success": true
     },
     {
@@ -29,8 +29,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02653789520263672,
-      "request_time": 0.08932304382324219,
+      "processing_time": 0.026465892791748047,
+      "request_time": 0.1785740852355957,
       "success": true
     },
     {
@@ -40,8 +40,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02147197723388672,
-      "request_time": 0.08397197723388672,
+      "processing_time": 0.017842769622802734,
+      "request_time": 0.08951306343078613,
       "success": true
     },
     {
@@ -51,8 +51,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.022436141967773438,
-      "request_time": 0.08306884765625,
+      "processing_time": 0.020356178283691406,
+      "request_time": 0.09357285499572754,
       "success": true
     },
     {
@@ -62,8 +62,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02489614486694336,
-      "request_time": 0.08609604835510254,
+      "processing_time": 0.019606828689575195,
+      "request_time": 0.08220291137695312,
       "success": true
     },
     {
@@ -73,8 +73,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.027622222900390625,
-      "request_time": 0.09741377830505371,
+      "processing_time": 0.026332855224609375,
+      "request_time": 0.0947268009185791,
       "success": true
     },
     {
@@ -84,8 +84,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.022541046142578125,
-      "request_time": 0.08424687385559082,
+      "processing_time": 0.025974035263061523,
+      "request_time": 0.11854100227355957,
       "success": true
     },
     {
@@ -95,8 +95,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023051023483276367,
-      "request_time": 0.08526110649108887,
+      "processing_time": 0.01935410499572754,
+      "request_time": 0.08792901039123535,
       "success": true
     },
     {
@@ -106,8 +106,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023479938507080078,
-      "request_time": 0.08530211448669434,
+      "processing_time": 0.02659010887145996,
+      "request_time": 0.09033679962158203,
       "success": true
     },
     {
@@ -117,8 +117,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023011207580566406,
-      "request_time": 0.08462095260620117,
+      "processing_time": 0.02290797233581543,
+      "request_time": 0.08650422096252441,
       "success": true
     },
     {
@@ -128,8 +128,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.5,
       "word_accuracy": 0.0,
-      "processing_time": 0.027127981185913086,
-      "request_time": 0.09070801734924316,
+      "processing_time": 0.02264881134033203,
+      "request_time": 0.09477090835571289,
       "success": true
     },
     {
@@ -139,8 +139,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.6,
       "word_accuracy": 0.0,
-      "processing_time": 0.02277994155883789,
-      "request_time": 0.09460592269897461,
+      "processing_time": 0.024219989776611328,
+      "request_time": 0.09344673156738281,
       "success": true
     },
     {
@@ -150,8 +150,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.5714285714285714,
       "word_accuracy": 0.0,
-      "processing_time": 0.02296304702758789,
-      "request_time": 0.08675718307495117,
+      "processing_time": 0.022862672805786133,
+      "request_time": 0.0871880054473877,
       "success": true
     },
     {
@@ -161,8 +161,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.022941112518310547,
-      "request_time": 0.08477306365966797,
+      "processing_time": 0.02488112449645996,
+      "request_time": 0.09088015556335449,
       "success": true
     },
     {
@@ -172,8 +172,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.75,
       "word_accuracy": 0.0,
-      "processing_time": 0.023974895477294922,
-      "request_time": 0.08394598960876465,
+      "processing_time": 0.027932167053222656,
+      "request_time": 0.11293601989746094,
       "success": true
     },
     {
@@ -183,8 +183,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.5555555555555556,
       "word_accuracy": 0.0,
-      "processing_time": 0.025003910064697266,
-      "request_time": 0.08581876754760742,
+      "processing_time": 0.02648615837097168,
+      "request_time": 0.09057998657226562,
       "success": true
     },
     {
@@ -194,8 +194,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.028948068618774414,
-      "request_time": 0.09233689308166504,
+      "processing_time": 0.025201797485351562,
+      "request_time": 0.09017205238342285,
       "success": true
     },
     {
@@ -205,8 +205,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02577996253967285,
-      "request_time": 0.08841800689697266,
+      "processing_time": 0.020452022552490234,
+      "request_time": 0.08576297760009766,
       "success": true
     },
     {
@@ -216,8 +216,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.025019168853759766,
-      "request_time": 0.08963394165039062,
+      "processing_time": 0.026244163513183594,
+      "request_time": 0.09107303619384766,
       "success": true
     },
     {
@@ -227,8 +227,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.0219728946685791,
-      "request_time": 0.08324408531188965,
+      "processing_time": 0.02333998680114746,
+      "request_time": 0.08648109436035156,
       "success": true
     },
     {
@@ -238,8 +238,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02113199234008789,
-      "request_time": 0.08374285697937012,
+      "processing_time": 0.0221860408782959,
+      "request_time": 0.08720111846923828,
       "success": true
     },
     {
@@ -249,8 +249,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.024070024490356445,
-      "request_time": 0.08555412292480469,
+      "processing_time": 0.02314305305480957,
+      "request_time": 0.08638525009155273,
       "success": true
     },
     {
@@ -260,8 +260,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.0235440731048584,
-      "request_time": 0.08190608024597168,
+      "processing_time": 0.020663022994995117,
+      "request_time": 0.08276104927062988,
       "success": true
     },
     {
@@ -271,8 +271,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.024096965789794922,
-      "request_time": 0.08738493919372559,
+      "processing_time": 0.023710250854492188,
+      "request_time": 0.09245991706848145,
       "success": true
     },
     {
@@ -282,8 +282,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.02784109115600586,
-      "request_time": 0.0908210277557373,
+      "processing_time": 0.02911520004272461,
+      "request_time": 0.09156513214111328,
       "success": true
     },
     {
@@ -293,8 +293,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.025825023651123047,
-      "request_time": 0.08804702758789062,
+      "processing_time": 0.024083852767944336,
+      "request_time": 0.08944988250732422,
       "success": true
     },
     {
@@ -304,8 +304,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.026845932006835938,
-      "request_time": 0.08837604522705078,
+      "processing_time": 0.02170085906982422,
+      "request_time": 0.08559703826904297,
       "success": true
     },
     {
@@ -315,8 +315,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.022539138793945312,
-      "request_time": 0.0832982063293457,
+      "processing_time": 0.021424055099487305,
+      "request_time": 0.08789610862731934,
       "success": true
     },
     {
@@ -326,8 +326,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02542591094970703,
-      "request_time": 0.09014892578125,
+      "processing_time": 0.022400856018066406,
+      "request_time": 0.08874320983886719,
       "success": true
     },
     {
@@ -337,8 +337,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.027478694915771484,
-      "request_time": 0.08855509757995605,
+      "processing_time": 0.02285599708557129,
+      "request_time": 0.08661198616027832,
       "success": true
     },
     {
@@ -348,8 +348,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.45454545454545453,
       "word_accuracy": 0.0,
-      "processing_time": 0.02520012855529785,
-      "request_time": 0.0867929458618164,
+      "processing_time": 0.023257732391357422,
+      "request_time": 0.08789324760437012,
       "success": true
     },
     {
@@ -359,8 +359,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.021908044815063477,
-      "request_time": 0.08315110206604004,
+      "processing_time": 0.0225222110748291,
+      "request_time": 0.08641481399536133,
       "success": true
     },
     {
@@ -370,8 +370,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02396702766418457,
-      "request_time": 0.08559799194335938,
+      "processing_time": 0.0234072208404541,
+      "request_time": 0.08607888221740723,
       "success": true
     },
     {
@@ -381,8 +381,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023026227951049805,
-      "request_time": 0.0838468074798584,
+      "processing_time": 0.02458810806274414,
+      "request_time": 0.0880591869354248,
       "success": true
     },
     {
@@ -392,8 +392,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.0250089168548584,
-      "request_time": 0.08908605575561523,
+      "processing_time": 0.029371261596679688,
+      "request_time": 0.09833812713623047,
       "success": true
     },
     {
@@ -403,8 +403,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023495912551879883,
-      "request_time": 0.08540987968444824,
+      "processing_time": 0.0243222713470459,
+      "request_time": 0.0922389030456543,
       "success": true
     },
     {
@@ -414,8 +414,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02270793914794922,
-      "request_time": 0.08439397811889648,
+      "processing_time": 0.02371835708618164,
+      "request_time": 0.08767318725585938,
       "success": true
     },
     {
@@ -425,8 +425,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.025114059448242188,
-      "request_time": 0.08832097053527832,
+      "processing_time": 0.025024890899658203,
+      "request_time": 0.08671998977661133,
       "success": true
     },
     {
@@ -436,8 +436,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.8571428571428571,
       "word_accuracy": 0.0,
-      "processing_time": 0.023900985717773438,
-      "request_time": 0.08390307426452637,
+      "processing_time": 0.03585171699523926,
+      "request_time": 0.09983491897583008,
       "success": true
     },
     {
@@ -447,8 +447,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.027025938034057617,
-      "request_time": 0.09041619300842285,
+      "processing_time": 0.022525787353515625,
+      "request_time": 0.08860301971435547,
       "success": true
     },
     {
@@ -458,8 +458,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.025005817413330078,
-      "request_time": 0.08719778060913086,
+      "processing_time": 0.023223161697387695,
+      "request_time": 0.09011268615722656,
       "success": true
     },
     {
@@ -469,8 +469,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.026223182678222656,
-      "request_time": 0.08842182159423828,
+      "processing_time": 0.02301192283630371,
+      "request_time": 0.08652091026306152,
       "success": true
     },
     {
@@ -480,8 +480,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.021320819854736328,
-      "request_time": 0.08414220809936523,
+      "processing_time": 0.02377796173095703,
+      "request_time": 0.0899350643157959,
       "success": true
     },
     {
@@ -491,8 +491,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.0245668888092041,
-      "request_time": 0.0862269401550293,
+      "processing_time": 0.023710250854492188,
+      "request_time": 0.0861368179321289,
       "success": true
     },
     {
@@ -502,8 +502,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.022486209869384766,
-      "request_time": 0.08394598960876465,
+      "processing_time": 0.023741960525512695,
+      "request_time": 0.08852505683898926,
       "success": true
     },
     {
@@ -513,8 +513,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.024326086044311523,
-      "request_time": 0.08641195297241211,
+      "processing_time": 0.023946762084960938,
+      "request_time": 0.0880289077758789,
       "success": true
     },
     {
@@ -524,8 +524,8 @@
       "confidence": 0.8999999999999999,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.024388790130615234,
-      "request_time": 0.08479070663452148,
+      "processing_time": 0.026383638381958008,
+      "request_time": 0.09065485000610352,
       "success": true
     },
     {
@@ -535,8 +535,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.024353981018066406,
-      "request_time": 0.08845305442810059,
+      "processing_time": 0.022294044494628906,
+      "request_time": 0.08812093734741211,
       "success": true
     },
     {
@@ -546,8 +546,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02324199676513672,
-      "request_time": 0.08372211456298828,
+      "processing_time": 0.02206707000732422,
+      "request_time": 0.08572602272033691,
       "success": true
     },
     {
@@ -557,8 +557,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02369379997253418,
-      "request_time": 0.08438920974731445,
+      "processing_time": 0.02475428581237793,
+      "request_time": 0.09024477005004883,
       "success": true
     },
     {
@@ -568,8 +568,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.0255429744720459,
-      "request_time": 0.08678102493286133,
+      "processing_time": 0.022753000259399414,
+      "request_time": 0.08737587928771973,
       "success": true
     },
     {
@@ -579,8 +579,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.025801897048950195,
-      "request_time": 0.08605813980102539,
+      "processing_time": 0.027383089065551758,
+      "request_time": 0.0905599594116211,
       "success": true
     },
     {
@@ -590,8 +590,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.875,
       "word_accuracy": 0.0,
-      "processing_time": 0.024293899536132812,
-      "request_time": 0.08886313438415527,
+      "processing_time": 0.0274350643157959,
+      "request_time": 0.09862899780273438,
       "success": true
     },
     {
@@ -601,8 +601,8 @@
       "confidence": 0.8999999999999999,
       "char_accuracy": 0.875,
       "word_accuracy": 0.0,
-      "processing_time": 0.022614002227783203,
-      "request_time": 0.08400726318359375,
+      "processing_time": 0.02102494239807129,
+      "request_time": 0.08508801460266113,
       "success": true
     },
     {
@@ -612,8 +612,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.8,
       "word_accuracy": 0.0,
-      "processing_time": 0.027767658233642578,
-      "request_time": 0.08783411979675293,
+      "processing_time": 0.027297019958496094,
+      "request_time": 0.09267473220825195,
       "success": true
     },
     {
@@ -623,8 +623,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.5,
       "word_accuracy": 0.0,
-      "processing_time": 0.026434898376464844,
-      "request_time": 0.08864426612854004,
+      "processing_time": 0.028599023818969727,
+      "request_time": 0.09352588653564453,
       "success": true
     },
     {
@@ -634,8 +634,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.021476030349731445,
-      "request_time": 0.08263087272644043,
+      "processing_time": 0.019752979278564453,
+      "request_time": 0.0839989185333252,
       "success": true
     },
     {
@@ -645,8 +645,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.5,
       "word_accuracy": 0.0,
-      "processing_time": 0.027565956115722656,
-      "request_time": 0.09216189384460449,
+      "processing_time": 0.024457216262817383,
+      "request_time": 0.08661222457885742,
       "success": true
     },
     {
@@ -656,8 +656,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02563190460205078,
-      "request_time": 0.09044694900512695,
+      "processing_time": 0.0206451416015625,
+      "request_time": 0.08446907997131348,
       "success": true
     },
     {
@@ -667,8 +667,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.024916887283325195,
-      "request_time": 0.08650875091552734,
+      "processing_time": 0.026818037033081055,
+      "request_time": 0.09131002426147461,
       "success": true
     },
     {
@@ -678,8 +678,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.021518230438232422,
-      "request_time": 0.08174705505371094,
+      "processing_time": 0.03872084617614746,
+      "request_time": 0.11328721046447754,
       "success": true
     },
     {
@@ -689,8 +689,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.02431011199951172,
-      "request_time": 0.08424496650695801,
+      "processing_time": 0.027997255325317383,
+      "request_time": 0.09133410453796387,
       "success": true
     },
     {
@@ -700,8 +700,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.02355504035949707,
-      "request_time": 0.08596205711364746,
+      "processing_time": 0.02814316749572754,
+      "request_time": 0.09096002578735352,
       "success": true
     },
     {
@@ -711,8 +711,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.029916048049926758,
-      "request_time": 0.09359097480773926,
+      "processing_time": 0.02573704719543457,
+      "request_time": 0.09180998802185059,
       "success": true
     },
     {
@@ -722,8 +722,8 @@
       "confidence": 0.8999999999999999,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.0263669490814209,
-      "request_time": 0.08835101127624512,
+      "processing_time": 0.026339054107666016,
+      "request_time": 0.08954405784606934,
       "success": true
     },
     {
@@ -733,8 +733,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02500772476196289,
-      "request_time": 0.08641219139099121,
+      "processing_time": 0.024271249771118164,
+      "request_time": 0.08742809295654297,
       "success": true
     },
     {
@@ -744,8 +744,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02159404754638672,
-      "request_time": 0.08342289924621582,
+      "processing_time": 0.02144312858581543,
+      "request_time": 0.08521389961242676,
       "success": true
     },
     {
@@ -755,8 +755,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.021841049194335938,
-      "request_time": 0.08373618125915527,
+      "processing_time": 0.0244290828704834,
+      "request_time": 0.08557486534118652,
       "success": true
     },
     {
@@ -766,8 +766,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.025437116622924805,
-      "request_time": 0.08718013763427734,
+      "processing_time": 0.02244710922241211,
+      "request_time": 0.08520388603210449,
       "success": true
     },
     {
@@ -777,8 +777,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02220606803894043,
-      "request_time": 0.08440089225769043,
+      "processing_time": 0.023890972137451172,
+      "request_time": 0.08703374862670898,
       "success": true
     },
     {
@@ -788,8 +788,8 @@
       "confidence": 0.8999999999999999,
       "char_accuracy": 0.6428571428571429,
       "word_accuracy": 0.0,
-      "processing_time": 0.0270540714263916,
-      "request_time": 0.08953714370727539,
+      "processing_time": 0.023947954177856445,
+      "request_time": 0.08814787864685059,
       "success": true
     },
     {
@@ -799,8 +799,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.022664308547973633,
-      "request_time": 0.08363795280456543,
+      "processing_time": 0.023661136627197266,
+      "request_time": 0.09013891220092773,
       "success": true
     },
     {
@@ -810,8 +810,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.8571428571428571,
       "word_accuracy": 0.0,
-      "processing_time": 0.028182029724121094,
-      "request_time": 0.08944988250732422,
+      "processing_time": 0.02437877655029297,
+      "request_time": 0.08634591102600098,
       "success": true
     },
     {
@@ -821,8 +821,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02558112144470215,
-      "request_time": 0.0879812240600586,
+      "processing_time": 0.022556066513061523,
+      "request_time": 0.08495593070983887,
       "success": true
     },
     {
@@ -832,8 +832,8 @@
       "confidence": 0.9000000000000001,
       "char_accuracy": 1.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.02693629264831543,
-      "request_time": 0.08941411972045898,
+      "processing_time": 0.023929119110107422,
+      "request_time": 0.09025120735168457,
       "success": true
     },
     {
@@ -843,8 +843,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023433923721313477,
-      "request_time": 0.08591890335083008,
+      "processing_time": 0.022214174270629883,
+      "request_time": 0.08576178550720215,
       "success": true
     },
     {
@@ -854,8 +854,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.023977994918823242,
-      "request_time": 0.08533787727355957,
+      "processing_time": 0.023319244384765625,
+      "request_time": 0.08803606033325195,
       "success": true
     },
     {
@@ -865,8 +865,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.0246431827545166,
-      "request_time": 0.08502197265625,
+      "processing_time": 0.024605989456176758,
+      "request_time": 0.0868067741394043,
       "success": true
     },
     {
@@ -876,8 +876,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.8,
       "word_accuracy": 0.0,
-      "processing_time": 0.025908946990966797,
-      "request_time": 0.08724617958068848,
+      "processing_time": 0.02469801902770996,
+      "request_time": 0.08981037139892578,
       "success": true
     },
     {
@@ -887,8 +887,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
-      "processing_time": 0.02681112289428711,
-      "request_time": 0.08704519271850586,
+      "processing_time": 0.025572776794433594,
+      "request_time": 0.08844327926635742,
       "success": true
     },
     {
@@ -898,8 +898,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02392101287841797,
-      "request_time": 0.08573794364929199,
+      "processing_time": 0.02529311180114746,
+      "request_time": 0.09589123725891113,
       "success": true
     },
     {
@@ -909,8 +909,8 @@
       "confidence": 0.8999999999999999,
       "char_accuracy": 0.2222222222222222,
       "word_accuracy": 0.0,
-      "processing_time": 0.02739405632019043,
-      "request_time": 0.0923318862915039,
+      "processing_time": 0.02522110939025879,
+      "request_time": 0.09141302108764648,
       "success": true
     },
     {
@@ -920,8 +920,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.022008895874023438,
-      "request_time": 0.08140921592712402,
+      "processing_time": 0.026160001754760742,
+      "request_time": 0.08810210227966309,
       "success": true
     },
     {
@@ -931,8 +931,8 @@
       "confidence": 0.9,
       "char_accuracy": 0.6,
       "word_accuracy": 0.0,
-      "processing_time": 0.026526927947998047,
-      "request_time": 0.08733701705932617,
+      "processing_time": 0.02707505226135254,
+      "request_time": 0.09240317344665527,
       "success": true
     },
     {
@@ -942,8 +942,8 @@
       "confidence": 0.9,
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
-      "processing_time": 0.02286696434020996,
-      "request_time": 0.0838158130645752,
+      "processing_time": 0.023403167724609375,
+      "request_time": 0.08875513076782227,
       "success": true
     }
   ],
@@ -952,8 +952,8 @@
     "word_accuracy": 0.5813953488372093,
     "character_accuracy": 0.7977207977207977,
     "average_confidence": 0.9,
-    "average_processing_time": 0.024526446364646733,
-    "average_request_time": 0.08661661591640739,
+    "average_processing_time": 0.024431331213130507,
+    "average_request_time": 0.09136319992154143,
     "errors": {
       "F→E": 1,
       "E→N": 1,

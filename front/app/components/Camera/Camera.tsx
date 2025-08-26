@@ -7,6 +7,16 @@ interface CameraProps {
 type CameraFacing = 'user' | 'environment'
 type ProcessingMode = 'none' | 'basic' | 'enhanced' | 'aggressive'
 
+// 切り取り領域の定数を定義
+const CROP_REGION = {
+  x: 100,      // ソースX位置
+  y: 300,      // ソースY位置
+  width: 600,  // ソース幅
+  height: 200, // ソース高さ
+  displayWidth: 300,   // 表示幅
+  displayHeight: 100   // 表示高さ
+}
+
 export function Camera({ onCapture }: CameraProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -112,9 +122,9 @@ export function Camera({ onCapture }: CameraProps) {
     
     if (!context) return
     
-    // Set canvas dimensions to match video
-    canvas.width = video.videoWidth
-    canvas.height = video.videoHeight
+    // Set canvas dimensions to match crop region
+    canvas.width = CROP_REGION.displayWidth
+    canvas.height = CROP_REGION.displayHeight
     
     // Save context state
     context.save()
@@ -122,10 +132,30 @@ export function Camera({ onCapture }: CameraProps) {
     // If using front camera (user facing), flip the image horizontally
     if (facing === 'user') {
       context.scale(-1, 1)
-      context.drawImage(video, -canvas.width, 0)
+      context.drawImage(
+        video, 
+        CROP_REGION.x, 
+        CROP_REGION.y, 
+        CROP_REGION.width, 
+        CROP_REGION.height, 
+        -CROP_REGION.displayWidth, 
+        0, 
+        CROP_REGION.displayWidth, 
+        CROP_REGION.displayHeight
+      )
     } else {
-      // Draw video frame to canvas normally for rear camera
-      context.drawImage(video, 0, 0)
+      // Draw cropped video frame to canvas for rear camera
+      context.drawImage(
+        video, 
+        CROP_REGION.x, 
+        CROP_REGION.y, 
+        CROP_REGION.width, 
+        CROP_REGION.height, 
+        0, 
+        0, 
+        CROP_REGION.displayWidth, 
+        CROP_REGION.displayHeight
+      )
     }
     
     // Restore context state
@@ -243,17 +273,37 @@ export function Camera({ onCapture }: CameraProps) {
     }
     
     // Set canvas dimensions
-    canvas.width = 300
-    canvas.height = 100
+    canvas.width = CROP_REGION.displayWidth
+    canvas.height = CROP_REGION.displayHeight
     
-    // Draw cropped region (similar to zutomayo_OCR)
+    // Draw cropped region
     context.save()
     
     if (facing === 'user') {
       context.scale(-1, 1)
-      context.drawImage(video, 100, 300, 600, 200, -300, 0, 300, 100)
+      context.drawImage(
+        video, 
+        CROP_REGION.x, 
+        CROP_REGION.y, 
+        CROP_REGION.width, 
+        CROP_REGION.height, 
+        -CROP_REGION.displayWidth, 
+        0, 
+        CROP_REGION.displayWidth, 
+        CROP_REGION.displayHeight
+      )
     } else {
-      context.drawImage(video, 100, 300, 600, 200, 0, 0, 300, 100)
+      context.drawImage(
+        video, 
+        CROP_REGION.x, 
+        CROP_REGION.y, 
+        CROP_REGION.width, 
+        CROP_REGION.height, 
+        0, 
+        0, 
+        CROP_REGION.displayWidth, 
+        CROP_REGION.displayHeight
+      )
     }
     
     context.restore()
@@ -302,8 +352,8 @@ export function Camera({ onCapture }: CameraProps) {
         <canvas
           ref={previewCanvasRef}
           className="w-full max-w-[600px] mx-auto rounded-lg shadow-lg border-2 border-gray-300"
-          width="300"
-          height="100"
+          width={CROP_REGION.displayWidth}
+          height={CROP_REGION.displayHeight}
         />
         
         {/* Hidden canvas for capture */}
