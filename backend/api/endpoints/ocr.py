@@ -5,13 +5,15 @@ from typing import List, Optional
 import os
 from backend.application.services.ocr_service import OCRService
 from backend.application.services.ocr_service_crnn import OCRServiceWithCRNN
+from backend.application.services.ocr_service_crnn_fixed import OCRServiceWithCRNNFixed
 
 
 router = APIRouter()
 
 # 環境変数またはデフォルトでCRNNを使用
 use_crnn = os.getenv("USE_CRNN", "true").lower() == "true"
-print(f"Using CRNN: {use_crnn}")
+use_fixed_crnn = os.getenv("USE_FIXED_CRNN", "true").lower() == "true"
+print(f"Using CRNN: {use_crnn}, Using Fixed CRNN: {use_fixed_crnn}")
 
 
 class Base64ImageRequest(BaseModel):
@@ -46,7 +48,12 @@ async def process_image(file: UploadFile = File(...)):
         content = await file.read()
 
         # Process with OCR service
-        ocr_service = OCRServiceWithCRNN() if use_crnn else OCRService()
+        if use_fixed_crnn:
+            ocr_service = OCRServiceWithCRNNFixed()
+        elif use_crnn:
+            ocr_service = OCRServiceWithCRNN()
+        else:
+            ocr_service = OCRService()
         result = ocr_service.process_image(content)
 
         # Convert to response model

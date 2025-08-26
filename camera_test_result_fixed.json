@@ -1,0 +1,46 @@
+{
+  "text": "PLCQQUPC",
+  "average_confidence": 0.676913346350193,
+  "characters": [
+    {
+      "granulate_symbol": "GP",
+      "latin_equivalent": "P",
+      "confidence": 0.7
+    },
+    {
+      "granulate_symbol": "GL",
+      "latin_equivalent": "L",
+      "confidence": 0.7
+    },
+    {
+      "granulate_symbol": "GC",
+      "latin_equivalent": "C",
+      "confidence": 0.7
+    },
+    {
+      "granulate_symbol": "GQ",
+      "latin_equivalent": "Q",
+      "confidence": 0.7
+    },
+    {
+      "granulate_symbol": "GQ",
+      "latin_equivalent": "Q",
+      "confidence": 0.7
+    },
+    {
+      "granulate_symbol": "GU",
+      "latin_equivalent": "U",
+      "confidence": 0.5153067708015442
+    },
+    {
+      "granulate_symbol": "GP",
+      "latin_equivalent": "P",
+      "confidence": 0.7
+    },
+    {
+      "granulate_symbol": "GC",
+      "latin_equivalent": "C",
+      "confidence": 0.7
+    }
+  ]
+}
