@@ -318,13 +318,13 @@ export function Camera({ onCapture }: CameraProps) {
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center p-8 bg-red-50 rounded-lg">
-        <p className="text-red-600 text-center mb-4">{error}</p>
+      <div className="flex flex-col items-center justify-center p-8 bg-purple-900/30 backdrop-blur-sm rounded-lg border border-purple-500/30">
+        <p className="text-red-300 text-center mb-4">{error}</p>
         <button
           onClick={startCamera}
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded hover:from-purple-700 hover:to-pink-700"
         >
-          Retry
+          再試行
         </button>
       </div>
     )
@@ -333,8 +333,8 @@ export function Camera({ onCapture }: CameraProps) {
   return (
     <div className="relative">
       {isLoading && (
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-100 rounded-lg">
-          <p className="text-gray-600">Accessing camera...</p>
+        <div className="absolute inset-0 flex items-center justify-center bg-purple-800/50 backdrop-blur-sm rounded-lg">
+          <p className="text-purple-200">カメラにアクセス中...</p>
         </div>
       )}
       
@@ -351,7 +351,7 @@ export function Camera({ onCapture }: CameraProps) {
         {/* Preview canvas (main display) */}
         <canvas
           ref={previewCanvasRef}
-          className="w-full max-w-[600px] mx-auto rounded-lg shadow-lg border-2 border-gray-300"
+          className="w-full max-w-[600px] mx-auto rounded-lg shadow-2xl border-2 border-purple-500/50"
           width={CROP_REGION.displayWidth}
           height={CROP_REGION.displayHeight}
         />
@@ -368,88 +368,44 @@ export function Camera({ onCapture }: CameraProps) {
           <button
             onClick={handleCapture}
             disabled={isLoading}
-            className="px-6 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg hover:from-purple-700 hover:to-pink-700 disabled:bg-gray-600 disabled:cursor-not-allowed shadow-lg transform hover:scale-105 transition-all duration-200 font-bold"
           >
-            Capture
+            捕獲
           </button>
           
           <button
             onClick={handleSwitchCamera}
             disabled={isLoading}
-            className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            className="px-8 py-4 bg-purple-700/70 text-white rounded-lg hover:bg-purple-700 disabled:bg-gray-600 disabled:cursor-not-allowed backdrop-blur-sm border border-purple-500/50 shadow-lg font-bold"
           >
-            Switch Camera
+            カメラ切替
           </button>
         </div>
         
-        <div className="flex flex-col items-center gap-2">
-          <label className="text-sm font-medium text-gray-700">
-            画像処理モード:
-          </label>
-          <div className="flex gap-2">
-            <button
-              onClick={() => setProcessingMode('none')}
-              className={`px-3 py-1 rounded ${
-                processingMode === 'none' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              なし
-            </button>
-            <button
-              onClick={() => setProcessingMode('basic')}
-              className={`px-3 py-1 rounded ${
-                processingMode === 'basic' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              基本
-            </button>
-            <button
-              onClick={() => setProcessingMode('enhanced')}
-              className={`px-3 py-1 rounded ${
-                processingMode === 'enhanced' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              強化
-            </button>
-            <button
-              onClick={() => setProcessingMode('aggressive')}
-              className={`px-3 py-1 rounded ${
-                processingMode === 'aggressive' 
-                  ? 'bg-blue-500 text-white' 
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-              }`}
-            >
-              高強度
-            </button>
-          </div>
-          <p className="text-xs text-gray-500 text-center mt-1">
-            {processingMode === 'none' && 'オリジナル画像をそのまま使用'}
-            {processingMode === 'basic' && 'コントラスト調整のみ'}
-            {processingMode === 'enhanced' && 'ノイズ除去＋コントラスト調整'}
-            {processingMode === 'aggressive' && '強力な二値化（白黒のみ）- グラニュート文字に最適'}
-          </p>
+        {/* Stomach Inc Logo */}
+        <div className="flex justify-center mt-6">
+          <img 
+            src="/static/stomach_inc_logo.webp" 
+            alt="Stomach Inc Logo" 
+            className="h-40 w-auto object-contain drop-shadow-2xl"
+          />
         </div>
+        
       </div>
       
       {/* Captured images preview */}
       {capturedImages.length > 0 && (
         <div className="mt-6">
-          <h3 className="text-sm font-medium text-gray-700 mb-2">撮影した画像:</h3>
+          <h3 className="text-sm font-medium text-purple-300 mb-2">スキャン履歴:</h3>
           <div className="flex gap-2 overflow-x-auto">
             {capturedImages.map((image, index) => (
               <div key={index} className="flex-shrink-0">
                 <img 
                   src={image.url} 
                   alt={`Captured ${index + 1}`}
-                  className="w-32 h-32 object-cover rounded border-2 border-gray-300"
+                  className="w-32 h-32 object-cover rounded border-2 border-purple-500/50 shadow-lg"
                 />
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-purple-300 mt-1">
                   {image.timestamp.toLocaleTimeString()}
                 </p>
               </div>
