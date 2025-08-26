@@ -7,7 +7,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.06925582885742188
+      "processing_time": 0.15889906883239746
     },
     {
       "file": "A_1.png",
@@ -16,7 +16,7 @@
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
       "char_count": 1,
-      "processing_time": 0.021457910537719727
+      "processing_time": 0.028159141540527344
     },
     {
       "file": "A_2.png",
@@ -25,7 +25,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.0432131290435791
+      "processing_time": 0.04501771926879883
     },
     {
       "file": "BE_1.png",
@@ -34,7 +34,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.023661136627197266
+      "processing_time": 0.02208995819091797
     },
     {
       "file": "BE_2.png",
@@ -43,7 +43,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.02200174331665039
+      "processing_time": 0.022450923919677734
     },
     {
       "file": "BY_1.png",
@@ -52,7 +52,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.022336959838867188
+      "processing_time": 0.021994829177856445
     },
     {
       "file": "B_1.png",
@@ -61,7 +61,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.022684812545776367
+      "processing_time": 0.022284984588623047
     },
     {
       "file": "CAN_1.png",
@@ -70,7 +70,7 @@
       "char_accuracy": 0.3333333333333333,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.02239990234375
+      "processing_time": 0.022290945053100586
     },
     {
       "file": "CAN_2.png",
@@ -79,7 +79,7 @@
       "char_accuracy": 0.3333333333333333,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.026467084884643555
+      "processing_time": 0.02318286895751953
     },
     {
       "file": "CHANGE_1.png",
@@ -88,7 +88,7 @@
       "char_accuracy": 0.16666666666666666,
       "word_accuracy": 0.0,
       "char_count": 6,
-      "processing_time": 0.02944159507751465
+      "processing_time": 0.024143218994140625
     },
     {
       "file": "COME_1.png",
@@ -97,7 +97,7 @@
       "char_accuracy": 0.25,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.028959274291992188
+      "processing_time": 0.02318596839904785
     },
     {
       "file": "CONFERENCE_1.png",
@@ -106,7 +106,7 @@
       "char_accuracy": 0.1,
       "word_accuracy": 0.0,
       "char_count": 10,
-      "processing_time": 0.19282793998718262
+      "processing_time": 0.17382192611694336
     },
     {
       "file": "COSTS_1.png",
@@ -115,7 +115,7 @@
       "char_accuracy": 0.2,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.02799081802368164
+      "processing_time": 0.023431062698364258
     },
     {
       "file": "COVERED_1.png",
@@ -124,7 +124,7 @@
       "char_accuracy": 0.14285714285714285,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.029017925262451172
+      "processing_time": 0.02585887908935547
     },
     {
       "file": "C_1.png",
@@ -133,7 +133,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.0237119197845459
+      "processing_time": 0.023350954055786133
     },
     {
       "file": "EASY_1.png",
@@ -142,7 +142,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.025101184844970703
+      "processing_time": 0.02368903160095215
     },
     {
       "file": "ENJOYABLE_1.png",
@@ -151,7 +151,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 9,
-      "processing_time": 0.02744579315185547
+      "processing_time": 0.025058746337890625
     },
     {
       "file": "EQPHGTGPE_1.png",
@@ -160,7 +160,7 @@
       "char_accuracy": 0.2222222222222222,
       "word_accuracy": 0.0,
       "char_count": 9,
-      "processing_time": 0.1960430145263672
+      "processing_time": 0.18561816215515137
     },
     {
       "file": "E_1.png",
@@ -169,7 +169,7 @@
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
       "char_count": 1,
-      "processing_time": 0.02340984344482422
+      "processing_time": 0.02234792709350586
     },
     {
       "file": "FACTORY_1.png",
@@ -178,7 +178,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.02732706069946289
+      "processing_time": 0.02515888214111328
     },
     {
       "file": "FOR_1.png",
@@ -187,7 +187,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.02376389503479004
+      "processing_time": 0.0218658447265625
     },
     {
       "file": "F_1.png",
@@ -196,7 +196,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.022555112838745117
+      "processing_time": 0.021812915802001953
     },
     {
       "file": "G_1.png",
@@ -205,7 +205,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.022313356399536133
+      "processing_time": 0.022967100143432617
     },
     {
       "file": "HEAD_1.png",
@@ -214,7 +214,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.022922039031982422
+      "processing_time": 0.022821903228759766
     },
     {
       "file": "HIRING!_1.png",
@@ -223,7 +223,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 6,
-      "processing_time": 0.02538299560546875
+      "processing_time": 0.0254518985748291
     },
     {
       "file": "HUMAN_1.png",
@@ -232,7 +232,7 @@
       "char_accuracy": 0.2,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.10452103614807129
+      "processing_time": 0.11861300468444824
     },
     {
       "file": "H_1.png",
@@ -241,7 +241,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.023700952529907227
+      "processing_time": 0.0221560001373291
     },
     {
       "file": "INC_1.png",
@@ -250,7 +250,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.023215293884277344
+      "processing_time": 0.02309727668762207
     },
     {
       "file": "INC_2.png",
@@ -259,7 +259,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.02252483367919922
+      "processing_time": 0.022912979125976562
     },
     {
       "file": "INC_3.png",
@@ -268,7 +268,7 @@
       "char_accuracy": 0.25,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.08309388160705566
+      "processing_time": 0.09299421310424805
     },
     {
       "file": "INC_4.png",
@@ -277,7 +277,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.0421907901763916
+      "processing_time": 0.04397392272949219
     },
     {
       "file": "INDIVIDUALS_1.png",
@@ -286,7 +286,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 11,
-      "processing_time": 0.027035951614379883
+      "processing_time": 0.026002168655395508
     },
     {
       "file": "IS_1.png",
@@ -295,7 +295,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.0221860408782959
+      "processing_time": 0.02268195152282715
     },
     {
       "file": "I_1.png",
@@ -304,7 +304,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.023332834243774414
+      "processing_time": 0.023175954818725586
     },
     {
       "file": "JOB_1.png",
@@ -313,7 +313,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.02334904670715332
+      "processing_time": 0.022894859313964844
     },
     {
       "file": "JOIN_1.png",
@@ -322,7 +322,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.02377176284790039
+      "processing_time": 0.02389812469482422
     },
     {
       "file": "KPE_1.png",
@@ -331,7 +331,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.07105827331542969
+      "processing_time": 0.0639181137084961
     },
     {
       "file": "LAB_1.png",
@@ -340,7 +340,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.07572293281555176
+      "processing_time": 0.06447410583496094
     },
     {
       "file": "LANGO_2.png",
@@ -349,7 +349,7 @@
       "char_accuracy": 0.2,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.09715509414672852
+      "processing_time": 0.08882594108581543
     },
     {
       "file": "LOOKING_1.png",
@@ -358,7 +358,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.025268077850341797
+      "processing_time": 0.03157782554626465
     },
     {
       "file": "L_1.png",
@@ -367,7 +367,7 @@
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
       "char_count": 1,
-      "processing_time": 0.02325892448425293
+      "processing_time": 0.022827863693237305
     },
     {
       "file": "M_1.png",
@@ -376,7 +376,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.02110886573791504
+      "processing_time": 0.021220684051513672
     },
     {
       "file": "N_1.png",
@@ -385,7 +385,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.02202606201171875
+      "processing_time": 0.022114992141723633
     },
     {
       "file": "OF_1.png",
@@ -394,7 +394,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.02255392074584961
+      "processing_time": 0.02189326286315918
     },
     {
       "file": "OF_2.png",
@@ -403,7 +403,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.022246122360229492
+      "processing_time": 0.02147388458251953
     },
     {
       "file": "OF_3.png",
@@ -412,7 +412,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.02479386329650879
+      "processing_time": 0.022376060485839844
     },
     {
       "file": "OF_4.png",
@@ -421,7 +421,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.030888080596923828
+      "processing_time": 0.021908283233642578
     },
     {
       "file": "OPERATE_1.png",
@@ -430,7 +430,7 @@
       "char_accuracy": 0.2857142857142857,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.08793997764587402
+      "processing_time": 0.08286118507385254
     },
     {
       "file": "OPERATE_2.png",
@@ -439,7 +439,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.1654367446899414
+      "processing_time": 0.16469383239746094
     },
     {
       "file": "OUR_1.png",
@@ -448,7 +448,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.022694110870361328
+      "processing_time": 0.021993398666381836
     },
     {
       "file": "O_1.png",
@@ -457,7 +457,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.022449970245361328
+      "processing_time": 0.02274608612060547
     },
     {
       "file": "PART_1.png",
@@ -466,7 +466,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.023932218551635742
+      "processing_time": 0.02390003204345703
     },
     {
       "file": "PASSIONATE_1.png",
@@ -475,7 +475,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 10,
-      "processing_time": 0.025443077087402344
+      "processing_time": 0.0256192684173584
     },
     {
       "file": "PLEASURE_1.png",
@@ -484,7 +484,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 8,
-      "processing_time": 0.09091401100158691
+      "processing_time": 0.08466506004333496
     },
     {
       "file": "PLEASURE_2.png",
@@ -493,7 +493,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 8,
-      "processing_time": 0.06980681419372559
+      "processing_time": 0.06130099296569824
     },
     {
       "file": "PROUD_1.png",
@@ -502,7 +502,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.024984121322631836
+      "processing_time": 0.023791790008544922
     },
     {
       "file": "PROVIDED_1.png",
@@ -511,7 +511,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 8,
-      "processing_time": 0.025814056396484375
+      "processing_time": 0.0247957706451416
     },
     {
       "file": "RE_1.png",
@@ -520,7 +520,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.022803068161010742
+      "processing_time": 0.022262096405029297
     },
     {
       "file": "ROOM_1.png",
@@ -529,7 +529,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.0650639533996582
+      "processing_time": 0.06497979164123535
     },
     {
       "file": "R_1.png",
@@ -538,7 +538,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.023401975631713867
+      "processing_time": 0.02355790138244629
     },
     {
       "file": "STOMACH_1.png",
@@ -547,7 +547,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.025118112564086914
+      "processing_time": 0.02739882469177246
     },
     {
       "file": "STOMACH_2.png",
@@ -556,7 +556,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.02429819107055664
+      "processing_time": 0.026594161987304688
     },
     {
       "file": "STOMACH_3.png",
@@ -565,7 +565,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.10825395584106445
+      "processing_time": 0.1134190559387207
     },
     {
       "file": "STOMACH_4.png",
@@ -574,7 +574,7 @@
       "char_accuracy": 0.14285714285714285,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.15442109107971191
+      "processing_time": 0.14721012115478516
     },
     {
       "file": "STOMACH_5.png",
@@ -583,7 +583,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.11256217956542969
+      "processing_time": 0.10612082481384277
     },
     {
       "file": "SWEETS_1.png",
@@ -592,7 +592,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 6,
-      "processing_time": 0.02535223960876465
+      "processing_time": 0.02493119239807129
     },
     {
       "file": "S_1.png",
@@ -601,7 +601,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.021757841110229492
+      "processing_time": 0.02086019515991211
     },
     {
       "file": "S_2.png",
@@ -610,7 +610,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.0227510929107666
+      "processing_time": 0.022332191467285156
     },
     {
       "file": "TEAM!_1.png",
@@ -619,7 +619,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.023900985717773438
+      "processing_time": 0.023602962493896484
     },
     {
       "file": "THE_1.png",
@@ -628,7 +628,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.02246999740600586
+      "processing_time": 0.023286104202270508
     },
     {
       "file": "TO_1.png",
@@ -637,7 +637,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.021721839904785156
+      "processing_time": 0.021452665328979492
     },
     {
       "file": "TRANSPORTATION_1.png",
@@ -646,7 +646,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 14,
-      "processing_time": 0.030004024505615234
+      "processing_time": 0.0282747745513916
     },
     {
       "file": "T_1.png",
@@ -655,7 +655,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.02415299415588379
+      "processing_time": 0.023289918899536133
     },
     {
       "file": "UNIFORM_1.png",
@@ -664,7 +664,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.027142763137817383
+      "processing_time": 0.026072025299072266
     },
     {
       "file": "US_1.png",
@@ -673,7 +673,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.022497177124023438
+      "processing_time": 0.022152185440063477
     },
     {
       "file": "UVQOCEJ_1.png",
@@ -682,7 +682,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 7,
-      "processing_time": 0.20334506034851074
+      "processing_time": 0.16776180267333984
     },
     {
       "file": "V_1.png",
@@ -691,7 +691,7 @@
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
       "char_count": 1,
-      "processing_time": 0.023797035217285156
+      "processing_time": 0.02250075340270996
     },
     {
       "file": "WE_1.png",
@@ -700,7 +700,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 2,
-      "processing_time": 0.0226290225982666
+      "processing_time": 0.021316051483154297
     },
     {
       "file": "WORK_1.png",
@@ -709,7 +709,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 4,
-      "processing_time": 0.02322101593017578
+      "processing_time": 0.022994041442871094
     },
     {
       "file": "WORLD!_1.png",
@@ -718,7 +718,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.02552199363708496
+      "processing_time": 0.02471184730529785
     },
     {
       "file": "WORLD_1.png",
@@ -727,7 +727,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.024655818939208984
+      "processing_time": 0.02420210838317871
     },
     {
       "file": "W_1.png",
@@ -736,7 +736,7 @@
       "char_accuracy": 1.0,
       "word_accuracy": 1.0,
       "char_count": 1,
-      "processing_time": 0.023985862731933594
+      "processing_time": 0.023403167724609375
     },
     {
       "file": "YAMIGASHI_1.png",
@@ -745,7 +745,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 9,
-      "processing_time": 0.02845001220703125
+      "processing_time": 0.028105974197387695
     },
     {
       "file": "YOU_1.png",
@@ -754,7 +754,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 3,
-      "processing_time": 0.02314281463623047
+      "processing_time": 0.023157835006713867
     },
     {
       "file": "YUMMY_1.png",
@@ -763,7 +763,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 5,
-      "processing_time": 0.02524423599243164
+      "processing_time": 0.024636030197143555
     },
     {
       "file": "Y_1.png",
@@ -772,7 +772,7 @@
       "char_accuracy": 0.0,
       "word_accuracy": 0.0,
       "char_count": 1,
-      "processing_time": 0.022227048873901367
+      "processing_time": 0.022283077239990234
     }
   ],
   "stats": {
@@ -783,6 +783,6 @@
     "char_accuracy_std": 0.24026358038883175,
     "word_accuracy_mean": 0.05813953488372093,
     "perfect_words": 5.0,
-    "avg_processing_time": 0.042558179345241816
+    "avg_processing_time": 0.04199073758236198
   }
 }

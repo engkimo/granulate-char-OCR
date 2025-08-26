@@ -2,10 +2,16 @@ from fastapi import APIRouter, UploadFile, File, HTTPException
 from pydantic import BaseModel
 import base64
 from typing import List, Optional
+import os
 from backend.application.services.ocr_service import OCRService
+from backend.application.services.ocr_service_crnn import OCRServiceWithCRNN
 
 
 router = APIRouter()
+
+# 環境変数またはデフォルトでCRNNを使用
+use_crnn = os.getenv("USE_CRNN", "true").lower() == "true"
+print(f"Using CRNN: {use_crnn}")
 
 
 class Base64ImageRequest(BaseModel):
@@ -40,7 +46,7 @@ async def process_image(file: UploadFile = File(...)):
         content = await file.read()
 
         # Process with OCR service
-        ocr_service = OCRService()
+        ocr_service = OCRServiceWithCRNN() if use_crnn else OCRService()
         result = ocr_service.process_image(content)
 
         # Convert to response model
@@ -69,7 +75,7 @@ async def process_image_base64(request: Base64ImageRequest):
         image_bytes = base64.b64decode(request.image)
 
         # Process with OCR service
-        ocr_service = OCRService()
+        ocr_service = OCRServiceWithCRNN() if use_crnn else OCRService()
         result = ocr_service.process_image(image_bytes)
 
         # Convert to response model

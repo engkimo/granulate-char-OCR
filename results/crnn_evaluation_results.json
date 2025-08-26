@@ -1,0 +1,583 @@
+{
+  "predictions": [
+    {
+      "file": "AND_1.png",
+      "expected": "AND",
+      "predicted": "AND",
+      "correct": true
+    },
+    {
+      "file": "A_1.png",
+      "expected": "A",
+      "predicted": "A",
+      "correct": true
+    },
+    {
+      "file": "A_2.png",
+      "expected": "A",
+      "predicted": "A",
+      "correct": true
+    },
+    {
+      "file": "BE_1.png",
+      "expected": "BE",
+      "predicted": "BE",
+      "correct": true
+    },
+    {
+      "file": "BE_2.png",
+      "expected": "BE",
+      "predicted": "BE",
+      "correct": true
+    },
+    {
+      "file": "BY_1.png",
+      "expected": "BY",
+      "predicted": "BY",
+      "correct": true
+    },
+    {
+      "file": "B_1.png",
+      "expected": "B",
+      "predicted": "B",
+      "correct": true
+    },
+    {
+      "file": "CAN_1.png",
+      "expected": "CAN",
+      "predicted": "CAN",
+      "correct": true
+    },
+    {
+      "file": "CAN_2.png",
+      "expected": "CAN",
+      "predicted": "CAN",
+      "correct": true
+    },
+    {
+      "file": "CHANGE_1.png",
+      "expected": "CHANGE",
+      "predicted": "CHANGE",
+      "correct": true
+    },
+    {
+      "file": "COME_1.png",
+      "expected": "COME",
+      "predicted": "COME",
+      "correct": true
+    },
+    {
+      "file": "CONFERENCE_1.png",
+      "expected": "CONFERENCE",
+      "predicted": "CONERNEEHGEH",
+      "correct": false
+    },
+    {
+      "file": "COSTS_1.png",
+      "expected": "COSTS",
+      "predicted": "COS",
+      "correct": false
+    },
+    {
+      "file": "COVERED_1.png",
+      "expected": "COVERED",
+      "predicted": "COVEEDET",
+      "correct": false
+    },
+    {
+      "file": "C_1.png",
+      "expected": "C",
+      "predicted": "C",
+      "correct": true
+    },
+    {
+      "file": "EASY_1.png",
+      "expected": "EASY",
+      "predicted": "EAS",
+      "correct": false
+    },
+    {
+      "file": "ENJOYABLE_1.png",
+      "expected": "ENJOYABLE",
+      "predicted": "ENJOABLEEED",
+      "correct": false
+    },
+    {
+      "file": "EQPHGTGPE_1.png",
+      "expected": "EQPHGTGPE",
+      "predicted": "EQPHGTGPEGHHH",
+      "correct": false
+    },
+    {
+      "file": "E_1.png",
+      "expected": "E",
+      "predicted": "E",
+      "correct": true
+    },
+    {
+      "file": "FACTORY_1.png",
+      "expected": "FACTORY",
+      "predicted": "FACTORYTHHTOYTH",
+      "correct": false
+    },
+    {
+      "file": "FOR_1.png",
+      "expected": "FOR",
+      "predicted": "FOR",
+      "correct": true
+    },
+    {
+      "file": "F_1.png",
+      "expected": "F",
+      "predicted": "F",
+      "correct": true
+    },
+    {
+      "file": "G_1.png",
+      "expected": "G",
+      "predicted": "G",
+      "correct": true
+    },
+    {
+      "file": "HEAD_1.png",
+      "expected": "HEAD",
+      "predicted": "HEAD",
+      "correct": true
+    },
+    {
+      "file": "HIRING!_1.png",
+      "expected": "HIRING",
+      "predicted": "HIRGGG",
+      "correct": false
+    },
+    {
+      "file": "HUMAN_1.png",
+      "expected": "HUMAN",
+      "predicted": "HUMAN",
+      "correct": true
+    },
+    {
+      "file": "H_1.png",
+      "expected": "H",
+      "predicted": "H",
+      "correct": true
+    },
+    {
+      "file": "INC_1.png",
+      "expected": "INC",
+      "predicted": "INC",
+      "correct": true
+    },
+    {
+      "file": "INC_2.png",
+      "expected": "INC",
+      "predicted": "INC",
+      "correct": true
+    },
+    {
+      "file": "INC_3.png",
+      "expected": "INC",
+      "predicted": "INC",
+      "correct": true
+    },
+    {
+      "file": "INC_4.png",
+      "expected": "INC",
+      "predicted": "INC",
+      "correct": true
+    },
+    {
+      "file": "INDIVIDUALS_1.png",
+      "expected": "INDIVIDUALS",
+      "predicted": "INDIDUDAIUAE",
+      "correct": false
+    },
+    {
+      "file": "IS_1.png",
+      "expected": "IS",
+      "predicted": "IS",
+      "correct": true
+    },
+    {
+      "file": "I_1.png",
+      "expected": "I",
+      "predicted": "I",
+      "correct": true
+    },
+    {
+      "file": "JOB_1.png",
+      "expected": "JOB",
+      "predicted": "JOB",
+      "correct": true
+    },
+    {
+      "file": "JOIN_1.png",
+      "expected": "JOIN",
+      "predicted": "JOINC",
+      "correct": false
+    },
+    {
+      "file": "KPE_1.png",
+      "expected": "KPE",
+      "predicted": "KPE",
+      "correct": true
+    },
+    {
+      "file": "LAB_1.png",
+      "expected": "LAB",
+      "predicted": "LAB",
+      "correct": true
+    },
+    {
+      "file": "LANGO_2.png",
+      "expected": "LANGO",
+      "predicted": "PLEAMEED",
+      "correct": false
+    },
+    {
+      "file": "LOOKING_1.png",
+      "expected": "LOOKING",
+      "predicted": "LOOKIGGG",
+      "correct": false
+    },
+    {
+      "file": "L_1.png",
+      "expected": "L",
+      "predicted": "L",
+      "correct": true
+    },
+    {
+      "file": "M_1.png",
+      "expected": "M",
+      "predicted": "M",
+      "correct": true
+    },
+    {
+      "file": "N_1.png",
+      "expected": "N",
+      "predicted": "N",
+      "correct": true
+    },
+    {
+      "file": "OF_1.png",
+      "expected": "OF",
+      "predicted": "OF",
+      "correct": true
+    },
+    {
+      "file": "OF_2.png",
+      "expected": "OF",
+      "predicted": "OF",
+      "correct": true
+    },
+    {
+      "file": "OF_3.png",
+      "expected": "OF",
+      "predicted": "OF",
+      "correct": true
+    },
+    {
+      "file": "OF_4.png",
+      "expected": "OF",
+      "predicted": "OF",
+      "correct": true
+    },
+    {
+      "file": "OPERATE_1.png",
+      "expected": "OPERATE",
+      "predicted": "OPERATEED",
+      "correct": false
+    },
+    {
+      "file": "OPERATE_2.png",
+      "expected": "OPERATE",
+      "predicted": "OPERATEHEE",
+      "correct": false
+    },
+    {
+      "file": "OUR_1.png",
+      "expected": "OUR",
+      "predicted": "OUR",
+      "correct": true
+    },
+    {
+      "file": "O_1.png",
+      "expected": "O",
+      "predicted": "O",
+      "correct": true
+    },
+    {
+      "file": "PART_1.png",
+      "expected": "PART",
+      "predicted": "PARTT",
+      "correct": false
+    },
+    {
+      "file": "PASSIONATE_1.png",
+      "expected": "PASSIONATE",
+      "predicted": "PASSIONATEEED",
+      "correct": false
+    },
+    {
+      "file": "PLEASURE_1.png",
+      "expected": "PLEASURE",
+      "predicted": "PLEASUEE",
+      "correct": false
+    },
+    {
+      "file": "PLEASURE_2.png",
+      "expected": "PLEASURE",
+      "predicted": "PLEASUEEE",
+      "correct": false
+    },
+    {
+      "file": "PROUD_1.png",
+      "expected": "PROUD",
+      "predicted": "PROUC",
+      "correct": false
+    },
+    {
+      "file": "PROVIDED_1.png",
+      "expected": "PROVIDED",
+      "predicted": "PROVDEDEDED",
+      "correct": false
+    },
+    {
+      "file": "RE_1.png",
+      "expected": "RE",
+      "predicted": "RE",
+      "correct": true
+    },
+    {
+      "file": "ROOM_1.png",
+      "expected": "ROOM",
+      "predicted": "ROM",
+      "correct": false
+    },
+    {
+      "file": "R_1.png",
+      "expected": "R",
+      "predicted": "R",
+      "correct": true
+    },
+    {
+      "file": "STOMACH_1.png",
+      "expected": "STOMACH",
+      "predicted": "STOMACHE",
+      "correct": false
+    },
+    {
+      "file": "STOMACH_2.png",
+      "expected": "STOMACH",
+      "predicted": "STOMACHE",
+      "correct": false
+    },
+    {
+      "file": "STOMACH_3.png",
+      "expected": "STOMACH",
+      "predicted": "STOMACHE",
+      "correct": false
+    },
+    {
+      "file": "STOMACH_4.png",
+      "expected": "STOMACH",
+      "predicted": "STOMACHHHTORYTH",
+      "correct": false
+    },
+    {
+      "file": "STOMACH_5.png",
+      "expected": "STOMACH",
+      "predicted": "STOMACHHHTOYTOR",
+      "correct": false
+    },
+    {
+      "file": "SWEETS_1.png",
+      "expected": "SWEETS",
+      "predicted": "SWEETSEED",
+      "correct": false
+    },
+    {
+      "file": "S_1.png",
+      "expected": "S",
+      "predicted": "S",
+      "correct": true
+    },
+    {
+      "file": "S_2.png",
+      "expected": "S",
+      "predicted": "S",
+      "correct": true
+    },
+    {
+      "file": "TEAM!_1.png",
+      "expected": "TEAM",
+      "predicted": "TEAM",
+      "correct": true
+    },
+    {
+      "file": "THE_1.png",
+      "expected": "THE",
+      "predicted": "THE",
+      "correct": true
+    },
+    {
+      "file": "TO_1.png",
+      "expected": "TO",
+      "predicted": "TO",
+      "correct": true
+    },
+    {
+      "file": "TRANSPORTATION_1.png",
+      "expected": "TRANSPORTATION",
+      "predicted": "TRANSPORTIONTTPEH",
+      "correct": false
+    },
+    {
+      "file": "T_1.png",
+      "expected": "T",
+      "predicted": "T",
+      "correct": true
+    },
+    {
+      "file": "UNIFORM_1.png",
+      "expected": "UNIFORM",
+      "predicted": "UNIFOR",
+      "correct": false
+    },
+    {
+      "file": "US_1.png",
+      "expected": "US",
+      "predicted": "US",
+      "correct": true
+    },
+    {
+      "file": "UVQOCEJ_1.png",
+      "expected": "UVQOCEJ",
+      "predicted": "UVQOCEJHTHHH",
+      "correct": false
+    },
+    {
+      "file": "V_1.png",
+      "expected": "V",
+      "predicted": "V",
+      "correct": true
+    },
+    {
+      "file": "WE_1.png",
+      "expected": "WE",
+      "predicted": "WE",
+      "correct": true
+    },
+    {
+      "file": "WORK_1.png",
+      "expected": "WORK",
+      "predicted": "WORK",
+      "correct": true
+    },
+    {
+      "file": "WORLD!_1.png",
+      "expected": "WORLD",
+      "predicted": "WORLC",
+      "correct": false
+    },
+    {
+      "file": "WORLD_1.png",
+      "expected": "WORLD",
+      "predicted": "WORLD",
+      "correct": true
+    },
+    {
+      "file": "W_1.png",
+      "expected": "W",
+      "predicted": "W",
+      "correct": true
+    },
+    {
+      "file": "YAMIGASHI_1.png",
+      "expected": "YAMIGASHI",
+      "predicted": "YAMGASHEHTRHEHH",
+      "correct": false
+    },
+    {
+      "file": "YOU_1.png",
+      "expected": "YOU",
+      "predicted": "YOU",
+      "correct": true
+    },
+    {
+      "file": "YUMMY_1.png",
+      "expected": "YUMMY",
+      "predicted": "YUMC",
+      "correct": false
+    },
+    {
+      "file": "Y_1.png",
+      "expected": "Y",
+      "predicted": "Y",
+      "correct": true
+    }
+  ],
+  "char_accuracy": 0.8608695652173913,
+  "word_accuracy": 0.6162790697674418,
+  "error_analysis": {
+    "F→E": 1,
+    "E→R": 1,
+    "R→N": 1,
+    "N→E": 2,
+    "C→H": 1,
+    "E→G": 1,
+    "長さ: 10→12": 1,
+    "長さ: 5→3": 1,
+    "R→E": 3,
+    "E→D": 2,
+    "D→E": 3,
+    "長さ: 7→8": 5,
+    "長さ: 4→3": 2,
+    "Y→A": 1,
+    "A→B": 1,
+    "B→L": 1,
+    "L→E": 1,
+    "長さ: 9→11": 1,
+    "長さ: 9→13": 1,
+    "長さ: 7→15": 3,
+    "I→G": 2,
+    "N→G": 2,
+    "V→D": 1,
+    "I→U": 1,
+    "U→A": 1,
+    "A→I": 2,
+    "L→U": 1,
+    "S→A": 1,
+    "長さ: 11→12": 1,
+    "長さ: 4→5": 2,
+    "L→P": 1,
+    "A→L": 1,
+    "G→A": 2,
+    "O→M": 2,
+    "長さ: 5→8": 1,
+    "長さ: 7→9": 1,
+    "長さ: 7→10": 1,
+    "長さ: 10→13": 1,
+    "長さ: 8→9": 1,
+    "D→C": 2,
+    "I→D": 1,
+    "長さ: 8→11": 1,
+    "長さ: 6→9": 1,
+    "T→O": 1,
+    "I→N": 1,
+    "O→T": 1,
+    "N→T": 1,
+    "長さ: 14→17": 1,
+    "長さ: 7→6": 1,
+    "長さ: 7→12": 1,
+    "A→S": 1,
+    "S→H": 1,
+    "H→E": 1,
+    "I→H": 1,
+    "長さ: 9→15": 1,
+    "M→C": 1,
+    "長さ: 5→4": 1
+  },
+  "total_words": 86,
+  "total_chars": 345
+}
