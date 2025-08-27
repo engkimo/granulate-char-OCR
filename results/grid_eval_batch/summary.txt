@@ -1,0 +1,12 @@
+dist=307 acc=  2.3% beam=False bw=5 lp=1.0 ws=1.0 rm=12 mw=256
+dist=307 acc=  2.3% beam=False bw=5 lp=1.0 ws=1.0 rm=16 mw=256
+dist=307 acc=  2.3% beam=False bw=5 lp=1.0 ws=1.03 rm=12 mw=256
+dist=307 acc=  2.3% beam=False bw=5 lp=1.0 ws=1.03 rm=16 mw=256
+dist=329 acc=  2.3% beam=True bw=5 lp=1.0 ws=1.0 rm=12 mw=256
+dist=329 acc=  2.3% beam=True bw=5 lp=1.5 ws=1.0 rm=12 mw=256
+dist=329 acc=  2.3% beam=True bw=5 lp=1.0 ws=1.0 rm=16 mw=256
+dist=329 acc=  2.3% beam=True bw=5 lp=1.5 ws=1.0 rm=16 mw=256
+dist=330 acc=  2.3% beam=True bw=5 lp=1.0 ws=1.03 rm=12 mw=256
+dist=330 acc=  2.3% beam=True bw=5 lp=1.5 ws=1.03 rm=12 mw=256
+dist=330 acc=  2.3% beam=True bw=5 lp=1.0 ws=1.03 rm=16 mw=256
+dist=330 acc=  2.3% beam=True bw=5 lp=1.5 ws=1.03 rm=16 mw=256

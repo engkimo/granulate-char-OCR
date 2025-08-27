@@ -37,6 +37,10 @@ class OCRServiceWithCRNN(OCRService):
         self.width_scale = float(os.getenv("CRNN_WIDTH_SCALE", "1.0"))
         self.right_margin = int(os.getenv("CRNN_RIGHT_MARGIN", "12"))
         self.max_width = int(os.getenv("CRNN_MAX_WIDTH", "256"))
+        # 語彙制約
+        self.lexicon, self.lexicon_prefixes = self._load_lexicon()
+        self.lexicon_strict = os.getenv("CRNN_LEXICON_STRICT", "true").lower() == "true"
+        self.lexicon_bonus = float(os.getenv("CRNN_LEXICON_BONUS", "1.0"))
     
     def _load_crnn_model(self):
         """CRNNモデルをロード"""
@@ -216,14 +220,16 @@ class OCRServiceWithCRNN(OCRService):
                     if not char:
                         continue
                     if len(prefix) > 0 and prefix[-1] == char:
-                        new_pb, new_pnb = next_beams.get(prefix, (-float('inf'), -float('inf')))
-                        new_pnb = self._log_sum_exp(new_pnb, pb + p_t_c)
-                        next_beams[prefix] = (new_pb, new_pnb)
+                        if not self.lexicon_strict or self._is_valid_prefix(prefix):
+                            new_pb, new_pnb = next_beams.get(prefix, (-float('inf'), -float('inf')))
+                            new_pnb = self._log_sum_exp(new_pnb, pb + p_t_c)
+                            next_beams[prefix] = (new_pb, new_pnb)
                     else:
                         new_prefix = prefix + char
-                        old2 = next_beams.get(new_prefix, (-float('inf'), -float('inf')))
-                        new_pnb2 = self._log_sum_exp(old2[1], self._log_sum_exp(pb + p_t_c, pnb + p_t_c))
-                        next_beams[new_prefix] = (old2[0], new_pnb2)
+                        if not self.lexicon_strict or self._is_valid_prefix(new_prefix):
+                            old2 = next_beams.get(new_prefix, (-float('inf'), -float('inf')))
+                            new_pnb2 = self._log_sum_exp(old2[1], self._log_sum_exp(pb + p_t_c, pnb + p_t_c))
+                            next_beams[new_prefix] = (old2[0], new_pnb2)
             beams = dict(sorted(next_beams.items(), key=lambda kv: self._log_sum_exp(kv[1][0], kv[1][1]), reverse=True)[:beam_width])
         best_prefix = ""
         best_score = -float('inf')
@@ -232,8 +238,41 @@ class OCRServiceWithCRNN(OCRService):
             score = self._log_sum_exp(pb, pnb)
             norm = (len(prefix) if len(prefix) > 0 else 1) ** length_penalty
             norm_score = score / norm
+            if self.lexicon and prefix in self.lexicon and self.lexicon_bonus > 1.0:
+                norm_score += float(np.log(self.lexicon_bonus))
             if norm_score > best_score:
                 best_score = norm_score
                 best_prefix = prefix
         approx_conf = float(np.exp(best_score))
         return best_prefix, approx_conf
+
+    def _load_lexicon(self):
+        path = os.getenv("CRNN_LEXICON_PATH")
+        inline = os.getenv("CRNN_LEXICON")
+        words = set()
+        try:
+            if path and Path(path).exists():
+                with open(path, 'r', encoding='utf-8') as f:
+                    for line in f:
+                        w = line.strip().upper()
+                        if w and w.isalpha():
+                            words.add(w)
+            elif inline:
+                for w in inline.split(','):
+                    w = w.strip().upper()
+                    if w and w.isalpha():
+                        words.add(w)
+        except Exception as e:
+            print(f"Lexicon load error: {e}")
+        prefixes = set()
+        for w in words:
+            for i in range(1, len(w)+1):
+                prefixes.add(w[:i])
+        if words:
+            print(f"Lexicon loaded: {len(words)} words")
+        return words, prefixes
+
+    def _is_valid_prefix(self, s: str) -> bool:
+        if not self.lexicon_prefixes:
+            return True
+        return s in self.lexicon_prefixes

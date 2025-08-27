@@ -162,7 +162,7 @@ def collate_fn(batch):
     return images, labels, widths
 
 
-def train_crnn(data_dir: Path, output_dir: Path, epochs: int = 50):
+def train_crnn(data_dir: Path, output_dir: Path, epochs: int = 50, best_model_name: str = 'crnn_model_best.pth'):
     """CRNNモデルを訓練"""
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"使用デバイス: {device}")
@@ -291,8 +291,8 @@ def train_crnn(data_dir: Path, output_dir: Path, epochs: int = 50):
                 'optimizer_state_dict': optimizer.state_dict(),
                 'val_accuracy': val_accuracy,
                 'history': history
-            }, output_dir / 'crnn_model_best.pth')
-            print(f"ベストモデルを保存しました (Val Accuracy: {val_accuracy:.4f})")
+            }, output_dir / best_model_name)
+            print(f"ベストモデルを保存しました: {output_dir / best_model_name} (Val Accuracy: {val_accuracy:.4f})")
     
     # 学習曲線をプロット
     plt.figure(figsize=(12, 5))
@@ -326,8 +326,9 @@ def main():
     
     # エポック数は環境変数で上書き可能
     epochs = int(os.getenv("CRNN_EPOCHS", "50"))
+    best_name = os.getenv("CRNN_OUTPUT_BASENAME", 'crnn_model_best.pth')
     # モデルを訓練
-    model, history = train_crnn(data_dir, output_dir, epochs=epochs)
+    model, history = train_crnn(data_dir, output_dir, epochs=epochs, best_model_name=best_name)
     
     print(f"\n訓練完了！")
     print(f"最終検証精度: {history['val_accuracy'][-1]*100:.1f}%")
