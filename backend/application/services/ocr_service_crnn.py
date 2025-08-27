@@ -8,6 +8,7 @@ from PIL import Image
 import torch
 from pathlib import Path
 import sys
+import os
 
 # プロジェクトルートをパスに追加
 project_root = Path(__file__).parent.parent.parent.parent
@@ -30,11 +31,18 @@ class OCRServiceWithCRNN(OCRService):
         self.device = torch.device('cpu')
         self._load_crnn_model()
         print("Initialized OCRServiceWithCRNN (CNN disabled, CRNN primary)")
+        # デコード/前処理オプション（環境変数で切替）
+        self.use_beam = os.getenv("CRNN_BEAM_SEARCH", "true").lower() == "true"
+        self.beam_width = int(os.getenv("CRNN_BEAM_WIDTH", "5"))
+        self.width_scale = float(os.getenv("CRNN_WIDTH_SCALE", "1.0"))
+        self.right_margin = int(os.getenv("CRNN_RIGHT_MARGIN", "12"))
+        self.max_width = int(os.getenv("CRNN_MAX_WIDTH", "256"))
     
     def _load_crnn_model(self):
         """CRNNモデルをロード"""
         try:
-            model_path = project_root / 'models' / 'crnn_model_best.pth'
+            env_path = os.getenv("CRNN_MODEL_PATH")
+            model_path = Path(env_path) if env_path else (project_root / 'models' / 'crnn_model_best.pth')
             
             if model_path.exists():
                 self.crnn_model = create_crnn_model()
@@ -43,7 +51,7 @@ class OCRServiceWithCRNN(OCRService):
                 self.crnn_model.to(self.device)
                 self.crnn_model.eval()
                 self.crnn_converter = CTCLabelConverter()
-                print("CRNN model loaded successfully")
+                print(f"CRNN model loaded successfully from {model_path}")
             else:
                 print(f"CRNN model not found at {model_path}")
         except Exception as e:
@@ -98,7 +106,7 @@ class OCRServiceWithCRNN(OCRService):
         
         try:
             # 前処理
-            preprocessed = self._preprocess_for_crnn(image)
+            preprocessed = self._preprocess_for_crnn(image, target_height=64, max_width=self.max_width)
             
             # テンソルに変換
             img_tensor = torch.from_numpy(preprocessed).unsqueeze(0).unsqueeze(0).float()
@@ -107,10 +115,11 @@ class OCRServiceWithCRNN(OCRService):
             # 推論
             with torch.no_grad():
                 output = self.crnn_model(img_tensor)
-                _, preds = output.max(2)
-                
-                # デコード
-                pred_text = self.crnn_converter.decode(preds)[0]
+                if self.use_beam:
+                    pred_text, _ = self._ctc_beam_search_decode(output, self.beam_width)
+                else:
+                    _, preds = output.max(2)
+                    pred_text = self.crnn_converter.decode(preds)[0]
                 
                 # 空文字列の場合はNoneを返す
                 if not pred_text:
@@ -150,22 +159,81 @@ class OCRServiceWithCRNN(OCRService):
         kernel = np.ones((2, 2), np.uint8)
         binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=1)
         
-        # リサイズ（アスペクト比を保持）
+        # リサイズ（高さ64固定・横方向スケール適用）
         h, w = binary.shape
         aspect_ratio = w / h
-        
-        # 高さは常に64固定。幅のみスケールし、オーバーした場合は幅をクリップ。
-        new_width = int(target_height * aspect_ratio)
-        if new_width > max_width:
-            new_width = max_width
+        new_width = int(target_height * aspect_ratio * max(self.width_scale, 1.0))
+        # 右マージンを確保するために必要なら幅を抑える
+        max_usable = max_width - max(self.right_margin, 0)
+        if max_usable < 1:
+            max_usable = max_width
+        if new_width > max_usable:
+            new_width = max_usable
+        if new_width < 1:
+            new_width = 1
         binary = cv2.resize(binary, (new_width, target_height), interpolation=cv2.INTER_LINEAR)
         
-        # パディング（左寄せ）
+        # パディング（右側に余白を追加）
         padded = np.zeros((target_height, max_width), dtype=np.uint8)
-        # 高さは固定のためオフセット不要（中央寄せにするなら以下を使用）
         padded[:, :new_width] = binary
         
         # 正規化
         padded = padded.astype(np.float32) / 255.0
         
         return padded
+
+    @staticmethod
+    def _log_sum_exp(a: float, b: float) -> float:
+        if a == -float('inf'):
+            return b
+        if b == -float('inf'):
+            return a
+        m = a if a > b else b
+        return m + np.log(np.exp(a - m) + np.exp(b - m))
+
+    def _ctc_beam_search_decode(self, log_probs: torch.Tensor, beam_width: int = 5):
+        """簡易CTCプレフィックスビームサーチ
+        Args:
+            log_probs: (seq_len, batch=1, num_classes) ログ確率
+        Returns:
+            best_text, approx_confidence
+        """
+        blank = 0
+        seq_len, batch, num_classes = log_probs.size()
+        assert batch == 1
+        lp = log_probs[:, 0, :]
+        beams = {"": (-0.0, -float('inf'))}
+        for t in range(seq_len):
+            next_beams = {}
+            for prefix, (pb, pnb) in beams.items():
+                p_blank_t = lp[t, blank].item()
+                nb_pb = self._log_sum_exp(pb + p_blank_t, pnb + p_blank_t)
+                old = next_beams.get(prefix, (-float('inf'), -float('inf')))
+                next_beams[prefix] = (self._log_sum_exp(old[0], nb_pb), old[1])
+                for c in range(1, num_classes):
+                    p_t_c = lp[t, c].item()
+                    char = self.crnn_converter.idx_to_char.get(c)
+                    if not char:
+                        continue
+                    if len(prefix) > 0 and prefix[-1] == char:
+                        new_pb, new_pnb = next_beams.get(prefix, (-float('inf'), -float('inf')))
+                        new_pnb = self._log_sum_exp(new_pnb, pb + p_t_c)
+                        next_beams[prefix] = (new_pb, new_pnb)
+                    else:
+                        new_prefix = prefix + char
+                        old2 = next_beams.get(new_prefix, (-float('inf'), -float('inf')))
+                        new_pnb2 = self._log_sum_exp(old2[1], self._log_sum_exp(pb + p_t_c, pnb + p_t_c))
+                        next_beams[new_prefix] = (old2[0], new_pnb2)
+            beams = dict(sorted(next_beams.items(), key=lambda kv: self._log_sum_exp(kv[1][0], kv[1][1]), reverse=True)[:beam_width])
+        best_prefix = ""
+        best_score = -float('inf')
+        length_penalty = float(os.getenv("CRNN_BEAM_LENGTH_PENALTY", "1.0"))
+        for prefix, (pb, pnb) in beams.items():
+            score = self._log_sum_exp(pb, pnb)
+            norm = (len(prefix) if len(prefix) > 0 else 1) ** length_penalty
+            norm_score = score / norm
+            if norm_score > best_score:
+                best_score = norm_score
+                best_prefix = prefix
+        approx_conf = float(np.exp(best_score))
+        return best_prefix, approx_conf

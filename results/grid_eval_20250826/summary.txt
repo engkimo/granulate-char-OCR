@@ -1,0 +1,50 @@
+ 1. dist=2 text=PLEASU       conf=0.644 time=18.2ms beam=False bw=5 lp=1.0 ws=1.0 rm=12 mw=256
+ 2. dist=2 text=PLEASU       conf=0.644 time=21.8ms beam=False bw=5 lp=1.0 ws=1.05 rm=12 mw=256
+ 3. dist=2 text=PLEASU       conf=0.644 time=26.8ms beam=False bw=5 lp=1.0 ws=1.03 rm=12 mw=256
+ 4. dist=2 text=PLEASU       conf=0.644 time=28.2ms beam=False bw=5 lp=1.0 ws=1.02 rm=12 mw=256
+ 5. dist=2 text=PLEASU       conf=0.638 time=23.8ms beam=False bw=5 lp=1.0 ws=1.03 rm=8 mw=256
+ 6. dist=2 text=PLEASU       conf=0.638 time=24.7ms beam=False bw=5 lp=1.0 ws=1.05 rm=8 mw=256
+ 7. dist=2 text=PLEASU       conf=0.638 time=26.0ms beam=False bw=5 lp=1.0 ws=1.02 rm=8 mw=256
+ 8. dist=2 text=PLEASU       conf=0.638 time=47.5ms beam=False bw=5 lp=1.0 ws=1.0 rm=8 mw=256
+ 9. dist=2 text=PLEASU       conf=0.580 time=21.1ms beam=False bw=5 lp=1.0 ws=1.05 rm=16 mw=256
+10. dist=2 text=PLEASU       conf=0.580 time=23.5ms beam=False bw=5 lp=1.0 ws=1.02 rm=16 mw=256
+11. dist=2 text=PLEASU       conf=0.580 time=24.1ms beam=False bw=5 lp=1.0 ws=1.0 rm=16 mw=256
+12. dist=2 text=PLEASU       conf=0.580 time=25.4ms beam=False bw=5 lp=1.0 ws=1.03 rm=16 mw=256
+13. dist=3 text=PLEASUSURD   conf=0.745 time=45.2ms beam=True bw=5 lp=1.5 ws=1.02 rm=12 mw=256
+14. dist=3 text=PLEASUSURD   conf=0.745 time=45.4ms beam=True bw=5 lp=1.5 ws=1.0 rm=12 mw=256
+15. dist=3 text=PLEASUSURD   conf=0.745 time=45.9ms beam=True bw=5 lp=1.5 ws=1.05 rm=12 mw=256
+16. dist=3 text=PLEASUSURD   conf=0.745 time=60.9ms beam=True bw=5 lp=1.5 ws=1.03 rm=12 mw=256
+17. dist=3 text=PLEASUSURD   conf=0.732 time=42.6ms beam=True bw=5 lp=1.5 ws=1.0 rm=16 mw=256
+18. dist=3 text=PLEASUSURD   conf=0.732 time=44.3ms beam=True bw=5 lp=1.5 ws=1.02 rm=16 mw=256
+19. dist=3 text=PLEASUSURD   conf=0.732 time=44.8ms beam=True bw=5 lp=1.5 ws=1.05 rm=16 mw=256
+20. dist=3 text=PLEASUSURD   conf=0.732 time=46.4ms beam=True bw=5 lp=1.5 ws=1.03 rm=16 mw=256
+21. dist=3 text=PLEASUSURD   conf=0.727 time=47.6ms beam=True bw=5 lp=1.5 ws=1.0 rm=8 mw=256
+22. dist=3 text=PLEASUSURD   conf=0.727 time=49.8ms beam=True bw=5 lp=1.5 ws=1.03 rm=8 mw=256
+23. dist=3 text=PLEASUSURD   conf=0.727 time=50.0ms beam=True bw=5 lp=1.5 ws=1.05 rm=8 mw=256
+24. dist=3 text=PLEASUSURD   conf=0.727 time=50.6ms beam=True bw=5 lp=1.5 ws=1.02 rm=8 mw=256
+25. dist=3 text=PLEASUSURD   conf=0.556 time=42.4ms beam=True bw=5 lp=1.2 ws=1.0 rm=12 mw=256
+26. dist=3 text=PLEASUSURD   conf=0.556 time=46.0ms beam=True bw=5 lp=1.2 ws=1.05 rm=12 mw=256
+27. dist=3 text=PLEASUSURD   conf=0.556 time=50.8ms beam=True bw=5 lp=1.2 ws=1.03 rm=12 mw=256
+28. dist=3 text=PLEASUSURD   conf=0.556 time=51.8ms beam=True bw=5 lp=1.2 ws=1.02 rm=12 mw=256
+29. dist=3 text=PLEASUSURD   conf=0.536 time=44.2ms beam=True bw=5 lp=1.2 ws=1.0 rm=16 mw=256
+30. dist=3 text=PLEASUSURD   conf=0.536 time=44.7ms beam=True bw=5 lp=1.2 ws=1.02 rm=16 mw=256
+31. dist=3 text=PLEASUSURD   conf=0.536 time=45.4ms beam=True bw=5 lp=1.2 ws=1.05 rm=16 mw=256
+32. dist=3 text=PLEASUSURD   conf=0.536 time=50.9ms beam=True bw=5 lp=1.2 ws=1.03 rm=16 mw=256
+33. dist=3 text=PLEASUSURD   conf=0.529 time=42.5ms beam=True bw=5 lp=1.2 ws=1.0 rm=8 mw=256
+34. dist=3 text=PLEASUSURD   conf=0.529 time=45.2ms beam=True bw=5 lp=1.2 ws=1.05 rm=8 mw=256
+35. dist=3 text=PLEASUSURD   conf=0.529 time=48.5ms beam=True bw=5 lp=1.2 ws=1.02 rm=8 mw=256
+36. dist=3 text=PLEASUSURD   conf=0.529 time=50.6ms beam=True bw=5 lp=1.2 ws=1.03 rm=8 mw=256
+37. dist=3 text=PLEASUSURD   conf=0.394 time=42.3ms beam=True bw=5 lp=1.0 ws=1.0 rm=12 mw=256
+38. dist=3 text=PLEASUSURD   conf=0.394 time=42.7ms beam=True bw=5 lp=1.0 ws=1.05 rm=12 mw=256
+39. dist=3 text=PLEASUSURD   conf=0.394 time=46.9ms beam=True bw=5 lp=1.0 ws=1.03 rm=12 mw=256
+40. dist=3 text=PLEASUSURD   conf=0.394 time=48.7ms beam=True bw=5 lp=1.0 ws=1.02 rm=12 mw=256
+41. dist=3 text=PLEASUSURD   conf=0.372 time=41.8ms beam=True bw=5 lp=1.0 ws=1.0 rm=16 mw=256
+42. dist=3 text=PLEASUSURD   conf=0.372 time=46.1ms beam=True bw=5 lp=1.0 ws=1.03 rm=16 mw=256
+43. dist=3 text=PLEASUSURD   conf=0.372 time=47.5ms beam=True bw=5 lp=1.0 ws=1.05 rm=16 mw=256
+44. dist=3 text=PLEASUSURD   conf=0.372 time=49.0ms beam=True bw=5 lp=1.0 ws=1.02 rm=16 mw=256
+45. dist=3 text=PLEASUSURD   conf=0.364 time=41.7ms beam=True bw=5 lp=1.0 ws=1.0 rm=8 mw=256
+46. dist=3 text=PLEASUSURD   conf=0.364 time=46.5ms beam=True bw=5 lp=1.0 ws=1.05 rm=8 mw=256
+47. dist=3 text=PLEASUSURD   conf=0.364 time=48.1ms beam=True bw=5 lp=1.0 ws=1.02 rm=8 mw=256
+48. dist=3 text=PLEASUSURD   conf=0.364 time=50.3ms beam=True bw=5 lp=1.0 ws=1.03 rm=8 mw=256
+49. dist=5 text=PLORLSLR     conf=0.598 time=47.0ms beam=True bw=5 lp=1.5 ws=1.0 rm=24 mw=256
+50. dist=5 text=PLORLSLR     conf=0.598 time=47.2ms beam=True bw=5 lp=1.5 ws=1.03 rm=24 mw=256

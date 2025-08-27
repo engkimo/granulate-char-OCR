@@ -17,6 +17,7 @@ from tqdm import tqdm
 import matplotlib.pyplot as plt
 from PIL import Image
 import random
+import os
 
 # プロジェクトルートをパスに追加
 sys.path.append(str(Path(__file__).parent.parent))
@@ -323,8 +324,10 @@ def main():
     
     print("=== CRNNモデルの訓練 ===")
     
+    # エポック数は環境変数で上書き可能
+    epochs = int(os.getenv("CRNN_EPOCHS", "50"))
     # モデルを訓練
-    model, history = train_crnn(data_dir, output_dir, epochs=50)
+    model, history = train_crnn(data_dir, output_dir, epochs=epochs)
     
     print(f"\n訓練完了！")
     print(f"最終検証精度: {history['val_accuracy'][-1]*100:.1f}%")
