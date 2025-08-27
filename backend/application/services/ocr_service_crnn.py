@@ -23,11 +23,13 @@ class OCRServiceWithCRNN(OCRService):
     """CRNN統合版OCRサービス"""
     
     def __init__(self):
-        super().__init__()
+        # CRNN優先のため、CNNはロードしない（必要時のみフォールバックする実装にする場合に備える）
+        super().__init__(load_cnn=False)
         self.crnn_model = None
         self.crnn_converter = None
         self.device = torch.device('cpu')
         self._load_crnn_model()
+        print("Initialized OCRServiceWithCRNN (CNN disabled, CRNN primary)")
     
     def _load_crnn_model(self):
         """CRNNモデルをロード"""
@@ -121,7 +123,7 @@ class OCRServiceWithCRNN(OCRService):
             return None
     
     def _preprocess_for_crnn(self, image: np.ndarray, target_height: int = 64, max_width: int = 256) -> np.ndarray:
-        """CRNN用の前処理"""
+        """CRNN用の前処理（入力高さは常に64に固定）"""
         # グレースケールに変換
         if len(image.shape) == 3:
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -141,27 +143,27 @@ class OCRServiceWithCRNN(OCRService):
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
         gray = clahe.apply(gray)
         
-        # 二値化
+        # 二値化（Otsu）
         _, binary = cv2.threshold(gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+        
+        # カメラ画像対応：細い線を軽く太らせる（過学習を避けるため軽め）
+        kernel = np.ones((2, 2), np.uint8)
+        binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=1)
         
         # リサイズ（アスペクト比を保持）
         h, w = binary.shape
         aspect_ratio = w / h
         
-        new_height = target_height
+        # 高さは常に64固定。幅のみスケールし、オーバーした場合は幅をクリップ。
         new_width = int(target_height * aspect_ratio)
-        
-        # 最大幅を超える場合は調整
         if new_width > max_width:
             new_width = max_width
-            new_height = int(max_width / aspect_ratio)
-        
-        binary = cv2.resize(binary, (new_width, new_height))
+        binary = cv2.resize(binary, (new_width, target_height), interpolation=cv2.INTER_LINEAR)
         
         # パディング（左寄せ）
         padded = np.zeros((target_height, max_width), dtype=np.uint8)
-        y_offset = (target_height - new_height) // 2
-        padded[y_offset:y_offset+new_height, :new_width] = binary
+        # 高さは固定のためオフセット不要（中央寄せにするなら以下を使用）
+        padded[:, :new_width] = binary
         
         # 正規化
         padded = padded.astype(np.float32) / 255.0

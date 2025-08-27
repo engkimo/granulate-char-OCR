@@ -83,11 +83,13 @@ class GranulateOCRModel(nn.Module):
 
 
 class OCRService:
-    def __init__(self):
+    def __init__(self, *, load_cnn: bool = True):
         self.alphabet = GranulateAlphabet()
         self.cnn_model = None
         self.device = torch.device('cpu')
-        self._load_cnn_model()
+        # CNNは必要な場合のみロード（CRNN専用サービスでは抑制して起動時間・メモリを削減）
+        if load_cnn:
+            self._load_cnn_model()
 
     def process_image(self, image_bytes: bytes) -> OCRResult:
         start_time = time.time()

@@ -19,10 +19,12 @@ class OCRServiceWithCRNNFixed(OCRService):
     """CRNN統合版OCRサービス（修正版）"""
     
     def __init__(self):
-        super().__init__()
+        # CRNN専用のためCNN読み込みを抑制
+        super().__init__(load_cnn=False)
         self.crnn_model = None
         self.crnn_converter = None
         self._load_crnn_model()
+        print("Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)")
         
         # グラニュート文字マッピングをロード
         self.latin_to_granulate = self._load_character_mapping()
@@ -106,8 +108,8 @@ class OCRServiceWithCRNNFixed(OCRService):
                         processing_time=processing_time
                     )
             
-            # CRNNが失敗した場合は従来の方法にフォールバック
-            print("CRNN failed, falling back to CNN-based method")
+            # CRNNが失敗した場合は従来パイプライン（セグメンテーション + 可能ならCNN/Tesseract）にフォールバック
+            print("CRNN failed, falling back to classic pipeline")
             return super().process_image(image_bytes)
             
         except Exception as e:
@@ -170,7 +172,9 @@ class OCRServiceWithCRNNFixed(OCRService):
             return None
     
     def _preprocess_for_crnn(self, image: np.ndarray, target_height: int = 64, max_width: int = 256) -> np.ndarray:
-        """CRNN用の前処理（より穏やかな処理）"""
+        """CRNN用の前処理（より穏やかな処理）
+        入力高さは常に64に固定する（モデルと整合）
+        """
         # グレースケールに変換
         if len(image.shape) == 3:
             gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -192,16 +196,16 @@ class OCRServiceWithCRNNFixed(OCRService):
             cv2.THRESH_BINARY, 11, 2
         )
         
-        # リサイズ（アスペクト比を保持）
-        h, w = binary.shape
-        aspect_ratio = w / h
+        # 線をわずかに太らせて細線対策
+        kernel = np.ones((2, 2), np.uint8)
+        binary = cv2.morphologyEx(binary, cv2.MORPH_CLOSE, kernel, iterations=1)
         
-        # 高さを固定してアスペクト比を保持
+        # リサイズ（アスペクト比を保持、高さは64固定）
+        h, w = binary.shape
+        aspect_ratio = w / h if h > 0 else 1.0
         new_width = int(target_height * aspect_ratio)
         if new_width > max_width:
             new_width = max_width
-            target_height = int(max_width / aspect_ratio)
-        
         resized = cv2.resize(binary, (new_width, target_height), interpolation=cv2.INTER_LINEAR)
         
         # パディング（右側を埋める）

@@ -81,8 +81,13 @@ async def process_image_base64(request: Base64ImageRequest):
         # Decode base64 image
         image_bytes = base64.b64decode(request.image)
 
-        # Process with OCR service
-        ocr_service = OCRServiceWithCRNN() if use_crnn else OCRService()
+        # Process with OCR service (環境変数の固定CRNN設定も尊重)
+        if use_fixed_crnn:
+            ocr_service = OCRServiceWithCRNNFixed()
+        elif use_crnn:
+            ocr_service = OCRServiceWithCRNN()
+        else:
+            ocr_service = OCRService()
         result = ocr_service.process_image(image_bytes)
 
         # Convert to response model
