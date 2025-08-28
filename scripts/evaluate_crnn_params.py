@@ -130,6 +130,8 @@ def main():
     ap.add_argument('--lm', type=str, default='')
     ap.add_argument('--limit', type=int, default=0, help='Limit number of files (0=all)')
     ap.add_argument('--grid', type=str, default='', help='Custom grid JSON (optional)')
+    ap.add_argument('--ws-list', nargs='*', type=float, default=None, help='Width scale list for CRNN_WIDTH_SCALE (e.g., 1.0 1.08 1.15)')
+    ap.add_argument('--rm-list', nargs='*', type=int, default=None, help='Right margin list for CRNN_RIGHT_MARGIN (e.g., 12 24)')
     args = ap.parse_args()
 
     data_dir = Path(args.data_dir)
@@ -149,13 +151,26 @@ def main():
     base_env.setdefault('CRNN_BEAM_SEARCH', 'true')
 
     # Default small grid
-    grid = [
+    base_grid = [
         {"CRNN_E_PENALTY": v1, "CRNN_RDN_BOOST": v2, "CRNN_BEAM_WIDTH": bw, "CRNN_LM_WEIGHT": lw}
         for v1 in [0.90, 0.95]
         for v2 in [1.00, 1.05]
         for bw in [3, 5]
         for lw in [0.0, 0.2]
     ]
+    # Optional preproc grid
+    ws_list = args.ws_list if args.ws_list else [None]
+    rm_list = args.rm_list if args.rm_list else [None]
+    grid = []
+    for g in base_grid:
+        for ws in ws_list:
+            for rm in rm_list:
+                cfg = dict(g)
+                if ws is not None:
+                    cfg["CRNN_WIDTH_SCALE"] = ws
+                if rm is not None:
+                    cfg["CRNN_RIGHT_MARGIN"] = rm
+                grid.append(cfg)
 
     best: Tuple[float, Dict[str, float], EvalResult] | None = None
     for idx, cfg in enumerate(grid, 1):
@@ -181,4 +196,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-

@@ -76,6 +76,59 @@
    --limit 0
  ```
 
+### パラメータ探索レポート（最新）
+- データ: `test_data`（判定対象 87枚）
+- サービス: `OCRServiceWithCRNNFixed`（CRNN優先、失敗時フォールバック）
+- グリッド（16通り）: `E_PENALTY∈{0.90,0.95}`, `RDN_BOOST∈{1.00,1.05}`, `BEAM_WIDTH∈{3,5}`, `LM_WEIGHT∈{0.0,0.2}`
+- 語彙/LM: `configs/ocr/lexicon_words.txt`, `configs/ocr/char_lm.json`
+
+結果（要約）
+- 語彙厳格ON（デフォルト）: ベスト構成は `{'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0}`、単語精度 1.1%、文字精度 11.0%、平均 50ms。
+- 語彙厳格OFF: ベスト構成は同一で、単語精度 1.1%、文字精度 11.2%、平均 37ms。
+- 多くの画像で CRNN 出力が空→フォールバック（"CRNN failed...") が発生。語彙外の単語が多い/前処理ギャップが主因と推測。
+
+推奨（短期）
+- 運用では `CRNN_LEXICON_STRICT=false` を既定（未知語許容）。
+- 語彙をテストデータから自動生成し、厳格ONでも試験（下記スクリプト）。
+- CRNN前処理パラメータ（`CRNN_WIDTH_SCALE`, `CRNN_RIGHT_MARGIN`）も小規模グリッドで探索。
+
+語彙の自動生成（ファイル名から抽出）
+```bash
+python scripts/generate_lexicon_from_dataset.py \
+  --data-dir test_data \
+  --glob "*.png" \
+  --output configs/ocr/lexicon_from_dataset.txt
+
+# 厳格ONで評価
+CRNN_LEXICON_STRICT=true \
+python scripts/evaluate_crnn_params.py \
+  --data-dir test_data \
+  --service fixed \
+  --lexicon configs/ocr/lexicon_from_dataset.txt \
+  --lm configs/ocr/char_lm.json
+```
+
+前処理グリッドの探索（横幅スケール/右マージン）
+```bash
+python scripts/evaluate_crnn_params.py \
+  --data-dir test_data \
+  --service fixed \
+  --lexicon configs/ocr/lexicon_words.txt \
+  --lm configs/ocr/char_lm.json \
+  --ws-list 1.0 1.08 1.15 \
+  --rm-list 12 24
+```
+
+追加評価（語彙自動生成＋前処理グリッド）
+- 語彙: `configs/ocr/lexicon_from_dataset.txt`（自動生成、71語）＋厳格ON
+- 前処理グリッド: `CRNN_WIDTH_SCALE∈{1.0, 1.08}`, `CRNN_RIGHT_MARGIN∈{12,24}`
+- ベスト構成: `{'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0, 'CRNN_WIDTH_SCALE': 1.08, 'CRNN_RIGHT_MARGIN': 12}`
+- 精度: 単語 3.4%、文字 10.7%、平均 32.6ms（87枚）
+
+所感:
+- 語彙をデータセット準拠に拡充＋前処理微調整で、CRNNの空出力は一部改善し単語精度はわずかに改善。
+- 一方で文字精度は大きくは伸びず、学習-実データの見た目ギャップがボトルネック。半教師ありや追加学習が有効。
+
 4) 数字 0–9 サポート（中期）
 - `CRNN_CHARSET=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789` で再学習。
 - 新チェックポイント（出力37=36+blank）を `CRNN_MODEL_PATH` で切替。

@@ -1,0 +1,453 @@
+Evaluating on 88 images from test_data
+[1/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=50.0
+[2/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=46.8
+[3/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=55.4
+[4/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=55.8
+[5/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=53.0
+[6/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=50.2
+[7/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=56.7
+[8/16] cfg={'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=56.1
+[9/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=50.9
+[10/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=35.4
+[11/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=39.1
+[12/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=39.2
+[13/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=35.7
+[14/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=34.7
+[15/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.0}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=42.6
+[16/16] cfg={'CRNN_E_PENALTY': 0.95, 'CRNN_RDN_BOOST': 1.05, 'CRNN_BEAM_WIDTH': 5, 'CRNN_LM_WEIGHT': 0.2}
+Using device: cpu
+Using device: cpu
+CRNN model loaded successfully from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/models/crnn_model_best.pth
+Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)
+Character mapping loaded: 26 characters
+Lexicon loaded: 25 words
+Char LM loaded (weight=0.2) from /Users/ohoriryosuke/2025820_granulate_ocr/granulate-char-OCR/configs/ocr/char_lm.json
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+CRNN failed, falling back to classic pipeline
+  => words=87, word_acc=0.011, char_acc=0.110, avg_ms=40.8
+
+Best configuration:
+{'CRNN_E_PENALTY': 0.9, 'CRNN_RDN_BOOST': 1.0, 'CRNN_BEAM_WIDTH': 3, 'CRNN_LM_WEIGHT': 0.0}
+word_acc=0.011, char_acc=0.110, avg_ms=50.0, samples=87
