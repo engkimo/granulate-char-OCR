@@ -184,13 +184,26 @@ def train_crnn(data_dir: Path, output_dir: Path, epochs: int = 50, best_model_na
     
     # モデルとラベル変換器
     model = create_crnn_model().to(device)
+    # 事前学習（ベース）モデルからのファインチューニングをサポート
+    base_path = os.getenv('CRNN_BASE_MODEL_PATH') or str(Path('models') / 'crnn_model_best.pth')
+    try:
+        if Path(base_path).exists():
+            checkpoint = torch.load(base_path, map_location=device)
+            state_dict = checkpoint.get('model_state_dict', checkpoint)
+            model.load_state_dict(state_dict, strict=False)
+            print(f"ベースモデルをロード: {base_path}")
+        else:
+            print(f"ベースモデル未検出: {base_path}（新規初期化）")
+    except Exception as e:
+        print(f"ベースモデルのロードに失敗: {e}（新規初期化で続行）")
     converter = CTCLabelConverter()
     
     # 損失関数（CTC Loss）
     criterion = nn.CTCLoss(blank=0, reduction='mean', zero_infinity=True)
     
     # 最適化器
-    optimizer = optim.Adam(model.parameters(), lr=0.001)
+    lr = float(os.getenv('CRNN_LR', '0.001'))
+    optimizer = optim.Adam(model.parameters(), lr=lr)
     scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=5, factor=0.5)
     
     # 訓練履歴
