@@ -32,6 +32,10 @@
 - デバイス
   - `CRNN_DEVICE=mps|cuda|cpu`（未指定なら自動）
 
+サンプル設定:
+- 語彙: `configs/ocr/lexicon_words.txt`
+- LM: `configs/ocr/char_lm.json`
+
 ## 環境変数（新規・拡張）
 - デバイス/モデル
   - `CRNN_DEVICE` / `OCR_DEVICE` / `TORCH_DEVICE`
@@ -61,6 +65,16 @@
 3) 評価パイプラインの整備（短期）
 - 既存テスト画像一括評価、文字/単語精度、編集距離、処理時間の自動集計。
 - 誤りヒートマップ（混同行列）を出力。
+
+ 実行例（本リポジトリの評価スクリプト）:
+ ```bash
+ python scripts/evaluate_crnn_params.py \
+   --data-dir test_data \
+   --service fixed \
+   --lexicon configs/ocr/lexicon_words.txt \
+   --lm configs/ocr/char_lm.json \
+   --limit 0
+ ```
 
 4) 数字 0–9 サポート（中期）
 - `CRNN_CHARSET=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789` で再学習。
