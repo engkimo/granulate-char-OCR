@@ -24,6 +24,8 @@ class OCRServiceWithCRNNFixed(OCRService):
         super().__init__(load_cnn=False)
         self.crnn_model = None
         self.crnn_converter = None
+        # デバイス選択
+        self.device = self._select_device()
         self._load_crnn_model()
         print("Initialized OCRServiceWithCRNNFixed (CNN disabled, CRNN primary)")
         
@@ -40,6 +42,14 @@ class OCRServiceWithCRNNFixed(OCRService):
         self.lexicon, self.lexicon_prefixes = self._load_lexicon()
         self.lexicon_strict = os.getenv("CRNN_LEXICON_STRICT", "true").lower() == "true"
         self.lexicon_bonus = float(os.getenv("CRNN_LEXICON_BONUS", "1.0"))
+        self.lexicon_autocorrect = os.getenv("CRNN_LEXICON_AUTOCORRECT", "false").lower() == "true"
+        self.lexicon_autocorrect_min_ratio = float(os.getenv("CRNN_LEXICON_AUTOCORRECT_MIN_RATIO", "0.85"))
+        # 簡易言語モデル
+        self.lm_unigram, self.lm_bigram, self.lm_weight = self._load_char_lm()
+        # 混同対策
+        self.confusion_tweaks = os.getenv("CRNN_CONFUSION_TWEAKS", "true").lower() == "true"
+        self.e_penalty = float(os.getenv("CRNN_E_PENALTY", "0.95"))
+        self.rdn_boost = float(os.getenv("CRNN_RDN_BOOST", "1.05"))
     
     def _load_character_mapping(self):
         """グラニュート文字マッピングをロード"""
@@ -72,21 +82,38 @@ class OCRServiceWithCRNNFixed(OCRService):
             model_path = Path(env_path) if env_path else (project_root / 'models' / 'crnn_model_best.pth')
             
             if model_path.exists():
-                self.crnn_model = CRNN(
-                    img_height=64,
-                    num_classes=27,  # A-Z + blank
-                    hidden_size=256
-                )
+                # 文字集合を環境変数から取得
+                charset = os.getenv("CRNN_CHARSET", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+                from scripts.crnn_model import create_crnn_model, CTCLabelConverter
+                self.crnn_model = create_crnn_model(character_set=charset)
                 checkpoint = torch.load(str(model_path), map_location=self.device)
                 self.crnn_model.load_state_dict(checkpoint['model_state_dict'])
                 self.crnn_model.to(self.device)
                 self.crnn_model.eval()
-                self.crnn_converter = CTCLabelConverter()
+                self.crnn_converter = CTCLabelConverter(character_set=charset)
                 print(f"CRNN model loaded successfully from {model_path}")
             else:
                 print(f"CRNN model not found at {model_path}")
         except Exception as e:
             print(f"Failed to load CRNN model: {e}")
+    
+    def _select_device(self) -> torch.device:
+        override = os.getenv("CRNN_DEVICE") or os.getenv("TORCH_DEVICE")
+        if override:
+            try:
+                dev = torch.device(override)
+                print(f"Using device (override): {dev}")
+                return dev
+            except Exception:
+                print(f"Invalid device override: {override}. Falling back to auto-detect.")
+        if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+            print("Using device: mps")
+            return torch.device('mps')
+        if torch.cuda.is_available():
+            print("Using device: cuda")
+            return torch.device('cuda')
+        print("Using device: cpu")
+        return torch.device('cpu')
     
     def process_image(self, image_bytes: bytes) -> OCRResult:
         """画像を処理してOCR結果を返す（CRNN優先）"""
@@ -168,7 +195,10 @@ class OCRServiceWithCRNNFixed(OCRService):
                 # 空文字列の場合はNoneを返す
                 if not pred_text:
                     return None
-                
+                # 語彙オートコレクト
+                if self.lexicon_autocorrect and self.lexicon:
+                    pred_text = self._autocorrect_with_lexicon(pred_text)
+
                 return {
                     'text': pred_text,
                     'confidence': avg_confidence
@@ -275,6 +305,17 @@ class OCRServiceWithCRNNFixed(OCRService):
                     char = self.crnn_converter.idx_to_char.get(c)
                     if not char:
                         continue
+                    # LM/混同対策のボーナス（ログ領域）
+                    bonus = 0.0
+                    if self.lm_weight > 0.0:
+                        prev_char = prefix[-1] if len(prefix) > 0 else None
+                        bonus += self.lm_weight * self._lm_log_prob(prev_char, char)
+                    if self.confusion_tweaks:
+                        if char == 'E' and self.e_penalty != 1.0:
+                            bonus += float(np.log(max(self.e_penalty, 1e-6)))
+                        elif char in {'R', 'D', 'N'} and self.rdn_boost != 1.0:
+                            bonus += float(np.log(self.rdn_boost))
+                    p_t_c = p_t_c + bonus
                     if len(prefix) > 0 and prefix[-1] == char:
                         # same char: only from blank
                         if not self.lexicon_strict or self._is_valid_prefix(prefix):
@@ -355,3 +396,57 @@ class OCRServiceWithCRNNFixed(OCRService):
         if not self.lexicon_prefixes:
             return True
         return s in self.lexicon_prefixes
+
+    def _autocorrect_with_lexicon(self, text: str) -> str:
+        try:
+            import difflib
+            best = text
+            best_ratio = 0.0
+            for w in self.lexicon:
+                if abs(len(w) - len(text)) > 3:
+                    continue
+                ratio = difflib.SequenceMatcher(a=text, b=w).ratio()
+                if ratio > best_ratio:
+                    best_ratio = ratio
+                    best = w
+            if best_ratio >= self.lexicon_autocorrect_min_ratio:
+                return best
+            return text
+        except Exception:
+            return text
+
+    def _load_char_lm(self):
+        path = os.getenv("CRNN_LM_PATH")
+        weight = float(os.getenv("CRNN_LM_WEIGHT", "0.0"))
+        uni_log, bi_log = None, None
+        if path and Path(path).exists():
+            try:
+                import json
+                with open(path, 'r', encoding='utf-8') as f:
+                    data = json.load(f)
+                uni = data.get('unigram') or {}
+                bi = data.get('bigram') or {}
+                def to_logprob(d):
+                    if not d:
+                        return None
+                    total = float(sum(max(v, 0.0) for v in d.values())) or 1.0
+                    return {k.upper(): float(np.log(max(v, 1e-12) / total)) for k, v in d.items()}
+                uni_log = to_logprob(uni)
+                if bi:
+                    total_bi = float(sum(max(v, 0.0) for v in bi.values())) or 1.0
+                    bi_log = {k.upper(): float(np.log(max(v, 1e-12) / total_bi)) for k, v in bi.items()}
+                if 'weight' in data:
+                    weight = float(data['weight'])
+                print(f"Char LM loaded (weight={weight}) from {path}")
+            except Exception as e:
+                print(f"Char LM load error: {e}")
+        return uni_log, bi_log, weight
+
+    def _lm_log_prob(self, prev_char: Optional[str], curr_char: str) -> float:
+        if prev_char and self.lm_bigram:
+            key = f"{prev_char}{curr_char}"
+            if key in self.lm_bigram:
+                return self.lm_bigram[key]
+        if self.lm_unigram and curr_char in self.lm_unigram:
+            return self.lm_unigram[curr_char]
+        return 0.0

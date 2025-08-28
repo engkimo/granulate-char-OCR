@@ -10,6 +10,7 @@ import torch
 import torch.nn as nn
 import torchvision.transforms as transforms
 from pathlib import Path
+import os
 from backend.domain.entities.ocr_result import OCRResult
 from backend.domain.entities.character import Character
 from backend.infrastructure.mapping.granulate_alphabet_generated import GranulateAlphabet
@@ -86,10 +87,28 @@ class OCRService:
     def __init__(self, *, load_cnn: bool = True):
         self.alphabet = GranulateAlphabet()
         self.cnn_model = None
-        self.device = torch.device('cpu')
+        self.device = self._select_device()
         # CNNは必要な場合のみロード（CRNN専用サービスでは抑制して起動時間・メモリを削減）
         if load_cnn:
             self._load_cnn_model()
+
+    def _select_device(self) -> torch.device:
+        override = os.getenv("OCR_DEVICE") or os.getenv("TORCH_DEVICE")
+        if override:
+            try:
+                dev = torch.device(override)
+                print(f"Using device (override): {dev}")
+                return dev
+            except Exception:
+                print(f"Invalid device override: {override}. Falling back to auto-detect.")
+        if hasattr(torch.backends, 'mps') and torch.backends.mps.is_available():
+            print("Using device: mps")
+            return torch.device('mps')
+        if torch.cuda.is_available():
+            print("Using device: cuda")
+            return torch.device('cuda')
+        print("Using device: cpu")
+        return torch.device('cpu')
 
     def process_image(self, image_bytes: bytes) -> OCRResult:
         start_time = time.time()

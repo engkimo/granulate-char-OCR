@@ -6,7 +6,8 @@ CRNN (Convolutional Recurrent Neural Network) モデルの実装
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from typing import Tuple, List
+from typing import Tuple, List, Optional
+import os
 
 
 class BidirectionalLSTM(nn.Module):
@@ -185,16 +186,32 @@ class CTCLabelConverter:
         return texts
 
 
-def create_crnn_model(pretrained: bool = False) -> CRNN:
+def _get_env_charset(default: str = "ABCDEFGHIJKLMNOPQRSTUVWXYZ") -> str:
+    """環境変数から文字集合を取得
+    - CRNN_CHARSET が指定されている場合はそれを使用
+    - 例: "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    """
+    cs = os.getenv("CRNN_CHARSET")
+    if cs and isinstance(cs, str) and len(cs) > 0:
+        # 正規化（大文字化）
+        return ''.join([c for c in cs.upper() if c.isalnum()])
+    return default
+
+
+def create_crnn_model(pretrained: bool = False, character_set: Optional[str] = None) -> CRNN:
     """CRNNモデルのインスタンスを作成
     
     Args:
         pretrained: 事前学習済みモデルを使用するか（将来の実装用）
+        character_set: 使用する文字集合（None の場合は環境変数やデフォルトを使用）
         
     Returns:
         model: CRNNモデル
     """
-    model = CRNN(img_height=64, num_classes=27, hidden_size=256)
+    charset = character_set or _get_env_charset()
+    # 出力クラス数 = 文字数 + blank(1)
+    num_classes = len(charset) + 1
+    model = CRNN(img_height=64, num_classes=num_classes, hidden_size=256)
     
     if pretrained:
         # TODO: 事前学習済みモデルのロード
@@ -220,7 +237,8 @@ if __name__ == "__main__":
     print(f"出力サイズ: {output.shape}")  # (seq_len, batch, num_classes)
     
     # ラベル変換器のテスト
-    converter = CTCLabelConverter()
+    charset = _get_env_charset()
+    converter = CTCLabelConverter(character_set=charset)
     texts = ["HELLO", "WORLD", "GRANULATE", "OCR"]
     encoded, lengths = converter.encode(texts)
     print(f"\nエンコード結果:")

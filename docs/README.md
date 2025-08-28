@@ -13,6 +13,9 @@
 ### 3. [API仕様書](./api_documentation.md)
 RESTful APIのエンドポイント、リクエスト/レスポンス形式、使用例を含む完全なAPI仕様。
 
+### 4. [ロードマップ](./ROADMAP.md)
+現状サマリ、直近の実装改善、次の提案ステップ（語彙/LM、誤認識対策、数字拡張、Transformer PoC など）。
+
 ## クイックリンク
 
 - **プロジェクトルート**: [../README.md](../README.md)
