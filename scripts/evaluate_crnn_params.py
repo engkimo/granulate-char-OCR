@@ -15,9 +15,9 @@ import argparse
 import os
 import re
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 from pathlib import Path
-from typing import List, Tuple, Dict
+from typing import List, Tuple, Dict, Any, Optional
 
 import numpy as np
 
@@ -121,6 +121,81 @@ def evaluate_once(
     return EvalResult(word_acc, char_acc, avg_time, total_words)
 
 
+def evaluate_with_details(
+    files: List[Path],
+    service_kind: str,
+) -> Tuple[EvalResult, List[Dict[str, Any]]]:
+    """Evaluate and return per-file details."""
+    if service_kind == "fixed":
+        service = OCRServiceWithCRNNFixed()
+    else:
+        service = OCRServiceWithCRNN()
+
+    records: List[Dict[str, Any]] = []
+    total_words = 0
+    correct_words = 0
+    total_chars = 0
+    total_edit = 0
+    times = []
+
+    for img_path in files:
+        gt = extract_gt_from_filename(img_path)
+        if not gt:
+            continue
+        with open(img_path, 'rb') as f:
+            data = f.read()
+        t0 = time.time()
+        res = service.process_image(data)
+        dt = (time.time() - t0) * 1000.0
+        times.append(dt)
+        pred = ''.join([c.latin_equivalent for c in res.characters])
+        pred = re.sub(r"[^A-Z]", "", pred.upper())
+        gt_n = re.sub(r"[^A-Z]", "", gt.upper())
+        total_words += 1
+        is_word_correct = int(pred == gt_n)
+        correct_words += is_word_correct
+        ed = levenshtein(pred, gt_n)
+        total_edit += ed
+        total_chars += len(gt_n)
+        records.append({
+            'file': img_path.name,
+            'gt': gt_n,
+            'pred': pred,
+            'edit_distance': ed,
+            'time_ms': dt,
+            'word_correct': is_word_correct,
+        })
+
+    if total_words == 0 or total_chars == 0:
+        result = EvalResult(0.0, 0.0, float(np.mean(times)) if times else 0.0, 0)
+    else:
+        result = EvalResult(
+            correct_words / total_words,
+            max(0.0, (total_chars - total_edit) / total_chars),
+            float(np.mean(times)) if times else 0.0,
+            total_words,
+        )
+    return result, records
+
+
+def confusion_matrix_from_records(records: List[Dict[str, Any]], charset: Optional[str] = None) -> Tuple[np.ndarray, List[str]]:
+    """Build a simple substitution confusion matrix aligned by index.
+    Insertions/Deletions are ignored in the matrix.
+    """
+    if not charset:
+        charset = os.environ.get('CRNN_CHARSET', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    labels = list(charset)
+    idx = {c: i for i, c in enumerate(labels)}
+    mat = np.zeros((len(labels), len(labels)), dtype=np.int32)
+    for r in records:
+        gt = r['gt']
+        pr = r['pred']
+        for a, b in zip(gt, pr):
+            if a in idx and b in idx:
+                mat[idx[a], idx[b]] += 1
+    return mat, labels
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--data-dir', type=str, default='test_data')
@@ -132,6 +207,7 @@ def main():
     ap.add_argument('--grid', type=str, default='', help='Custom grid JSON (optional)')
     ap.add_argument('--ws-list', nargs='*', type=float, default=None, help='Width scale list for CRNN_WIDTH_SCALE (e.g., 1.0 1.08 1.15)')
     ap.add_argument('--rm-list', nargs='*', type=int, default=None, help='Right margin list for CRNN_RIGHT_MARGIN (e.g., 12 24)')
+    ap.add_argument('--out-dir', type=str, default='', help='If set, saves summary.json/csv and best details + confusion heatmap')
     args = ap.parse_args()
 
     data_dir = Path(args.data_dir)
@@ -172,6 +248,7 @@ def main():
                     cfg["CRNN_RIGHT_MARGIN"] = rm
                 grid.append(cfg)
 
+    summaries: List[Dict[str, Any]] = []
     best: Tuple[float, Dict[str, float], EvalResult] | None = None
     for idx, cfg in enumerate(grid, 1):
         os.environ.clear()
@@ -184,12 +261,55 @@ def main():
         score = (res.char_acc, res.word_acc)
         if best is None or score > (best[0], best[2].word_acc):
             best = (res.char_acc, cfg, res)
+        # collect
+        summaries.append({
+            **cfg,
+            'word_acc': res.word_acc,
+            'char_acc': res.char_acc,
+            'avg_ms': res.avg_time_ms,
+            'samples': res.total_samples,
+        })
 
     if best:
         print("\nBest configuration:")
         print(best[1])
         br = best[2]
         print(f"word_acc={br.word_acc:.3f}, char_acc={br.char_acc:.3f}, avg_ms={br.avg_time_ms:.1f}, samples={br.total_samples}")
+        # Save outputs
+        if args.out_dir:
+            out_dir = Path(args.out_dir)
+            out_dir.mkdir(parents=True, exist_ok=True)
+            # summary
+            import json, csv
+            (out_dir / 'summary.json').write_text(json.dumps(summaries, indent=2), encoding='utf-8')
+            with (out_dir / 'summary.csv').open('w', newline='', encoding='utf-8') as f:
+                w = csv.DictWriter(f, fieldnames=list(summaries[0].keys()))
+                w.writeheader()
+                w.writerows(summaries)
+            # best details
+            os.environ.clear(); os.environ.update(base_env);  
+            for k, v in best[1].items():
+                os.environ[str(k)] = str(v)
+            best_res, recs = evaluate_with_details(files, args.service)
+            (out_dir / 'best_details.json').write_text(json.dumps({'config': best[1], 'metrics': asdict(best_res), 'records': recs}, indent=2), encoding='utf-8')
+            # best csv
+            with (out_dir / 'best_details.csv').open('w', newline='', encoding='utf-8') as f:
+                fieldnames = ['file', 'gt', 'pred', 'edit_distance', 'word_correct', 'time_ms']
+                w = csv.DictWriter(f, fieldnames=fieldnames)
+                w.writeheader(); w.writerows(recs)
+            # confusion heatmap
+            try:
+                import matplotlib.pyplot as plt
+                import seaborn as sns
+                mat, labels = confusion_matrix_from_records(recs)
+                fig = plt.figure(figsize=(10, 8))
+                sns.heatmap(mat, xticklabels=labels, yticklabels=labels, cmap='Blues')
+                plt.xlabel('Predicted'); plt.ylabel('Ground Truth'); plt.title('Char Confusion Matrix')
+                fig.tight_layout()
+                fig.savefig(out_dir / 'best_confusion.png', dpi=150)
+                plt.close(fig)
+            except Exception as e:
+                print(f"Could not save heatmap: {e}")
     else:
         print("No successful evaluations.")
 

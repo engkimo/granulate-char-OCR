@@ -129,6 +129,20 @@ python scripts/evaluate_crnn_params.py \
 - 語彙をデータセット準拠に拡充＋前処理微調整で、CRNNの空出力は一部改善し単語精度はわずかに改善。
 - 一方で文字精度は大きくは伸びず、学習-実データの見た目ギャップがボトルネック。半教師ありや追加学習が有効。
 
+統合評価スクリプト（語彙生成→評価→レポート保存）
+```bash
+python scripts/run_eval_with_autolexicon.py \
+  --data-dir test_data \
+  --glob "*.png" \
+  --ws-list 1.0 1.08 \
+  --rm-list 12 24
+
+# 出力: results/eval_YYYYmmdd_HHMMSS/
+# - summary.json / summary.csv （各構成の集計）
+# - best_details.json / best_details.csv（ベスト構成の各ファイル出力）
+# - best_confusion.png（文字混同行列のヒートマップ）
+```
+
 4) 数字 0–9 サポート（中期）
 - `CRNN_CHARSET=ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789` で再学習。
 - 新チェックポイント（出力37=36+blank）を `CRNN_MODEL_PATH` で切替。
@@ -141,6 +155,20 @@ python scripts/evaluate_crnn_params.py \
 6) 半教師あり（中期）
 - 擬似ラベル: 高信頼（例: ≥0.9）の推論結果のみ採用し再学習。
 - データ選別とバランス管理、過学習チェック。
+
+ 実行例（擬似ラベリング→再学習）
+ ```bash
+ # 1) 擬似ラベル生成（CRNNのみ、信頼度≥0.90）
+ python scripts/pseudo_label_from_images.py \
+   --src-dir test_data \
+   --out-dir training_data/pseudo \
+   --min-conf 0.90
+
+ # 2) 再学習（ベースモデルから微調整、エポック軽め）
+ CRNN_BASE_MODEL_PATH=models/crnn_model_best.pth \
+ CRNN_EPOCHS=10 \
+ python scripts/train_crnn.py
+ ```
 
 7) パフォーマンス/展開（横断）
 - GPU活用・バッチ化、TorchScript/ONNX化、量子化（int8）実験。
