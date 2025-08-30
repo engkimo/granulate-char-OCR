@@ -10,6 +10,7 @@ from torch.nn.utils.rnn import pad_sequence
 import numpy as np
 import cv2
 from pathlib import Path
+import argparse
 import sys
 from typing import List, Tuple, Dict
 import json
@@ -332,8 +333,13 @@ def train_crnn(data_dir: Path, output_dir: Path, epochs: int = 50, best_model_na
 
 
 def main():
-    data_dir = Path("test_data")
-    output_dir = Path("models")
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data-dir', type=str, default=os.getenv('CRNN_TRAIN_DATA_DIR', 'test_data'))
+    parser.add_argument('--output-dir', type=str, default='models')
+    args = parser.parse_args()
+
+    data_dir = Path(args.data_dir)
+    output_dir = Path(args.output_dir)
     
     print("=== CRNNモデルの訓練 ===")
     

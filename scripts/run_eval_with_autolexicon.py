@@ -17,6 +17,7 @@ import argparse
 import subprocess
 from pathlib import Path
 from datetime import datetime
+import sys
 
 
 def run(cmd: list[str], env: dict | None = None):
@@ -37,8 +38,9 @@ def main():
 
     lex_path = Path('configs/ocr/lexicon_from_dataset.txt')
     # 1) generate lexicon
+    PY = sys.executable or 'python'
     run([
-        'python', 'scripts/generate_lexicon_from_dataset.py',
+        PY, 'scripts/generate_lexicon_from_dataset.py',
         '--data-dir', args.data_dir,
         '--glob', args.glob,
         '--output', str(lex_path),
@@ -49,7 +51,7 @@ def main():
         'CRNN_LEXICON_STRICT': 'true'
     }
     run([
-        'python', 'scripts/evaluate_crnn_params.py',
+        PY, 'scripts/evaluate_crnn_params.py',
         '--data-dir', args.data_dir,
         '--service', 'fixed',
         '--lexicon', str(lex_path),

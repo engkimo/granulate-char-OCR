@@ -1,0 +1,714 @@
+{
+  "config": {
+    "CRNN_E_PENALTY": 0.9,
+    "CRNN_RDN_BOOST": 1.0,
+    "CRNN_BEAM_WIDTH": 3,
+    "CRNN_LM_WEIGHT": 0.0,
+    "CRNN_WIDTH_SCALE": 1.08,
+    "CRNN_RIGHT_MARGIN": 12
+  },
+  "metrics": {
+    "word_acc": 0.08045977011494253,
+    "char_acc": 0.20224719101123595,
+    "avg_time_ms": 38.042630272350095,
+    "total_samples": 87
+  },
+  "records": [
+    {
+      "file": "AND_1.png",
+      "gt": "AND",
+      "pred": "ION",
+      "edit_distance": 3,
+      "time_ms": 37.980079650878906,
+      "word_correct": 0
+    },
+    {
+      "file": "A_1.png",
+      "gt": "A",
+      "pred": "A",
+      "edit_distance": 0,
+      "time_ms": 37.98222541809082,
+      "word_correct": 1
+    },
+    {
+      "file": "A_2.png",
+      "gt": "A",
+      "pred": "A",
+      "edit_distance": 0,
+      "time_ms": 36.16619110107422,
+      "word_correct": 1
+    },
+    {
+      "file": "BE_1.png",
+      "gt": "BE",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 38.53726387023926,
+      "word_correct": 0
+    },
+    {
+      "file": "BE_2.png",
+      "gt": "BE",
+      "pred": "OE",
+      "edit_distance": 1,
+      "time_ms": 36.275386810302734,
+      "word_correct": 0
+    },
+    {
+      "file": "BY_1.png",
+      "gt": "BY",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 36.36002540588379,
+      "word_correct": 0
+    },
+    {
+      "file": "B_1.png",
+      "gt": "B",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 39.40987586975098,
+      "word_correct": 0
+    },
+    {
+      "file": "CAN_1.png",
+      "gt": "CAN",
+      "pred": "IAN",
+      "edit_distance": 1,
+      "time_ms": 38.208961486816406,
+      "word_correct": 0
+    },
+    {
+      "file": "CAN_2.png",
+      "gt": "CAN",
+      "pred": "CAN",
+      "edit_distance": 0,
+      "time_ms": 36.99827194213867,
+      "word_correct": 1
+    },
+    {
+      "file": "CHANGE_1.png",
+      "gt": "CHANGE",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 38.828134536743164,
+      "word_correct": 0
+    },
+    {
+      "file": "COME_1.png",
+      "gt": "COME",
+      "pred": "POE",
+      "edit_distance": 2,
+      "time_ms": 40.42387008666992,
+      "word_correct": 0
+    },
+    {
+      "file": "CONFERENCE_1.png",
+      "gt": "CONFERENCE",
+      "pred": "POE",
+      "edit_distance": 8,
+      "time_ms": 37.97411918640137,
+      "word_correct": 0
+    },
+    {
+      "file": "COSTS_1.png",
+      "gt": "COSTS",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 36.870718002319336,
+      "word_correct": 0
+    },
+    {
+      "file": "COVERED_1.png",
+      "gt": "COVERED",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 38.94186019897461,
+      "word_correct": 0
+    },
+    {
+      "file": "C_1.png",
+      "gt": "C",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 39.44706916809082,
+      "word_correct": 0
+    },
+    {
+      "file": "EASY_1.png",
+      "gt": "EASY",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 39.18719291687012,
+      "word_correct": 0
+    },
+    {
+      "file": "ENJOYABLE_1.png",
+      "gt": "ENJOYABLE",
+      "pred": "POE",
+      "edit_distance": 7,
+      "time_ms": 38.31601142883301,
+      "word_correct": 0
+    },
+    {
+      "file": "EQPHGTGPE_1.png",
+      "gt": "EQPHGTGPE",
+      "pred": "POE",
+      "edit_distance": 7,
+      "time_ms": 39.33215141296387,
+      "word_correct": 0
+    },
+    {
+      "file": "E_1.png",
+      "gt": "E",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 39.85905647277832,
+      "word_correct": 0
+    },
+    {
+      "file": "FACTORY_1.png",
+      "gt": "FACTORY",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 39.43800926208496,
+      "word_correct": 0
+    },
+    {
+      "file": "FOR_1.png",
+      "gt": "FOR",
+      "pred": "IAN",
+      "edit_distance": 3,
+      "time_ms": 37.87493705749512,
+      "word_correct": 0
+    },
+    {
+      "file": "F_1.png",
+      "gt": "F",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.00089454650879,
+      "word_correct": 0
+    },
+    {
+      "file": "G_1.png",
+      "gt": "G",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.420034408569336,
+      "word_correct": 0
+    },
+    {
+      "file": "HEAD_1.png",
+      "gt": "HEAD",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 37.96792030334473,
+      "word_correct": 0
+    },
+    {
+      "file": "HIRING!_1.png",
+      "gt": "HIRING",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 38.906097412109375,
+      "word_correct": 0
+    },
+    {
+      "file": "HUMAN_1.png",
+      "gt": "HUMAN",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 38.91491889953613,
+      "word_correct": 0
+    },
+    {
+      "file": "H_1.png",
+      "gt": "H",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.55974769592285,
+      "word_correct": 0
+    },
+    {
+      "file": "INC_1.png",
+      "gt": "INC",
+      "pred": "IAN",
+      "edit_distance": 2,
+      "time_ms": 37.33110427856445,
+      "word_correct": 0
+    },
+    {
+      "file": "INC_2.png",
+      "gt": "INC",
+      "pred": "ION",
+      "edit_distance": 2,
+      "time_ms": 37.600040435791016,
+      "word_correct": 0
+    },
+    {
+      "file": "INC_3.png",
+      "gt": "INC",
+      "pred": "CAN",
+      "edit_distance": 3,
+      "time_ms": 36.405086517333984,
+      "word_correct": 0
+    },
+    {
+      "file": "INC_4.png",
+      "gt": "INC",
+      "pred": "CAN",
+      "edit_distance": 3,
+      "time_ms": 36.332130432128906,
+      "word_correct": 0
+    },
+    {
+      "file": "INDIVIDUALS_1.png",
+      "gt": "INDIVIDUALS",
+      "pred": "POE",
+      "edit_distance": 11,
+      "time_ms": 40.4360294342041,
+      "word_correct": 0
+    },
+    {
+      "file": "IS_1.png",
+      "gt": "IS",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 34.91711616516113,
+      "word_correct": 0
+    },
+    {
+      "file": "I_1.png",
+      "gt": "I",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.86635398864746,
+      "word_correct": 0
+    },
+    {
+      "file": "JOB_1.png",
+      "gt": "JOB",
+      "pred": "ION",
+      "edit_distance": 2,
+      "time_ms": 38.75017166137695,
+      "word_correct": 0
+    },
+    {
+      "file": "JOIN_1.png",
+      "gt": "JOIN",
+      "pred": "POE",
+      "edit_distance": 3,
+      "time_ms": 36.86976432800293,
+      "word_correct": 0
+    },
+    {
+      "file": "KPE_1.png",
+      "gt": "KPE",
+      "pred": "CAE",
+      "edit_distance": 2,
+      "time_ms": 36.41223907470703,
+      "word_correct": 0
+    },
+    {
+      "file": "LAB_1.png",
+      "gt": "LAB",
+      "pred": "CAE",
+      "edit_distance": 2,
+      "time_ms": 37.23716735839844,
+      "word_correct": 0
+    },
+    {
+      "file": "LANGO_2.png",
+      "gt": "LANGO",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 35.778045654296875,
+      "word_correct": 0
+    },
+    {
+      "file": "LOOKING_1.png",
+      "gt": "LOOKING",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 37.55903244018555,
+      "word_correct": 0
+    },
+    {
+      "file": "L_1.png",
+      "gt": "L",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 38.96594047546387,
+      "word_correct": 0
+    },
+    {
+      "file": "M_1.png",
+      "gt": "M",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.626028060913086,
+      "word_correct": 0
+    },
+    {
+      "file": "NYELV.png",
+      "gt": "NYELV",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 38.45500946044922,
+      "word_correct": 0
+    },
+    {
+      "file": "N_1.png",
+      "gt": "N",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 35.223960876464844,
+      "word_correct": 0
+    },
+    {
+      "file": "OF_1.png",
+      "gt": "OF",
+      "pred": "OF",
+      "edit_distance": 0,
+      "time_ms": 36.12017631530762,
+      "word_correct": 1
+    },
+    {
+      "file": "OF_2.png",
+      "gt": "OF",
+      "pred": "OF",
+      "edit_distance": 0,
+      "time_ms": 37.01519966125488,
+      "word_correct": 1
+    },
+    {
+      "file": "OF_3.png",
+      "gt": "OF",
+      "pred": "OF",
+      "edit_distance": 0,
+      "time_ms": 37.28079795837402,
+      "word_correct": 1
+    },
+    {
+      "file": "OF_4.png",
+      "gt": "OF",
+      "pred": "OF",
+      "edit_distance": 0,
+      "time_ms": 34.86990928649902,
+      "word_correct": 1
+    },
+    {
+      "file": "OPERATE_1.png",
+      "gt": "OPERATE",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 41.181087493896484,
+      "word_correct": 0
+    },
+    {
+      "file": "OPERATE_2.png",
+      "gt": "OPERATE",
+      "pred": "POEA",
+      "edit_distance": 5,
+      "time_ms": 39.92176055908203,
+      "word_correct": 0
+    },
+    {
+      "file": "OUR_1.png",
+      "gt": "OUR",
+      "pred": "CAN",
+      "edit_distance": 3,
+      "time_ms": 40.87376594543457,
+      "word_correct": 0
+    },
+    {
+      "file": "O_1.png",
+      "gt": "O",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.11199760437012,
+      "word_correct": 0
+    },
+    {
+      "file": "PART_1.png",
+      "gt": "PART",
+      "pred": "POE",
+      "edit_distance": 3,
+      "time_ms": 38.474082946777344,
+      "word_correct": 0
+    },
+    {
+      "file": "PASSIONATE_1.png",
+      "gt": "PASSIONATE",
+      "pred": "POE",
+      "edit_distance": 7,
+      "time_ms": 38.94782066345215,
+      "word_correct": 0
+    },
+    {
+      "file": "PLEASURE_1.png",
+      "gt": "PLEASURE",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 37.94097900390625,
+      "word_correct": 0
+    },
+    {
+      "file": "PLEASURE_2.png",
+      "gt": "PLEASURE",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 34.75832939147949,
+      "word_correct": 0
+    },
+    {
+      "file": "PROUD_1.png",
+      "gt": "PROUD",
+      "pred": "POE",
+      "edit_distance": 3,
+      "time_ms": 38.27929496765137,
+      "word_correct": 0
+    },
+    {
+      "file": "PROVIDED_1.png",
+      "gt": "PROVIDED",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 36.52501106262207,
+      "word_correct": 0
+    },
+    {
+      "file": "RE_1.png",
+      "gt": "RE",
+      "pred": "OE",
+      "edit_distance": 1,
+      "time_ms": 38.820743560791016,
+      "word_correct": 0
+    },
+    {
+      "file": "ROOM_1.png",
+      "gt": "ROOM",
+      "pred": "POE",
+      "edit_distance": 3,
+      "time_ms": 38.49005699157715,
+      "word_correct": 0
+    },
+    {
+      "file": "R_1.png",
+      "gt": "R",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.6889705657959,
+      "word_correct": 0
+    },
+    {
+      "file": "STOMACH_1.png",
+      "gt": "STOMACH",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 39.02316093444824,
+      "word_correct": 0
+    },
+    {
+      "file": "STOMACH_2.png",
+      "gt": "STOMACH",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 35.42017936706543,
+      "word_correct": 0
+    },
+    {
+      "file": "STOMACH_3.png",
+      "gt": "STOMACH",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 39.930105209350586,
+      "word_correct": 0
+    },
+    {
+      "file": "STOMACH_4.png",
+      "gt": "STOMACH",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 38.10691833496094,
+      "word_correct": 0
+    },
+    {
+      "file": "STOMACH_5.png",
+      "gt": "STOMACH",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 45.71986198425293,
+      "word_correct": 0
+    },
+    {
+      "file": "SWEETS_1.png",
+      "gt": "SWEETS",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 36.769866943359375,
+      "word_correct": 0
+    },
+    {
+      "file": "S_1.png",
+      "gt": "S",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.220001220703125,
+      "word_correct": 0
+    },
+    {
+      "file": "S_2.png",
+      "gt": "S",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 36.32211685180664,
+      "word_correct": 0
+    },
+    {
+      "file": "TEAM!_1.png",
+      "gt": "TEAM",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 38.548946380615234,
+      "word_correct": 0
+    },
+    {
+      "file": "THE_1.png",
+      "gt": "THE",
+      "pred": "IOE",
+      "edit_distance": 2,
+      "time_ms": 39.114952087402344,
+      "word_correct": 0
+    },
+    {
+      "file": "TO_1.png",
+      "gt": "TO",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 34.46197509765625,
+      "word_correct": 0
+    },
+    {
+      "file": "TRANSPORTATION_1.png",
+      "gt": "TRANSPORTATION",
+      "pred": "POE",
+      "edit_distance": 12,
+      "time_ms": 39.29400444030762,
+      "word_correct": 0
+    },
+    {
+      "file": "T_1.png",
+      "gt": "T",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 40.46320915222168,
+      "word_correct": 0
+    },
+    {
+      "file": "UNIFORM_1.png",
+      "gt": "UNIFORM",
+      "pred": "POE",
+      "edit_distance": 6,
+      "time_ms": 36.64422035217285,
+      "word_correct": 0
+    },
+    {
+      "file": "US_1.png",
+      "gt": "US",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 38.35797309875488,
+      "word_correct": 0
+    },
+    {
+      "file": "UVQOCEJ_1.png",
+      "gt": "UVQOCEJ",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 39.994239807128906,
+      "word_correct": 0
+    },
+    {
+      "file": "V_1.png",
+      "gt": "V",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 37.3530387878418,
+      "word_correct": 0
+    },
+    {
+      "file": "WE_1.png",
+      "gt": "WE",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 39.89386558532715,
+      "word_correct": 0
+    },
+    {
+      "file": "WORK_1.png",
+      "gt": "WORK",
+      "pred": "COA",
+      "edit_distance": 3,
+      "time_ms": 35.69507598876953,
+      "word_correct": 0
+    },
+    {
+      "file": "WORLD!_1.png",
+      "gt": "WORLD",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 37.561893463134766,
+      "word_correct": 0
+    },
+    {
+      "file": "WORLD_1.png",
+      "gt": "WORLD",
+      "pred": "POE",
+      "edit_distance": 4,
+      "time_ms": 38.16390037536621,
+      "word_correct": 0
+    },
+    {
+      "file": "W_1.png",
+      "gt": "W",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 40.09103775024414,
+      "word_correct": 0
+    },
+    {
+      "file": "YAMIGASHI_1.png",
+      "gt": "YAMIGASHI",
+      "pred": "POE",
+      "edit_distance": 9,
+      "time_ms": 37.61410713195801,
+      "word_correct": 0
+    },
+    {
+      "file": "YOU_1.png",
+      "gt": "YOU",
+      "pred": "ION",
+      "edit_distance": 2,
+      "time_ms": 40.33994674682617,
+      "word_correct": 0
+    },
+    {
+      "file": "YUMMY_1.png",
+      "gt": "YUMMY",
+      "pred": "POE",
+      "edit_distance": 5,
+      "time_ms": 37.44792938232422,
+      "word_correct": 0
+    },
+    {
+      "file": "Y_1.png",
+      "gt": "Y",
+      "pred": "A",
+      "edit_distance": 1,
+      "time_ms": 39.910078048706055,
+      "word_correct": 0
+    }
+  ]
+}

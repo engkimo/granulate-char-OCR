@@ -1,0 +1,162 @@
+{
+  "config": {
+    "CRNN_E_PENALTY": 0.9,
+    "CRNN_RDN_BOOST": 1.0,
+    "CRNN_BEAM_WIDTH": 3,
+    "CRNN_LM_WEIGHT": 0.0,
+    "CRNN_WIDTH_SCALE": 1.0,
+    "CRNN_RIGHT_MARGIN": 12
+  },
+  "metrics": {
+    "word_acc": 0.0,
+    "char_acc": 0.12727272727272726,
+    "avg_time_ms": 39.30424319373237,
+    "total_samples": 18
+  },
+  "records": [
+    {
+      "file": "A_1.png",
+      "gt": "A",
+      "pred": "S",
+      "edit_distance": 1,
+      "time_ms": 37.05906867980957,
+      "word_correct": 0
+    },
+    {
+      "file": "A_2.png",
+      "gt": "A",
+      "pred": "S",
+      "edit_distance": 1,
+      "time_ms": 40.32588005065918,
+      "word_correct": 0
+    },
+    {
+      "file": "BE_1.png",
+      "gt": "BE",
+      "pred": "O",
+      "edit_distance": 2,
+      "time_ms": 39.83116149902344,
+      "word_correct": 0
+    },
+    {
+      "file": "BE_2.png",
+      "gt": "BE",
+      "pred": "OF",
+      "edit_distance": 2,
+      "time_ms": 39.691925048828125,
+      "word_correct": 0
+    },
+    {
+      "file": "BY_1.png",
+      "gt": "BY",
+      "pred": "O",
+      "edit_distance": 2,
+      "time_ms": 40.5881404876709,
+      "word_correct": 0
+    },
+    {
+      "file": "CAN_1.png",
+      "gt": "CAN",
+      "pred": "TO",
+      "edit_distance": 3,
+      "time_ms": 40.17472267150879,
+      "word_correct": 0
+    },
+    {
+      "file": "CAN_2.png",
+      "gt": "CAN",
+      "pred": "TO",
+      "edit_distance": 3,
+      "time_ms": 37.751197814941406,
+      "word_correct": 0
+    },
+    {
+      "file": "C_1.png",
+      "gt": "C",
+      "pred": "S",
+      "edit_distance": 1,
+      "time_ms": 37.667036056518555,
+      "word_correct": 0
+    },
+    {
+      "file": "ENJOYABLE_1.png",
+      "gt": "ENJOYABLE",
+      "pred": "POA",
+      "edit_distance": 7,
+      "time_ms": 41.79215431213379,
+      "word_correct": 0
+    },
+    {
+      "file": "EQPHGTGPE_1.png",
+      "gt": "EQPHGTGPE",
+      "pred": "POA",
+      "edit_distance": 8,
+      "time_ms": 41.1829948425293,
+      "word_correct": 0
+    },
+    {
+      "file": "FOR_1.png",
+      "gt": "FOR",
+      "pred": "TO",
+      "edit_distance": 2,
+      "time_ms": 35.449981689453125,
+      "word_correct": 0
+    },
+    {
+      "file": "I_1.png",
+      "gt": "I",
+      "pred": "S",
+      "edit_distance": 1,
+      "time_ms": 39.872169494628906,
+      "word_correct": 0
+    },
+    {
+      "file": "JOB_1.png",
+      "gt": "JOB",
+      "pred": "TO",
+      "edit_distance": 2,
+      "time_ms": 37.9948616027832,
+      "word_correct": 0
+    },
+    {
+      "file": "LAB_1.png",
+      "gt": "LAB",
+      "pred": "TO",
+      "edit_distance": 3,
+      "time_ms": 39.52503204345703,
+      "word_correct": 0
+    },
+    {
+      "file": "M_1.png",
+      "gt": "M",
+      "pred": "S",
+      "edit_distance": 1,
+      "time_ms": 40.10510444641113,
+      "word_correct": 0
+    },
+    {
+      "file": "N_1.png",
+      "gt": "N",
+      "pred": "S",
+      "edit_distance": 1,
+      "time_ms": 40.27271270751953,
+      "word_correct": 0
+    },
+    {
+      "file": "WORLD!_1.png",
+      "gt": "WORLD",
+      "pred": "POA",
+      "edit_distance": 4,
+      "time_ms": 38.950204849243164,
+      "word_correct": 0
+    },
+    {
+      "file": "WORLD_1.png",
+      "gt": "WORLD",
+      "pred": "POA",
+      "edit_distance": 4,
+      "time_ms": 39.24202919006348,
+      "word_correct": 0
+    }
+  ]
+}
